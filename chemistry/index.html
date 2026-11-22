@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VCE Chemistry Units 1 and 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: a calm class home page; students arrive, find the chapter, click.
+   IDEA: the periodic table itself. Each chapter is an element-style tile; the hero is the table's outline.
+   PICTURE: the periodic table outline drawn with cells, elements 1 to 20 lit in teal.
+   COLOUR and TYPE: the decks' deep teal ground, mint #5eead4 accent, amber #fbb040 for Virtual Labs; Space Grotesk titles, Inter text.
+   LAYOUT: title and table on the first screen, then chapter tiles, then the numbered Virtual Labs grid. */
+:root{color-scheme:dark;--bg:#0f1d1b;--panel:#16302d;--line:#24504b;--ink:#e6fffb;--mu:#9cc9c3;--mint:#5eead4;--amber:#fbb040}
+:root[data-theme=light],:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;overflow-x:clip}
+a{color:inherit}
+.band{padding:clamp(28px,4vw,56px) max(5vw,16px)}
+.wrap{max-width:1180px;margin:0 auto}
+h1,h2,h3{font-family:'Space Grotesk',Inter,sans-serif;margin:0;text-wrap:balance}
+h1{font-size:clamp(34px,5vw,50px);line-height:1.05}
+h2{font-size:28px;line-height:1.15;margin-bottom:6px}
+.lead{color:var(--mu);max-width:56ch;margin:12px 0 0;font-size:17px}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:clamp(20px,4vw,56px);align-items:center}
+.pt{display:grid;grid-template-columns:repeat(18,minmax(0,1fr));gap:3px}
+.pt i{aspect-ratio:1;border-radius:3px;background:#1d3a37}
+.pt i.on{background:var(--mint);box-shadow:0 0 12px rgba(94,234,212,.35)}
+.pt i.gap{background:none}
+.pt-key{color:var(--mu);font-size:13px;margin-top:10px}
+.pt-key b{display:inline-block;width:12px;height:12px;border-radius:3px;background:var(--mint);vertical-align:-1px;margin-right:6px}
+.chapters{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:18px;margin-top:20px}
+.ch{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:14px}
+.ch .top{display:flex;gap:16px;align-items:flex-start}
+.ch .num{flex:none;width:68px;height:68px;border:2px solid var(--mint);border-radius:10px;display:flex;align-items:center;justify-content:center;font:700 34px 'Space Grotesk';color:var(--mint)}
+.ch h3{font-size:22px;line-height:1.2}
+.ch .unit{color:var(--mu);font-size:14px;margin-top:2px}
+.open{display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:12px;background:var(--mint);color:#06201c;font:700 17px 'Space Grotesk';text-decoration:none}
+.open:hover{background:#99f6e4}
+.open:focus-visible,.sec a:focus-visible,.lab:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.sec{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.sec a{display:flex;gap:12px;align-items:center;min-height:44px;padding:8px 12px;border-radius:10px;background:#1b3835;text-decoration:none}
+.sec a:hover{background:#245049}
+.sec b{color:var(--mint);font:700 15px 'Space Grotesk';min-width:28px}
+.ch.soon{border-style:dashed;background:none;color:var(--mu);justify-content:center;min-height:180px}
+.labs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:12px;margin-top:20px}
+.lab{display:flex;gap:14px;align-items:center;min-height:64px;padding:12px 14px;border-radius:12px;background:var(--panel);border:1px solid var(--line);text-decoration:none}
+.lab:hover{border-color:var(--amber)}
+.lab .n{flex:none;width:44px;height:44px;border-radius:50%;background:var(--amber);color:#241500;display:flex;align-items:center;justify-content:center;font:700 19px 'Space Grotesk'}
+.lab small{display:block;color:var(--mu);font-size:13px}
+.how{color:var(--mu);font-size:15px;max-width:70ch}
+.how kbd{font:600 13px Inter;border:1px solid var(--line);border-radius:5px;padding:1px 6px;color:var(--ink)}
+@media(max-width:760px){.hero{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:no-preference){.pt i.on{animation:glow 3s ease-in-out infinite alternate}@keyframes glow{to{box-shadow:0 0 2px rgba(94,234,212,.1)}}}
+</style>
+</head>
+<body>
+<header class="band"><div class="wrap hero">
+  <div>
+    <h1>VCE Chemistry Units 1 and 2</h1>
+    <p class="lead">Every chapter's slides and Virtual Labs, all in one place. Pick a chapter to open its slides, or jump straight to a Virtual Lab.</p>
+  </div>
+  <div>
+    <div class="pt" id="pt" aria-hidden="true"></div>
+  </div>
+</div></header>
+
+<main>
+<section class="band" style="padding-top:0"><div class="wrap">
+  <h2>Chapters</h2>
+  <div class="chapters">
+    <article class="ch">
+      <div class="top"><div class="num">1</div><div><h3>Elements and the periodic table</h3><div class="unit">Unit 1 · Area of Study 1</div></div></div>
+      <a class="open" href="chapter-1.html#1">Open Chapter 1 slides</a>
+      <ul class="sec" id="sec1"></ul>
+    </article>
+    <div class="ch soon"><p>More chapters will appear here as they are made.</p></div>
+  </div>
+</div></section>
+
+<section class="band" style="padding-top:0"><div class="wrap">
+  <h2>Virtual Labs</h2>
+  <p class="how">Your teacher will say which lab to open, for example "Virtual Lab 6". Each one opens on its slide in the chapter deck.</p>
+  <div class="labs" id="labs"></div>
+</div></section>
+
+<section class="band" style="padding-top:0"><div class="wrap">
+  <h2>Moving around a deck</h2>
+  <p class="how">Use the arrow keys or the arrows at the bottom right. Press <kbd>C</kbd> for the contents page, which lists every lesson and every Virtual Lab. Type a slide number then <kbd>G</kbd> to jump to it. The "All chapters" link at the bottom left brings you back here.</p>
+</div></section>
+</main>
+
+<script>
+{
+const SECS=[['1A','Introduction to the elements',3],['1B','Electron configurations',53],['1C','The periodic table',110],['1D','Critical elements and recycling processes',169]];
+document.getElementById('sec1').innerHTML=SECS.map(([c,t])=>`<li><a href="chapter-1.html#sec-${c}"><b>${c}</b><span>${t}</span></a></li>`).join('');
+const LABS=[['Element or compound?',10],['Build an atom',14],['Atom, ion or isotope?',30],['Relative atomic mass',38],['Hydrogen emission spectrum',60],['Configuration builder',82],['Configuration to table position',87],['Core charge',121],['Periodic trends',134],['Which is bigger, and why?',139],['Which critical element is it?',178],['Recovering tin',193],['Linear or circular supply',200]];
+document.getElementById('labs').innerHTML=LABS.map(([t],i)=>`<a class="lab" href="chapter-1.html#lab-${i+1}"><span class="n">${i+1}</span><span>${t}<small>Chapter 1</small></span></a>`).join('');
+// periodic table outline: [row, col] of each cell in rows 1 to 7 (main block)
+const cells=[];const row=(r,cols)=>cols.forEach(c=>cells.push([r,c]));
+const R=(a,b)=>Array.from({length:b-a+1},(_,i)=>a+i);
+row(1,[1,18]);row(2,[1,2,...R(13,18)]);row(3,[1,2,...R(13,18)]);row(4,R(1,18));row(5,R(1,18));row(6,R(1,18));row(7,R(1,18));
+const Z=(r,c)=>{if(r===1)return c===1?1:2;if(r<4)return (r===2?2:10)+(c<=2?c:c-10);if(r===4)return 18+c;return 99};
+const on=(r,c)=>Z(r,c)<=20;
+const has=new Set(cells.map(([r,c])=>r+','+c));let h='';
+for(let r=1;r<=7;r++)for(let c=1;c<=18;c++)h+=has.has(r+','+c)?`<i class="${on(r,c)?'on':''}"></i>`:'<i class="gap"></i>';
+document.getElementById('pt').innerHTML=h;
+}
+</script>
+</body>
+</html>

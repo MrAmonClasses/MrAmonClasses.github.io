@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Class slides</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Nunito+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE: a teacher's own launch pad; quick, plain, nothing to read twice.
+   IDEA: a staffroom pigeonhole wall: one labelled slot per class.
+   PICTURE: the subject tiles themselves, each with its class code tab and its subject's own colour.
+   COLOUR and TYPE: charcoal header, paper ground, each subject keeps the colour of its own site; Oswald titles, Nunito Sans text.
+   LAYOUT: title band, then a grid of subject tiles, then a short note on adding subjects. */
+:root{color-scheme:light;--bg:#f4f2ec;--ink:#1f2326;--mu:#5b6267;--line:#dcd7cc}
+:root[data-theme=light],:root[data-theme=dark]{color-scheme:light}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 'Nunito Sans',system-ui,sans-serif;overflow-x:clip}
+.band{padding:clamp(28px,4vw,56px) max(5vw,16px)}
+.wrap{max-width:1100px;margin:0 auto}
+header{background:#1f2326;color:#f4f2ec}
+h1{font:600 clamp(34px,5vw,50px)/1.05 Oswald,'Arial Narrow',sans-serif;margin:0}
+.lead{color:#c9cfd3;margin:10px 0 0;max-width:60ch;font-size:17px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:18px}
+.sub{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .15s,box-shadow .15s}
+.sub:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(31,35,38,.12)}
+.sub:focus-visible{outline:3px solid #1f7a6e;outline-offset:3px}
+.sub .top{padding:22px 22px 18px;color:var(--c-ink);background:var(--c)}
+.sub .code{display:inline-block;font:800 13px 'Nunito Sans',sans-serif;background:rgba(255,255,255,.85);color:#1f2326;border-radius:6px;padding:2px 8px}
+.sub h2{font:600 26px/1.15 Oswald,sans-serif;margin:12px 0 0}
+.sub .body{padding:16px 22px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.sub .what{color:var(--mu);margin:0}
+.sub .go{margin-top:auto;font-weight:800}
+.link{font:700 14px 'Nunito Sans',sans-serif;color:var(--mu);word-break:break-all}
+.note{color:var(--mu);max-width:70ch;margin:0}
+@media (prefers-reduced-motion:reduce){.sub{transition:none}}
+</style>
+</head>
+<body>
+<header class="band"><div class="wrap">
+  <h1>Class slides</h1>
+  <p class="lead">Every class's slides in one place. Click a subject to open its home page. That page is the link students get in Google Classroom.</p>
+</div></header>
+
+<main class="band"><div class="wrap">
+  <div class="grid" id="subs"></div>
+</div></main>
+
+<section class="band" style="padding-top:0"><div class="wrap">
+  <p class="note">Each subject lives in its own folder. Students only see the subject page they're given, not this one.</p>
+</div></section>
+
+<script>
+{
+const SUBJECTS=[
+  {code:'NUV34A',name:'Year 12 VM Numeracy',what:'Units 3 and 4 · chapters 1–10 of the Deliver Education coursebook',href:'vm-numeracy/',c:'#f6c21a',ink:'#1f2326'},
+  {code:'CHE121',name:'Year 11 Chemistry',what:'Units 1 and 2 · chapter slides and Virtual Labs',href:'chemistry/',c:'#0f1d1b',ink:'#5eead4'}
+];
+document.getElementById('subs').innerHTML=SUBJECTS.map(s=>`<a class="sub" href="${s.href}" style="--c:${s.c};--c-ink:${s.ink}">
+  <div class="top"><span class="code">${s.code}</span><h2>${s.name}</h2></div>
+  <div class="body"><p class="what">${s.what}</p><span class="link">/${s.href}</span><span class="go">Open →</span></div></a>`).join('');
+}
+</script>
+</body>
+</html>
