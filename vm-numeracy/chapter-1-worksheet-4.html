@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Worksheet 1.4 · Fractions, decimals and ratios</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Nunito+Sans:wght@400;700;800&display=swap" rel="stylesheet"><style>
+/* VOICE: a worksheet a student works through at their own pace, on screen or printed.
+   IDEA: the slide's worked example, slowed down: reveal one step at a time, then try your own.
+   PICTURE: a paper sheet on the site's charcoal-and-tape-yellow theme; teal for worked examples, yellow for your turn.
+   COLOUR and TYPE: charcoal #1f2326, paper #f4f2ec, tape yellow #f6c21a, teal #1f7a6e, rust #a84b16; Oswald + Nunito Sans.
+   LAYOUT: header with learning intention, then Parts A-D (worked example over your turn), then a self-check. */
+:root{color-scheme:light;--ink:#1f2326;--paper:#f4f2ec;--card:#fffdf8;--soft:#4a5157;--line:#dcd7cc;--y:#f6c21a;--teal:#1f7a6e;--rust:#a84b16}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.55 'Nunito Sans',system-ui,sans-serif}
+a{color:inherit}
+.wrap{max-width:920px;margin:0 auto;padding:0 max(4vw,16px)}
+h1,h2,h3{font-family:Oswald,'Arial Narrow',sans-serif;font-weight:600;margin:0;text-wrap:balance}
+.top{background:var(--ink);color:var(--paper);padding:28px 0 30px}
+.eye{font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--y);margin:0 0 8px}
+.top h1{font-size:clamp(30px,5vw,44px);line-height:1.08}
+.top h1 small{display:block;font-size:.5em;color:#c9cfd3;font-weight:500;letter-spacing:.02em;margin-bottom:4px}
+.lisc{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.lisc div{background:#2c3236;border-radius:12px;padding:14px 18px}
+.lisc h3{font-size:17px;color:var(--y);margin-bottom:4px;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+.lisc p,.lisc li{margin:0;color:#e6e3dc;font-size:15.5px}
+.lisc ul{margin:0;padding-left:20px}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.links a,.links button{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:10px;background:#2c3236;color:var(--paper);font:800 15px 'Nunito Sans',sans-serif;text-decoration:none;border:0;cursor:pointer}
+.links a.hl{background:var(--y);color:var(--ink)}
+.links a:hover,.links button:hover{filter:brightness(1.15)}
+:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.how{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin:26px 0 8px;font-size:15.5px}
+.how ol{margin:6px 0 0;padding-left:22px}
+.part{margin:34px 0 0}
+.phead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:3px solid var(--ink);padding-bottom:6px;margin-bottom:14px}
+.pl{font:600 15px Oswald,sans-serif;letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:var(--y);padding:3px 10px;border-radius:6px}
+.phead h2{font-size:26px;line-height:1.15;flex:1}
+.phead a{font-size:14px;font-weight:700;color:var(--teal)}
+.we,.yt{background:var(--card);border-radius:14px;padding:18px 22px 20px;margin-bottom:14px}
+.we{border-top:8px solid var(--teal)} .yt{border-top:8px solid var(--y)}
+.tag{font:600 16px Oswald,sans-serif;letter-spacing:.06em;text-transform:uppercase;margin:0 0 6px}
+.we .tag{color:var(--teal)} .yt .tag{color:var(--rust)}
+.we .q{font-weight:800;font-size:18px;margin:0 0 10px}
+.steps{margin:0;padding-left:24px;color:var(--soft)}
+.steps li{margin:4px 0}
+.ans{font-weight:800;color:var(--teal);font-size:18px;border-top:2px solid var(--line);padding-top:8px;margin:10px 0 0}
+.ctrl{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.ctrl button{min-height:44px;padding:0 16px;border-radius:10px;border:2px solid var(--teal);background:#fff;color:var(--teal);font:800 15px 'Nunito Sans',sans-serif;cursor:pointer}
+.ctrl button.main{background:var(--teal);color:#fff}
+.js .steps li.hid,.js .ans.hid{display:none}
+.no-js-note{display:none}
+.tip{font-size:15px;color:var(--soft);background:#fff6d6;border-left:6px solid var(--y);border-radius:8px;padding:8px 14px;margin:0 0 14px}
+.qq{display:grid;grid-template-columns:34px 1fr;gap:0 6px;padding:10px 0;border-top:1px solid var(--line)}
+.qq:first-of-type{border-top:0}
+.qn{font:600 20px Oswald,sans-serif;color:var(--rust);line-height:1.3}
+.qq p{margin:0}
+.parts{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px 18px}
+.c1{grid-template-columns:1fr}.c2{grid-template-columns:repeat(2,1fr)}.c3{grid-template-columns:repeat(3,1fr)}.c4{grid-template-columns:repeat(4,1fr)}
+.parts li{display:flex;gap:6px}
+.parts b{color:var(--soft);font-weight:800}
+.sp{display:none}
+table.fill{border-collapse:collapse;margin-top:8px;width:100%;max-width:520px}
+table.fill th,table.fill td{border:1.5px solid #b9b3a6;padding:6px 10px;text-align:center;height:34px}
+table.fill th{background:#efebe2;font-weight:800}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.05;font-size:.86em;margin:0 2px}
+.fr span:first-child{border-bottom:1.5px solid currentColor;padding:0 2px}
+.reflect{margin:34px 0 10px;background:var(--card);border-radius:14px;padding:18px 22px;border-top:8px solid var(--ink)}
+.reflect h2{font-size:24px;margin-bottom:8px}
+.reflect table{border-collapse:collapse;width:100%;font-size:15.5px}
+.reflect th,.reflect td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left}
+.reflect td.bx,.reflect th.bx{text-align:center;width:92px}
+.box{display:inline-block;width:20px;height:20px;border:2px solid var(--ink);border-radius:4px}
+footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
+.printonly{display:none}
+.sec-h{font-size:22px;margin:30px 0 8px;border-bottom:3px solid var(--ink);padding-bottom:4px}
+.sec-h span{color:var(--rust);font-size:.7em;letter-spacing:.06em;text-transform:uppercase;margin-right:8px}
+@media (max-width:640px){.lisc{grid-template-columns:1fr}.c3,.c4{grid-template-columns:repeat(2,1fr)}}
+@media print{
+  @page{size:A4;margin:13mm 13mm 15mm}
+  body{background:#fff;font-size:10.5pt;line-height:1.4}
+  .wrap{max-width:none;padding:0}
+  .top{background:#fff;color:var(--ink);padding:0 0 6px;border-bottom:2.5pt solid var(--ink)}
+  .eye{color:var(--rust)} .top h1 small{color:var(--soft)}
+  .lisc div{background:#fff;border:1pt solid var(--line);padding:6px 10px}
+  .lisc h3{color:var(--rust)} .lisc p,.lisc li{color:var(--ink);font-size:9.5pt}
+  .links,.ctrl,.how:not(.instr),.no-print{display:none!important}
+  .instr{border:1pt solid var(--line);padding:6px 10px;margin:8px 0}
+  .sec-h{break-after:avoid;margin-top:14px}
+  .printonly{display:block}
+  .nameline{display:flex;gap:30px;margin:8px 0 2px;font-weight:700}
+  .nameline span{flex:1;border-bottom:1pt solid var(--ink);height:18pt}
+  .js .steps li.hid{display:list-item!important}.js .ans.hid{display:block!important}
+  .we,.yt{border:1pt solid var(--line);padding:8px 12px;margin-bottom:8px;break-inside:auto}
+  .we{break-inside:avoid}
+  .part{margin-top:14px} .phead{break-after:avoid}
+  .phead a{display:none}
+  .qq{break-inside:avoid;padding:6px 0}
+  .tip{background:#fff;border-left-width:4pt}
+  .sp{display:block;height:calc(var(--l,2) * 7.5mm);background:repeating-linear-gradient(to bottom,transparent 0,transparent calc(7.5mm - .6pt),#c9c4b8 calc(7.5mm - .6pt),#c9c4b8 7.5mm)}
+  .parts .sp{height:calc(var(--l,2) * 7.5mm)}
+  .parts li{flex-direction:column;gap:0}
+  .reflect{break-inside:avoid;border:1pt solid var(--line)}
+  footer{display:none}
+}
+</style></head>
+<body>
+<header class="top"><div class="wrap">
+<p class="eye">VM Numeracy · Chapter 1 · Doing the Numbers</p>
+<h1><small>Worksheet 1.4</small>Fractions, decimals and ratios</h1>
+<div class="lisc"><div><h3>Learning intention</h3><p>We are learning to convert between fractions and decimals, and to use fractions, ratios and rates in real situations.</p></div><div><h3>Success criteria</h3><ul><li>I can change fractions to decimals and back</li><li>I can find a fraction of an amount</li><li>I can share an amount in a ratio and work out a rate</li></ul></div></div>
+<nav class="links" aria-label="Page links"><a href="index.html">← All chapters</a><a class="hl" href="chapter-1.html#sec-4">Slides for this section</a><a href="chapter-1-worksheet-3.html">← Worksheet 1.3</a><a href="chapter-1-worksheet-5.html">Worksheet 1.5 →</a><button data-print>Print this sheet</button></nav>
+<div class="printonly nameline"><b>Name</b><span></span><b>Date</b><span style="flex:.5"></span></div>
+</div></header>
+<main class="wrap">
+<section class="how"><b>How to use this worksheet</b><ol>
+<li>Read the worked example and try it yourself first.</li>
+<li>Click <b>Show first step</b> to check the working one step at a time.</li>
+<li>Do the <b>Your turn</b> questions in your book (or on the printed sheet). Show your working, like the worked example.</li></ol></section>
+<section class="part" id="part-a">
+<div class="phead"><span class="pl">Part A</span><h2>Fractions to decimals and back</h2><a href="chapter-1.html#18">Slide 18</a></div>
+<div class="we"><p class="tag">Worked example</p><p class="q">a) <span class="fr"><span>3</span><span>4</span></span> &nbsp; b) <span class="fr"><span>7</span><span>5</span></span> as decimals &nbsp;&nbsp; c) 0.35 as a fraction</p>
+<ol class="steps"><li>Fraction → decimal: divide the top by the bottom</li><li>a) 3 ÷ 4 = 0.75 &nbsp;&nbsp; b) 7 ÷ 5 = 1.4</li><li>Decimal → fraction: use place value, then simplify</li><li>c) 0.35 = <span class="fr"><span>35</span><span>100</span></span> = <span class="fr"><span>7</span><span>20</span></span> (÷ 5 top and bottom)</li></ol><p class="ans">a) 0.75 &nbsp;&nbsp; b) 1.4 &nbsp;&nbsp; c) <span class="fr"><span>7</span><span>20</span></span></p>
+<div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
+<p class="tip"><b>Tip:</b> One decimal place = tenths, two = hundredths, three = thousandths.</p>
+<div class="yt"><p class="tag">Your turn</p>
+<div class="qq"><span class="qn">1</span><div><p>Write as decimals.</p><ol class="parts c4"><li><span><b>a)</b> <span class="fr"><span>5</span><span>8</span></span></span><div class="sp" style="--l:1"></div></li><li><span><b>b)</b> <span class="fr"><span>9</span><span>4</span></span></span><div class="sp" style="--l:1"></div></li><li><span><b>c)</b> <span class="fr"><span>2</span><span>5</span></span></span><div class="sp" style="--l:1"></div></li><li><span><b>d)</b> <span class="fr"><span>3</span><span>20</span></span></span><div class="sp" style="--l:1"></div></li></ol></div></div>
+<div class="qq"><span class="qn">2</span><div><p>Write as fractions in simplest form.</p><ol class="parts c4"><li><span><b>a)</b> 0.8</span><div class="sp" style="--l:1"></div></li><li><span><b>b)</b> 0.45</span><div class="sp" style="--l:1"></div></li><li><span><b>c)</b> 0.125</span><div class="sp" style="--l:1"></div></li><li><span><b>d)</b> 0.06</span><div class="sp" style="--l:1"></div></li></ol></div></div>
+<div class="qq"><span class="qn">3</span><div><p>Write <span class="fr"><span>1</span><span>3</span></span> as a decimal rounded to 3 decimal places.</p><div class="sp" style="--l:2"></div></div></div>
+<div class="qq"><span class="qn">4</span><div><p>Put in order from smallest to largest: 0.7, <span class="fr"><span>2</span><span>3</span></span>, <span class="fr"><span>3</span><span>4</span></span>, 0.65</p><div class="sp" style="--l:2"></div></div></div>
+<div class="qq"><span class="qn">5</span><div><p>A tradie reads 0.375 m on a tape. Write this as a fraction of a metre.</p><div class="sp" style="--l:2"></div></div></div>
+</div></section>
+<section class="part" id="part-b">
+<div class="phead"><span class="pl">Part B</span><h2>Fraction of an amount</h2><a href="chapter-1.html#19">Slide 19</a></div>
+<div class="we"><p class="tag">Worked example</p><p class="q">a) You spend <span class="fr"><span>2</span><span>3</span></span> of your $360 pay on rent. How much is rent? &nbsp; b) Calculate <span class="fr"><span>3</span><span>4</span></span> × <span class="fr"><span>2</span><span>5</span></span></p>
+<ol class="steps"><li>a) Divide by the bottom: $360 ÷ 3 = $120</li><li>Multiply by the top: $120 × 2 = $240</li><li>b) Multiply tops and bottoms: <span class="fr"><span>6</span><span>20</span></span></li><li>Simplify (÷ 2): <span class="fr"><span>3</span><span>10</span></span></li></ol><p class="ans">a) $240 &nbsp;&nbsp; b) <span class="fr"><span>3</span><span>10</span></span></p>
+<div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
+<p class="tip"><b>Tip:</b> Fraction of an amount: divide by the bottom, multiply by the top.</p>
+<div class="yt"><p class="tag">Your turn</p>
+<div class="qq"><span class="qn">6</span><div><p>Calculate.</p><ol class="parts c3"><li><span><b>a)</b> <span class="fr"><span>3</span><span>5</span></span> of $450</span><div class="sp" style="--l:1"></div></li><li><span><b>b)</b> <span class="fr"><span>2</span><span>3</span></span> × <span class="fr"><span>3</span><span>8</span></span></span><div class="sp" style="--l:1"></div></li><li><span><b>c)</b> <span class="fr"><span>3</span><span>4</span></span> of 84</span><div class="sp" style="--l:1"></div></li><li><span><b>d)</b> <span class="fr"><span>5</span><span>6</span></span> of 90 minutes</span><div class="sp" style="--l:1"></div></li><li><span><b>e)</b> <span class="fr"><span>1</span><span>2</span></span> × <span class="fr"><span>4</span><span>5</span></span></span><div class="sp" style="--l:1"></div></li><li><span><b>f)</b> <span class="fr"><span>7</span><span>10</span></span> of $1250</span><div class="sp" style="--l:1"></div></li></ol></div></div>
+<div class="qq"><span class="qn">7</span><div><p>A 750 mL bottle is <span class="fr"><span>2</span><span>5</span></span> full. How much is in it?</p><div class="sp" style="--l:2"></div></div></div>
+<div class="qq"><span class="qn">8</span><div><p><span class="fr"><span>5</span><span>8</span></span> of a 64 GB phone’s storage is used. How many GB are free?</p><div class="sp" style="--l:2"></div></div></div>
+<div class="qq"><span class="qn">9</span><div><p>A recipe for 4 people needs <span class="fr"><span>3</span><span>4</span></span> cup of sugar. You make half the recipe. How much sugar?</p><div class="sp" style="--l:2"></div></div></div>
+</div></section>
+<section class="part" id="part-c">
+<div class="phead"><span class="pl">Part C</span><h2>Sharing in a ratio</h2><a href="chapter-1.html#20">Slide 20</a></div>
+<div class="we"><p class="tag">Worked example</p><p class="q">Concrete is mixed 1 cement : 2 sand : 3 gravel. How much of each is in a 60 kg mix?</p>
+<ol class="steps"><li>Total parts: 1 + 2 + 3 = 6</li><li>One part: 60 kg ÷ 6 = 10 kg</li><li>Cement 1 × 10, sand 2 × 10, gravel 3 × 10</li><li>Check: 10 + 20 + 30 = 60 kg</li></ol><p class="ans">10 kg cement, 20 kg sand, 30 kg gravel</p>
+<div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
+<p class="tip"><b>Tip:</b> Add the parts, find one part, then multiply.</p>
+<div class="yt"><p class="tag">Your turn</p>
+<div class="qq"><span class="qn">10</span><div><p>a) Mortar is mixed 1 cement : 4 sand. How much of each is in a 75 kg mix? &nbsp; b) Cordial is mixed 1 cordial : 4 water. How much of each goes in a 2 L (2000 mL) jug?</p><div class="sp" style="--l:4"></div></div></div>
+<div class="qq"><span class="qn">11</span><div><p>Share $120 between Ana and Ben in the ratio 2 : 3.</p><div class="sp" style="--l:2"></div></div></div>
+<div class="qq"><span class="qn">12</span><div><p>Paint is mixed 3 blue : 2 white. How much of each is in 10 L?</p><div class="sp" style="--l:2"></div></div></div>
+<div class="qq"><span class="qn">13</span><div><p>Two-stroke fuel is mixed 1 part oil to 25 parts petrol. How much oil goes with 5 L (5000 mL) of petrol?</p><div class="sp" style="--l:2"></div></div></div>
+<div class="qq"><span class="qn">14</span><div><p>Simplify each ratio.</p><ol class="parts c3"><li><span><b>a)</b> 12 : 18</span><div class="sp" style="--l:1"></div></li><li><span><b>b)</b> 25 : 100</span><div class="sp" style="--l:1"></div></li><li><span><b>c)</b> 40 cm : 2 m</span><div class="sp" style="--l:1"></div></li></ol></div></div>
+<div class="qq"><span class="qn">15</span><div><p>Challenge: a map has a scale of 1 : 50 000. Two towns are 4 cm apart on the map. How far apart are they in real life, in km?</p><div class="sp" style="--l:3"></div></div></div>
+</div></section>
+<section class="part" id="part-d">
+<div class="phead"><span class="pl">Part D</span><h2>Rates</h2><a href="chapter-1.html#21">Slide 21</a></div>
+<div class="we"><p class="tag">Worked example</p><p class="q">a) You drive 270 km in 3 hours. What is your average speed? &nbsp; b) You earn $186 for 7.5 hours. What is your hourly rate?</p>
+<ol class="steps"><li>Rate = amount ÷ time</li><li>a) 270 ÷ 3 = 90</li><li>b) 186 ÷ 7.5 = 24.80</li></ol><p class="ans">a) 90 km/h &nbsp;&nbsp; b) $24.80 per hour</p>
+<div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
+<p class="tip"><b>Tip:</b> Always write the units: km/h, $/h, L/min, $/kg.</p>
+<div class="yt"><p class="tag">Your turn</p>
+<div class="qq"><span class="qn">16</span><div><p>a) You drive 156 km in 2 hours. Average speed? &nbsp; b) You earn $243.60 for 8.4 hours. Hourly rate? &nbsp; c) A car uses 45 L of fuel to travel 600 km. How many litres per 100 km?</p><div class="sp" style="--l:4"></div></div></div>
+<div class="qq"><span class="qn">17</span><div><p>A tap fills a 180 L tank in 12 minutes. What is the flow rate in L/min?</p><div class="sp" style="--l:2"></div></div></div>
+<div class="qq"><span class="qn">18</span><div><p>You type 1350 words in 30 minutes. What is your typing speed in words per minute?</p><div class="sp" style="--l:2"></div></div></div>
+<div class="qq"><span class="qn">19</span><div><p>Mince costs $19.80 for 2 kg, or $5.40 for 500 g. Find the price per kg for each. Which is better value?</p><div class="sp" style="--l:3"></div></div></div>
+<div class="qq"><span class="qn">20</span><div><p>A car uses 6.8 L of fuel per 100 km. a) How much fuel for a 350 km trip? b) Fuel costs $1.95 per litre. What does the trip cost?</p><div class="sp" style="--l:4"></div></div></div>
+</div></section>
+<section class="reflect"><h2>Check yourself</h2><p style="margin:0 0 8px;font-size:15px">Tick one box for each success criterion. Show your teacher anything you ticked “Not yet”.</p>
+<table><tr><th>Success criteria</th><th class="bx">Not yet</th><th class="bx">Getting there</th><th class="bx">Got it</th></tr><tr><td>I can change fractions to decimals and back</td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td></tr><tr><td>I can find a fraction of an amount</td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td></tr><tr><td>I can share an amount in a ratio and work out a rate</td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td></tr></table></section>
+</main><footer class="wrap"><a href="index.html">All chapters</a> · <a href="chapter-1.html#sec-4">Slides for this section</a> · <a href="chapter-1-worksheet-3.html">← Worksheet 1.3</a> · <a href="chapter-1-worksheet-5.html">Worksheet 1.5 →</a></footer>
+<script>
+document.documentElement.classList.add('js');
+document.querySelectorAll('.we').forEach(we=>{
+  const steps=[...we.querySelectorAll('.steps li')],ans=we.querySelector('.ans'),next=we.querySelector('.next'),all=we.querySelector('.all');
+  let k=0;
+  const render=()=>{steps.forEach((s,i)=>s.classList.toggle('hid',i>=k));ans.classList.toggle('hid',k<=steps.length);
+    if(k>steps.length){next.textContent='Hide working';all.hidden=true}
+    else{next.textContent=k===steps.length?'Show answer':(k?'Show next step':'Show first step')+' ('+(k+1)+' of '+steps.length+')';all.hidden=false}};
+  next.onclick=()=>{k=k>steps.length?0:k+1;render()};
+  all.onclick=()=>{k=steps.length+1;render()};
+  render();
+});
+document.querySelectorAll('[data-print]').forEach(b=>b.onclick=()=>print());
+</script>
+</body></html>

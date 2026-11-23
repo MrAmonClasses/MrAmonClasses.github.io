@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Worksheet 1.5 · Percentages</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Nunito+Sans:wght@400;700;800&display=swap" rel="stylesheet"><style>
+/* VOICE: a worksheet a student works through at their own pace, on screen or printed.
+   IDEA: the slide's worked example, slowed down: reveal one step at a time, then try your own.
+   PICTURE: a paper sheet on the site's charcoal-and-tape-yellow theme; teal for worked examples, yellow for your turn.
+   COLOUR and TYPE: charcoal #1f2326, paper #f4f2ec, tape yellow #f6c21a, teal #1f7a6e, rust #a84b16; Oswald + Nunito Sans.
+   LAYOUT: header with learning intention, then Parts A-D (worked example over your turn), then a self-check. */
+:root{color-scheme:light;--ink:#1f2326;--paper:#f4f2ec;--card:#fffdf8;--soft:#4a5157;--line:#dcd7cc;--y:#f6c21a;--teal:#1f7a6e;--rust:#a84b16}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.55 'Nunito Sans',system-ui,sans-serif}
+a{color:inherit}
+.wrap{max-width:920px;margin:0 auto;padding:0 max(4vw,16px)}
+h1,h2,h3{font-family:Oswald,'Arial Narrow',sans-serif;font-weight:600;margin:0;text-wrap:balance}
+.top{background:var(--ink);color:var(--paper);padding:28px 0 30px}
+.eye{font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--y);margin:0 0 8px}
+.top h1{font-size:clamp(30px,5vw,44px);line-height:1.08}
+.top h1 small{display:block;font-size:.5em;color:#c9cfd3;font-weight:500;letter-spacing:.02em;margin-bottom:4px}
+.lisc{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.lisc div{background:#2c3236;border-radius:12px;padding:14px 18px}
+.lisc h3{font-size:17px;color:var(--y);margin-bottom:4px;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+.lisc p,.lisc li{margin:0;color:#e6e3dc;font-size:15.5px}
+.lisc ul{margin:0;padding-left:20px}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.links a,.links button{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:10px;background:#2c3236;color:var(--paper);font:800 15px 'Nunito Sans',sans-serif;text-decoration:none;border:0;cursor:pointer}
+.links a.hl{background:var(--y);color:var(--ink)}
+.links a:hover,.links button:hover{filter:brightness(1.15)}
+:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.how{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin:26px 0 8px;font-size:15.5px}
+.how ol{margin:6px 0 0;padding-left:22px}
+.part{margin:34px 0 0}
+.phead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:3px solid var(--ink);padding-bottom:6px;margin-bottom:14px}
+.pl{font:600 15px Oswald,sans-serif;letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:var(--y);padding:3px 10px;border-radius:6px}
+.phead h2{font-size:26px;line-height:1.15;flex:1}
+.phead a{font-size:14px;font-weight:700;color:var(--teal)}
+.we,.yt{background:var(--card);border-radius:14px;padding:18px 22px 20px;margin-bottom:14px}
+.we{border-top:8px solid var(--teal)} .yt{border-top:8px solid var(--y)}
+.tag{font:600 16px Oswald,sans-serif;letter-spacing:.06em;text-transform:uppercase;margin:0 0 6px}
+.we .tag{color:var(--teal)} .yt .tag{color:var(--rust)}
+.we .q{font-weight:800;font-size:18px;margin:0 0 10px}
+.steps{margin:0;padding-left:24px;color:var(--soft)}
+.steps li{margin:4px 0}
+.ans{font-weight:800;color:var(--teal);font-size:18px;border-top:2px solid var(--line);padding-top:8px;margin:10px 0 0}
+.ctrl{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.ctrl button{min-height:44px;padding:0 16px;border-radius:10px;border:2px solid var(--teal);background:#fff;color:var(--teal);font:800 15px 'Nunito Sans',sans-serif;cursor:pointer}
+.ctrl button.main{background:var(--teal);color:#fff}
+.js .steps li.hid,.js .ans.hid{display:none}
+.no-js-note{display:none}
+.tip{font-size:15px;color:var(--soft);background:#fff6d6;border-left:6px solid var(--y);border-radius:8px;padding:8px 14px;margin:0 0 14px}
+.qq{display:grid;grid-template-columns:34px 1fr;gap:0 6px;padding:10px 0;border-top:1px solid var(--line)}
+.qq:first-of-type{border-top:0}
+.qn{font:600 20px Oswald,sans-serif;color:var(--rust);line-height:1.3}
+.qq p{margin:0}
+.parts{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px 18px}
+.c1{grid-template-columns:1fr}.c2{grid-template-columns:repeat(2,1fr)}.c3{grid-template-columns:repeat(3,1fr)}.c4{grid-template-columns:repeat(4,1fr)}
+.parts li{display:flex;gap:6px}
+.parts b{color:var(--soft);font-weight:800}
+.sp{display:none}
+table.fill{border-collapse:collapse;margin-top:8px;width:100%;max-width:520px}
+table.fill th,table.fill td{border:1.5px solid #b9b3a6;padding:6px 10px;text-align:center;height:34px}
+table.fill th{background:#efebe2;font-weight:800}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.05;font-size:.86em;margin:0 2px}
+.fr span:first-child{border-bottom:1.5px solid currentColor;padding:0 2px}
+.reflect{margin:34px 0 10px;background:var(--card);border-radius:14px;padding:18px 22px;border-top:8px solid var(--ink)}
+.reflect h2{font-size:24px;margin-bottom:8px}
+.reflect table{border-collapse:collapse;width:100%;font-size:15.5px}
+.reflect th,.reflect td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left}
+.reflect td.bx,.reflect th.bx{text-align:center;width:92px}
+.box{display:inline-block;width:20px;height:20px;border:2px solid var(--ink);border-radius:4px}
+footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
+.printonly{display:none}
+.sec-h{font-size:22px;margin:30px 0 8px;border-bottom:3px solid var(--ink);padding-bottom:4px}
+.sec-h span{color:var(--rust);font-size:.7em;letter-spacing:.06em;text-transform:uppercase;margin-right:8px}
+@media (max-width:640px){.lisc{grid-template-columns:1fr}.c3,.c4{grid-template-columns:repeat(2,1fr)}}
+@media print{
+  @page{size:A4;margin:13mm 13mm 15mm}
+  body{background:#fff;font-size:10.5pt;line-height:1.4}
+  .wrap{max-width:none;padding:0}
+  .top{background:#fff;color:var(--ink);padding:0 0 6px;border-bottom:2.5pt solid var(--ink)}
+  .eye{color:var(--rust)} .top h1 small{color:var(--soft)}
+  .lisc div{background:#fff;border:1pt solid var(--line);padding:6px 10px}
+  .lisc h3{color:var(--rust)} .lisc p,.lisc li{color:var(--ink);font-size:9.5pt}
+  .links,.ctrl,.how:not(.instr),.no-print{display:none!important}
+  .instr{border:1pt solid var(--line);padding:6px 10px;margin:8px 0}
+  .sec-h{break-after:avoid;margin-top:14px}
+  .printonly{display:block}
+  .nameline{display:flex;gap:30px;margin:8px 0 2px;font-weight:700}
+  .nameline span{flex:1;border-bottom:1pt solid var(--ink);height:18pt}
+  .js .steps li.hid{display:list-item!important}.js .ans.hid{display:block!important}
+  .we,.yt{border:1pt solid var(--line);padding:8px 12px;margin-bottom:8px;break-inside:auto}
+  .we{break-inside:avoid}
+  .part{margin-top:14px} .phead{break-after:avoid}
+  .phead a{display:none}
+  .qq{break-inside:avoid;padding:6px 0}
+  .tip{background:#fff;border-left-width:4pt}
+  .sp{display:block;height:calc(var(--l,2) * 7.5mm);background:repeating-linear-gradient(to bottom,transparent 0,transparent calc(7.5mm - .6pt),#c9c4b8 calc(7.5mm - .6pt),#c9c4b8 7.5mm)}
+  .parts .sp{height:calc(var(--l,2) * 7.5mm)}
+  .parts li{flex-direction:column;gap:0}
+  .reflect{break-inside:avoid;border:1pt solid var(--line)}
+  footer{display:none}
+}
+</style></head>
+<body>
+<header class="top"><div class="wrap">
+<p class="eye">VM Numeracy · Chapter 1 · Doing the Numbers</p>
+<h1><small>Worksheet 1.5</small>Percentages</h1>
+<div class="lisc"><div><h3>Learning intention</h3><p>We are learning to link percentages with fractions and decimals, and to calculate percentages of amounts, discounts and increases.</p></div><div><h3>Success criteria</h3><ul><li>I can match a percentage to its fraction and decimal</li><li>I can use 10% to work out other percentages</li><li>I can calculate a percentage increase or decrease</li></ul></div></div>
+<nav class="links" aria-label="Page links"><a href="index.html">← All chapters</a><a class="hl" href="chapter-1.html#sec-5">Slides for this section</a><a href="chapter-1-worksheet-4.html">← Worksheet 1.4</a><a href="chapter-1-worksheet-6.html">Worksheet 1.6 →</a><button data-print>Print this sheet</button></nav>
+<div class="printonly nameline"><b>Name</b><span></span><b>Date</b><span style="flex:.5"></span></div>
+</div></header>
+<main class="wrap">
+<section class="how"><b>How to use this worksheet</b><ol>
+<li>Read the worked example and try it yourself first.</li>
+<li>Click <b>Show first step</b> to check the working one step at a time.</li>
+<li>Do the <b>Your turn</b> questions in your book (or on the printed sheet). Show your working, like the worked example.</li></ol></section>
+<section class="part" id="part-a">
+<div class="phead"><span class="pl">Part A</span><h2>Percentages, fractions and decimals</h2><a href="chapter-1.html#23">Slide 23</a></div>
+<div class="we"><p class="tag">Worked example</p><p class="q">a) Write 35% as a fraction and a decimal &nbsp; b) Write <span class="fr"><span>3</span><span>4</span></span> as a percentage</p>
+<ol class="steps"><li>a) Per cent means out of 100: 35% = <span class="fr"><span>35</span><span>100</span></span> = <span class="fr"><span>7</span><span>20</span></span></li><li>35 ÷ 100 = 0.35</li><li>b) 3 ÷ 4 = 0.75</li><li>0.75 × 100 = 75%</li></ol><p class="ans">a) <span class="fr"><span>7</span><span>20</span></span> and 0.35 &nbsp;&nbsp; b) 75%</p>
+<div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
+<p class="tip"><b>Tip:</b> % → decimal: ÷ 100. Decimal → %: × 100.</p>
+<div class="yt"><p class="tag">Your turn</p>
+<div class="qq"><span class="qn">1</span><div><p>Write as a fraction and a decimal: a) 60% b) 5%. Write as a percentage: c) <span class="fr"><span>1</span><span>8</span></span> d) 0.4</p><div class="sp" style="--l:3"></div></div></div>
+<div class="qq"><span class="qn">2</span><div><p>Copy and complete the table.</p><table class="fill"><tr><th>Fraction</th><th>Decimal</th><th>Percentage</th></tr><tr><td><span class="fr"><span>1</span><span>2</span></span></td><td></td><td></td></tr><tr><td></td><td>0.25</td><td></td></tr><tr><td></td><td></td><td>20%</td></tr><tr><td><span class="fr"><span>1</span><span>10</span></span></td><td></td><td></td></tr><tr><td></td><td>0.75</td><td></td></tr><tr><td><span class="fr"><span>1</span><span>3</span></span></td><td></td><td></td></tr><tr><td></td><td></td><td>40%</td></tr><tr><td></td><td>0.01</td><td></td></tr><tr><td></td><td>1.5</td><td></td></tr></table></div></div>
+<div class="qq"><span class="qn">3</span><div><p>Write each score as a percentage.</p><ol class="parts c2"><li><span><b>a)</b> 42 out of 50</span><div class="sp" style="--l:2"></div></li><li><span><b>b)</b> 18 out of 24</span><div class="sp" style="--l:2"></div></li></ol></div></div>
+</div></section>
+<section class="part" id="part-b">
+<div class="phead"><span class="pl">Part B</span><h2>The 10% method</h2><a href="chapter-1.html#24">Slide 24</a></div>
+<div class="we"><p class="tag">Worked example</p><p class="q">Find 35% of $240 without a calculator</p>
+<ol class="steps"><li>10%: $240 ÷ 10 = $24</li><li>30%: 3 × $24 = $72</li><li>5%: half of 10% = $12</li><li>35% = 30% + 5% = $72 + $12 = $84</li></ol><p class="ans">35% of $240 = $84</p>
+<div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
+<p class="tip"><b>Tip:</b> Find 10% first (÷ 10), then build up: 5% is half, 20% is double, 1% is ÷ 100.</p>
+<div class="yt"><p class="tag">Your turn</p>
+<div class="qq"><span class="qn">4</span><div><p>No calculator. Find:</p><ol class="parts c3"><li><span><b>a)</b> 15% of $180</span><div class="sp" style="--l:1"></div></li><li><span><b>b)</b> 40% of $65</span><div class="sp" style="--l:1"></div></li><li><span><b>c)</b> 25% of $96</span><div class="sp" style="--l:1"></div></li><li><span><b>d)</b> 5% of $340</span><div class="sp" style="--l:1"></div></li><li><span><b>e)</b> 20% of $85</span><div class="sp" style="--l:1"></div></li><li><span><b>f)</b> 12.5% of $80</span><div class="sp" style="--l:1"></div></li></ol></div></div>
+<div class="qq"><span class="qn">5</span><div><p>You leave a 15% tip on a $64 meal. How much is the tip?</p><div class="sp" style="--l:2"></div></div></div>
+<div class="qq"><span class="qn">6</span><div><p>GST is 10%. An item costs $350 before GST. a) How much GST is added? b) What is the price including GST?</p><div class="sp" style="--l:2"></div></div></div>
+<div class="qq"><span class="qn">7</span><div><p>Explain how you could find 75% of $48 in your head.</p><div class="sp" style="--l:2"></div></div></div>
+</div></section>
+<section class="part" id="part-c">
+<div class="phead"><span class="pl">Part C</span><h2>Discounts</h2><a href="chapter-1.html#25">Slide 25</a></div>
+<div class="we"><p class="tag">Worked example</p><p class="q">A jacket costs $120. It is 35% off. What is the sale price?</p>
+<ol class="steps"><li>Method 1: discount = 0.35 × $120 = $42</li><li>Sale price: $120 − $42 = $78</li><li>Method 2: you pay 100% − 35% = 65%</li><li>0.65 × $120 = $78</li></ol><p class="ans">The sale price is $78</p>
+<div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
+<p class="tip"><b>Tip:</b> Method 2 is faster on a calculator: % off → multiply by what you still pay.</p>
+<div class="yt"><p class="tag">Your turn</p>
+<div class="qq"><span class="qn">8</span><div><p>a) Shoes cost $160. They are 25% off. What is the sale price? &nbsp; b) A TV costs $899. It is 15% off. What is the sale price?</p><div class="sp" style="--l:3"></div></div></div>
+<div class="qq"><span class="qn">9</span><div><p>Find the sale price.</p><ol class="parts c3"><li><span><b>a)</b> $45 shirt, 20% off</span><div class="sp" style="--l:1"></div></li><li><span><b>b)</b> $2.80 drink, 10% off</span><div class="sp" style="--l:1"></div></li><li><span><b>c)</b> $1250 laptop, 30% off</span><div class="sp" style="--l:1"></div></li></ol></div></div>
+<div class="qq"><span class="qn">10</span><div><p>Store A sells shoes for $80 at 25% off. Store B sells the same shoes for $72 at 15% off. Which store is cheaper, and by how much?</p><div class="sp" style="--l:3"></div></div></div>
+<div class="qq"><span class="qn">11</span><div><p>Evaluate: a $200 jacket is 20% off, then there is an extra 10% off the sale price. Is that the same as 30% off? Show your working.</p><div class="sp" style="--l:4"></div></div></div>
+</div></section>
+<section class="part" id="part-d">
+<div class="phead"><span class="pl">Part D</span><h2>Percentage increase and change</h2><a href="chapter-1.html#26">Slide 26</a></div>
+<div class="we"><p class="tag">Worked example</p><p class="q">a) $26.40 an hour rises by 4%. New rate? &nbsp; b) Shifts go from 20 to 25 hours a week. % increase?</p>
+<ol class="steps"><li>a) New rate is 104% of $26.40: 1.04 × 26.40 = 27.456, round to $27.46</li><li>b) % change = change ÷ original × 100</li><li>Change = 25 − 20 = 5 hours</li><li>5 ÷ 20 × 100 = 25%</li></ol><p class="ans">a) $27.46 an hour &nbsp;&nbsp; b) 25% increase</p>
+<div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
+<p class="tip"><b>Tip:</b> For % change, always divide by the original (old) amount.</p>
+<div class="yt"><p class="tag">Your turn</p>
+<div class="qq"><span class="qn">12</span><div><p>a) Rent of $480 a week rises by 6%. New rent? &nbsp; b) A price drops from $80 to $68. What is the % decrease?</p><div class="sp" style="--l:3"></div></div></div>
+<div class="qq"><span class="qn">13</span><div><p>Increase each amount.</p><ol class="parts c3"><li><span><b>a)</b> $22.50 an hour by 4%</span><div class="sp" style="--l:1"></div></li><li><span><b>b)</b> A town of 12 500 people by 8%</span><div class="sp" style="--l:1"></div></li><li><span><b>c)</b> A $55 phone plan by 10%</span><div class="sp" style="--l:1"></div></li></ol></div></div>
+<div class="qq"><span class="qn">14</span><div><p>Find the percentage change. Say if it is an increase or decrease.</p><ol class="parts c3"><li><span><b>a)</b> $250 to $300</span><div class="sp" style="--l:1"></div></li><li><span><b>b)</b> 80 kg to 76 kg</span><div class="sp" style="--l:1"></div></li><li><span><b>c)</b> $18.00 to $19.80 an hour</span><div class="sp" style="--l:1"></div></li></ol></div></div>
+<div class="qq"><span class="qn">15</span><div><p>Evaluate: a $100 item goes up 10%, then down 10%. Is it back to $100? Explain.</p><div class="sp" style="--l:3"></div></div></div>
+</div></section>
+<section class="reflect"><h2>Check yourself</h2><p style="margin:0 0 8px;font-size:15px">Tick one box for each success criterion. Show your teacher anything you ticked “Not yet”.</p>
+<table><tr><th>Success criteria</th><th class="bx">Not yet</th><th class="bx">Getting there</th><th class="bx">Got it</th></tr><tr><td>I can match a percentage to its fraction and decimal</td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td></tr><tr><td>I can use 10% to work out other percentages</td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td></tr><tr><td>I can calculate a percentage increase or decrease</td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td></tr></table></section>
+</main><footer class="wrap"><a href="index.html">All chapters</a> · <a href="chapter-1.html#sec-5">Slides for this section</a> · <a href="chapter-1-worksheet-4.html">← Worksheet 1.4</a> · <a href="chapter-1-worksheet-6.html">Worksheet 1.6 →</a></footer>
+<script>
+document.documentElement.classList.add('js');
+document.querySelectorAll('.we').forEach(we=>{
+  const steps=[...we.querySelectorAll('.steps li')],ans=we.querySelector('.ans'),next=we.querySelector('.next'),all=we.querySelector('.all');
+  let k=0;
+  const render=()=>{steps.forEach((s,i)=>s.classList.toggle('hid',i>=k));ans.classList.toggle('hid',k<=steps.length);
+    if(k>steps.length){next.textContent='Hide working';all.hidden=true}
+    else{next.textContent=k===steps.length?'Show answer':(k?'Show next step':'Show first step')+' ('+(k+1)+' of '+steps.length+')';all.hidden=false}};
+  next.onclick=()=>{k=k>steps.length?0:k+1;render()};
+  all.onclick=()=>{k=steps.length+1;render()};
+  render();
+});
+document.querySelectorAll('[data-print]').forEach(b=>b.onclick=()=>print());
+</script>
+</body></html>

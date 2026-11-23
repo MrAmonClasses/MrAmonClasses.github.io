@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Worksheet 1.1 · Solving problems</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Nunito+Sans:wght@400;700;800&display=swap" rel="stylesheet"><style>
+/* VOICE: a worksheet a student works through at their own pace, on screen or printed.
+   IDEA: the slide's worked example, slowed down: reveal one step at a time, then try your own.
+   PICTURE: a paper sheet on the site's charcoal-and-tape-yellow theme; teal for worked examples, yellow for your turn.
+   COLOUR and TYPE: charcoal #1f2326, paper #f4f2ec, tape yellow #f6c21a, teal #1f7a6e, rust #a84b16; Oswald + Nunito Sans.
+   LAYOUT: header with learning intention, then Parts A-D (worked example over your turn), then a self-check. */
+:root{color-scheme:light;--ink:#1f2326;--paper:#f4f2ec;--card:#fffdf8;--soft:#4a5157;--line:#dcd7cc;--y:#f6c21a;--teal:#1f7a6e;--rust:#a84b16}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.55 'Nunito Sans',system-ui,sans-serif}
+a{color:inherit}
+.wrap{max-width:920px;margin:0 auto;padding:0 max(4vw,16px)}
+h1,h2,h3{font-family:Oswald,'Arial Narrow',sans-serif;font-weight:600;margin:0;text-wrap:balance}
+.top{background:var(--ink);color:var(--paper);padding:28px 0 30px}
+.eye{font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--y);margin:0 0 8px}
+.top h1{font-size:clamp(30px,5vw,44px);line-height:1.08}
+.top h1 small{display:block;font-size:.5em;color:#c9cfd3;font-weight:500;letter-spacing:.02em;margin-bottom:4px}
+.lisc{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.lisc div{background:#2c3236;border-radius:12px;padding:14px 18px}
+.lisc h3{font-size:17px;color:var(--y);margin-bottom:4px;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+.lisc p,.lisc li{margin:0;color:#e6e3dc;font-size:15.5px}
+.lisc ul{margin:0;padding-left:20px}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.links a,.links button{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:10px;background:#2c3236;color:var(--paper);font:800 15px 'Nunito Sans',sans-serif;text-decoration:none;border:0;cursor:pointer}
+.links a.hl{background:var(--y);color:var(--ink)}
+.links a:hover,.links button:hover{filter:brightness(1.15)}
+:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.how{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin:26px 0 8px;font-size:15.5px}
+.how ol{margin:6px 0 0;padding-left:22px}
+.part{margin:34px 0 0}
+.phead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:3px solid var(--ink);padding-bottom:6px;margin-bottom:14px}
+.pl{font:600 15px Oswald,sans-serif;letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:var(--y);padding:3px 10px;border-radius:6px}
+.phead h2{font-size:26px;line-height:1.15;flex:1}
+.phead a{font-size:14px;font-weight:700;color:var(--teal)}
+.we,.yt{background:var(--card);border-radius:14px;padding:18px 22px 20px;margin-bottom:14px}
+.we{border-top:8px solid var(--teal)} .yt{border-top:8px solid var(--y)}
+.tag{font:600 16px Oswald,sans-serif;letter-spacing:.06em;text-transform:uppercase;margin:0 0 6px}
+.we .tag{color:var(--teal)} .yt .tag{color:var(--rust)}
+.we .q{font-weight:800;font-size:18px;margin:0 0 10px}
+.steps{margin:0;padding-left:24px;color:var(--soft)}
+.steps li{margin:4px 0}
+.ans{font-weight:800;color:var(--teal);font-size:18px;border-top:2px solid var(--line);padding-top:8px;margin:10px 0 0}
+.ctrl{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.ctrl button{min-height:44px;padding:0 16px;border-radius:10px;border:2px solid var(--teal);background:#fff;color:var(--teal);font:800 15px 'Nunito Sans',sans-serif;cursor:pointer}
+.ctrl button.main{background:var(--teal);color:#fff}
+.js .steps li.hid,.js .ans.hid{display:none}
+.no-js-note{display:none}
+.tip{font-size:15px;color:var(--soft);background:#fff6d6;border-left:6px solid var(--y);border-radius:8px;padding:8px 14px;margin:0 0 14px}
+.qq{display:grid;grid-template-columns:34px 1fr;gap:0 6px;padding:10px 0;border-top:1px solid var(--line)}
+.qq:first-of-type{border-top:0}
+.qn{font:600 20px Oswald,sans-serif;color:var(--rust);line-height:1.3}
+.qq p{margin:0}
+.parts{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px 18px}
+.c1{grid-template-columns:1fr}.c2{grid-template-columns:repeat(2,1fr)}.c3{grid-template-columns:repeat(3,1fr)}.c4{grid-template-columns:repeat(4,1fr)}
+.parts li{display:flex;gap:6px}
+.parts b{color:var(--soft);font-weight:800}
+.sp{display:none}
+table.fill{border-collapse:collapse;margin-top:8px;width:100%;max-width:520px}
+table.fill th,table.fill td{border:1.5px solid #b9b3a6;padding:6px 10px;text-align:center;height:34px}
+table.fill th{background:#efebe2;font-weight:800}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.05;font-size:.86em;margin:0 2px}
+.fr span:first-child{border-bottom:1.5px solid currentColor;padding:0 2px}
+.reflect{margin:34px 0 10px;background:var(--card);border-radius:14px;padding:18px 22px;border-top:8px solid var(--ink)}
+.reflect h2{font-size:24px;margin-bottom:8px}
+.reflect table{border-collapse:collapse;width:100%;font-size:15.5px}
+.reflect th,.reflect td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left}
+.reflect td.bx,.reflect th.bx{text-align:center;width:92px}
+.box{display:inline-block;width:20px;height:20px;border:2px solid var(--ink);border-radius:4px}
+footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
+.printonly{display:none}
+.sec-h{font-size:22px;margin:30px 0 8px;border-bottom:3px solid var(--ink);padding-bottom:4px}
+.sec-h span{color:var(--rust);font-size:.7em;letter-spacing:.06em;text-transform:uppercase;margin-right:8px}
+@media (max-width:640px){.lisc{grid-template-columns:1fr}.c3,.c4{grid-template-columns:repeat(2,1fr)}}
+@media print{
+  @page{size:A4;margin:13mm 13mm 15mm}
+  body{background:#fff;font-size:10.5pt;line-height:1.4}
+  .wrap{max-width:none;padding:0}
+  .top{background:#fff;color:var(--ink);padding:0 0 6px;border-bottom:2.5pt solid var(--ink)}
+  .eye{color:var(--rust)} .top h1 small{color:var(--soft)}
+  .lisc div{background:#fff;border:1pt solid var(--line);padding:6px 10px}
+  .lisc h3{color:var(--rust)} .lisc p,.lisc li{color:var(--ink);font-size:9.5pt}
+  .links,.ctrl,.how:not(.instr),.no-print{display:none!important}
+  .instr{border:1pt solid var(--line);padding:6px 10px;margin:8px 0}
+  .sec-h{break-after:avoid;margin-top:14px}
+  .printonly{display:block}
+  .nameline{display:flex;gap:30px;margin:8px 0 2px;font-weight:700}
+  .nameline span{flex:1;border-bottom:1pt solid var(--ink);height:18pt}
+  .js .steps li.hid{display:list-item!important}.js .ans.hid{display:block!important}
+  .we,.yt{border:1pt solid var(--line);padding:8px 12px;margin-bottom:8px;break-inside:auto}
+  .we{break-inside:avoid}
+  .part{margin-top:14px} .phead{break-after:avoid}
+  .phead a{display:none}
+  .qq{break-inside:avoid;padding:6px 0}
+  .tip{background:#fff;border-left-width:4pt}
+  .sp{display:block;height:calc(var(--l,2) * 7.5mm);background:repeating-linear-gradient(to bottom,transparent 0,transparent calc(7.5mm - .6pt),#c9c4b8 calc(7.5mm - .6pt),#c9c4b8 7.5mm)}
+  .parts .sp{height:calc(var(--l,2) * 7.5mm)}
+  .parts li{flex-direction:column;gap:0}
+  .reflect{break-inside:avoid;border:1pt solid var(--line)}
+  footer{display:none}
+}
+</style></head>
+<body>
+<header class="top"><div class="wrap">
+<p class="eye">VM Numeracy · Chapter 1 · Doing the Numbers</p>
+<h1><small>Worksheet 1.1</small>Solving problems</h1>
+<div class="lisc"><div><h3>Learning intention</h3><p>We are learning to solve real problems using the problem-solving cycle and the order of operations.</p></div><div><h3>Success criteria</h3><ul><li>I can find the maths in a real problem and estimate first</li><li>I can use the order of operations correctly</li><li>I can check my answer makes sense</li></ul></div></div>
+<nav class="links" aria-label="Page links"><a href="index.html">← All chapters</a><a class="hl" href="chapter-1.html#sec-1">Slides for this section</a><a href="chapter-1-worksheet-2.html">Worksheet 1.2 →</a><button data-print>Print this sheet</button></nav>
+<div class="printonly nameline"><b>Name</b><span></span><b>Date</b><span style="flex:.5"></span></div>
+</div></header>
+<main class="wrap">
+<section class="how"><b>How to use this worksheet</b><ol>
+<li>Read the worked example and try it yourself first.</li>
+<li>Click <b>Show first step</b> to check the working one step at a time.</li>
+<li>Do the <b>Your turn</b> questions in your book (or on the printed sheet). Show your working, like the worked example.</li></ol></section>
+<section class="part" id="part-a">
+<div class="phead"><span class="pl">Part A</span><h2>Order of operations: × and ÷ first</h2><a href="chapter-1.html#3">Slide 3</a></div>
+<div class="we"><p class="tag">Worked example</p><p class="q">Calculate 18 + 6 × 4 − 10 ÷ 2</p>
+<ol class="steps"><li>× and ÷ first: 6 × 4 = 24 and 10 ÷ 2 = 5</li><li>Rewrite: 18 + 24 − 5</li><li>Then + and − from left to right: 18 + 24 = 42, 42 − 5 = 37</li></ol><p class="ans">18 + 6 × 4 − 10 ÷ 2 = 37</p>
+<div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
+<p class="tip"><b>Tip:</b> × and ÷ come before + and −. When there are only × and ÷ (or only + and −), work left to right.</p>
+<div class="yt"><p class="tag">Your turn</p>
+<div class="qq"><span class="qn">1</span><div><p>Calculate. Show each step, like the worked example.</p><ol class="parts c3"><li><span><b>a)</b> 25 − 3 × 5 + 12 ÷ 4</span><div class="sp" style="--l:1"></div></li><li><span><b>b)</b> 40 ÷ 8 + 7 × 3</span><div class="sp" style="--l:1"></div></li><li><span><b>c)</b> 50 − 6 × 7</span><div class="sp" style="--l:1"></div></li><li><span><b>d)</b> 9 + 36 ÷ 4 × 2</span><div class="sp" style="--l:1"></div></li><li><span><b>e)</b> 100 − 45 ÷ 5 + 3 × 8</span><div class="sp" style="--l:1"></div></li><li><span><b>f)</b> 7 × 8 − 64 ÷ 8 − 6</span><div class="sp" style="--l:1"></div></li></ol></div></div>
+<div class="qq"><span class="qn">2</span><div><p>Mia says 20 − 4 × 3 = 48. Explain her mistake and give the correct answer.</p><div class="sp" style="--l:3"></div></div></div>
+<div class="qq"><span class="qn">3</span><div><p>You buy 3 drinks at $4 each and 2 pies at $6 each, and pay with a $50 note. a) Write this as one calculation. b) Work out your change.</p><div class="sp" style="--l:3"></div></div></div>
+</div></section>
+<section class="part" id="part-b">
+<div class="phead"><span class="pl">Part B</span><h2>Order of operations: brackets first</h2><a href="chapter-1.html#4">Slide 4</a></div>
+<div class="we"><p class="tag">Worked example</p><p class="q">Calculate (15 − 7) × 4 + 6</p>
+<ol class="steps"><li>Brackets first: 15 − 7 = 8</li><li>Then ×: 8 × 4 = 32</li><li>Then +: 32 + 6 = 38</li></ol><p class="ans">(15 − 7) × 4 + 6 = 38</p>
+<div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
+<p class="tip"><b>Tip:</b> Order: Brackets, then × and ÷ (left to right), then + and − (left to right).</p>
+<div class="yt"><p class="tag">Your turn</p>
+<div class="qq"><span class="qn">4</span><div><p>Calculate. Show each step.</p><ol class="parts c3"><li><span><b>a)</b> 5 × (9 + 3) − 20 ÷ 4</span><div class="sp" style="--l:1"></div></li><li><span><b>b)</b> (24 + 16) ÷ (3 + 5)</span><div class="sp" style="--l:1"></div></li><li><span><b>c)</b> 3 × (12 − 4) ÷ 6</span><div class="sp" style="--l:1"></div></li><li><span><b>d)</b> 2 × (18 − 3 × 4)</span><div class="sp" style="--l:1"></div></li><li><span><b>e)</b> 60 ÷ (2 + 4) × 3</span><div class="sp" style="--l:1"></div></li><li><span><b>f)</b> (45 − 9) ÷ (11 − 7) + 1</span><div class="sp" style="--l:1"></div></li></ol></div></div>
+<div class="qq"><span class="qn">5</span><div><p>Put brackets in to make each statement true.</p><ol class="parts c3"><li><span><b>a)</b> 4 + 6 × 3 = 30</span><div class="sp" style="--l:1"></div></li><li><span><b>b)</b> 20 − 8 ÷ 4 = 3</span><div class="sp" style="--l:1"></div></li><li><span><b>c)</b> 2 × 5 + 3 × 4 = 52</span><div class="sp" style="--l:1"></div></li></ol></div></div>
+<div class="qq"><span class="qn">6</span><div><p>Toolkit check: type 24 + 16 ÷ 3 + 5 into your calculator. Why is the answer different from Question 4 b)? What must you type to get 5?</p><div class="sp" style="--l:3"></div></div></div>
+</div></section>
+<section class="part" id="part-c">
+<div class="phead"><span class="pl">Part C</span><h2>Using the problem-solving cycle</h2><a href="chapter-1.html#5">Slide 5</a></div>
+<div class="we"><p class="tag">Worked example</p><p class="q">A floor is 3 m × 2.4 m. Tiles are 30 cm × 30 cm, sold in boxes of 10 for $42. Add 10% extra for cuts and breakages. What will the tiles cost?</p>
+<ol class="steps"><li><b>Identify:</b> find how many tiles fit, add 10%, round up to whole boxes, then find the cost. Change metres to cm: 300 cm × 240 cm.</li><li><b>Act:</b> 300 ÷ 30 = 10 tiles across, 240 ÷ 30 = 8 tiles down, 10 × 8 = 80 tiles</li><li>10% extra: 80 + 8 = 88 tiles. 8 boxes only holds 80, so buy 9 boxes (90 tiles).</li><li>Cost: 9 × $42 = $378</li><li><b>Evaluate:</b> estimate 9 boxes × $40 = $360. $378 is close, so it is reasonable.</li></ol><p class="ans"><b>Communicate:</b> Buy 9 boxes of tiles for $378.</p>
+<div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
+<p class="tip"><b>Tip:</b> Use all four stages: Identify, Act, Evaluate, Communicate. Finish with a sentence.</p>
+<div class="yt"><p class="tag">Your turn</p>
+<div class="qq"><span class="qn">7</span><div><p>A laundry floor is 2.1 m × 1.8 m. Tiles are 30 cm × 30 cm, sold in boxes of 10 for $38. Add 10% extra. What will the tiles cost?</p><div class="sp" style="--l:5"></div></div></div>
+<div class="qq"><span class="qn">8</span><div><p>A bathroom wall 2.4 m wide and 1.6 m high is tiled with 20 cm × 20 cm tiles. Tiles come in boxes of 25 for $55. Add 10% extra. How many boxes are needed, and what is the cost?</p><div class="sp" style="--l:5"></div></div></div>
+<div class="qq"><span class="qn">9</span><div><p>A room has 38 m² of wall to paint, and it needs two coats. 1 litre of paint covers 12 m². Paint is sold in 4 L tins for $62. a) Identify: what do you need to find? b) Act: how many tins, and what is the cost? c) Evaluate: how much paint is left over? d) Communicate: answer in a sentence.</p><div class="sp" style="--l:7"></div></div></div>
+</div></section>
+<section class="part" id="part-d">
+<div class="phead"><span class="pl">Part D</span><h2>Pay with overtime</h2><a href="chapter-1.html#6">Slide 6</a></div>
+<div class="we"><p class="tag">Worked example</p><p class="q">Sam works 38 hours at $24.50 an hour, plus 4 hours overtime at time and a half. What is Sam’s pay?</p>
+<ol class="steps"><li>Normal pay: 38 × $24.50 = $931.00</li><li>Overtime rate: $24.50 × 1.5 = $36.75 an hour</li><li>Overtime pay: 4 × $36.75 = $147.00</li><li>Total: $931.00 + $147.00 = $1078.00</li></ol><p class="ans">Sam’s pay is $1078.00</p>
+<div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
+<p class="tip"><b>Tip:</b> Time and a half = × 1.5. Double time = × 2. Find the overtime rate first.</p>
+<div class="yt"><p class="tag">Your turn</p>
+<div class="qq"><span class="qn">10</span><div><p>Jo works 35 hours at $22.80 an hour, plus 3 hours overtime at time and a half. What is Jo’s pay?</p><div class="sp" style="--l:4"></div></div></div>
+<div class="qq"><span class="qn">11</span><div><p>Ali works 38 hours at $26.00 an hour, plus 5 hours overtime at time and a half. What is Ali’s pay?</p><div class="sp" style="--l:4"></div></div></div>
+<div class="qq"><span class="qn">12</span><div><p>Priya works 30 hours at $25.40 an hour, plus 4 hours on Sunday at double time. What is Priya’s pay?</p><div class="sp" style="--l:4"></div></div></div>
+<div class="qq"><span class="qn">13</span><div><p>Kai earns $23.60 an hour. One week he works 38 normal hours, 2 hours at time and a half and 3 hours at double time. What is Kai’s pay?</p><div class="sp" style="--l:5"></div></div></div>
+<div class="qq"><span class="qn">14</span><div><p>Evaluate: Mel says 4 hours at time and a half earns the same as 6 hours at the normal rate. Is she right? Show why.</p><div class="sp" style="--l:3"></div></div></div>
+</div></section>
+<section class="reflect"><h2>Check yourself</h2><p style="margin:0 0 8px;font-size:15px">Tick one box for each success criterion. Show your teacher anything you ticked “Not yet”.</p>
+<table><tr><th>Success criteria</th><th class="bx">Not yet</th><th class="bx">Getting there</th><th class="bx">Got it</th></tr><tr><td>I can find the maths in a real problem and estimate first</td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td></tr><tr><td>I can use the order of operations correctly</td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td></tr><tr><td>I can check my answer makes sense</td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td></tr></table></section>
+</main><footer class="wrap"><a href="index.html">All chapters</a> · <a href="chapter-1.html#sec-1">Slides for this section</a> · <a href="chapter-1-worksheet-2.html">Worksheet 1.2 →</a></footer>
+<script>
+document.documentElement.classList.add('js');
+document.querySelectorAll('.we').forEach(we=>{
+  const steps=[...we.querySelectorAll('.steps li')],ans=we.querySelector('.ans'),next=we.querySelector('.next'),all=we.querySelector('.all');
+  let k=0;
+  const render=()=>{steps.forEach((s,i)=>s.classList.toggle('hid',i>=k));ans.classList.toggle('hid',k<=steps.length);
+    if(k>steps.length){next.textContent='Hide working';all.hidden=true}
+    else{next.textContent=k===steps.length?'Show answer':(k?'Show next step':'Show first step')+' ('+(k+1)+' of '+steps.length+')';all.hidden=false}};
+  next.onclick=()=>{k=k>steps.length?0:k+1;render()};
+  all.onclick=()=>{k=steps.length+1;render()};
+  render();
+});
+document.querySelectorAll('[data-print]').forEach(b=>b.onclick=()=>print());
+</script>
+</body></html>

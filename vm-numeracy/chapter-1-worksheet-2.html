@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Worksheet 1.2 · Addition and subtraction</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Nunito+Sans:wght@400;700;800&display=swap" rel="stylesheet"><style>
+/* VOICE: a worksheet a student works through at their own pace, on screen or printed.
+   IDEA: the slide's worked example, slowed down: reveal one step at a time, then try your own.
+   PICTURE: a paper sheet on the site's charcoal-and-tape-yellow theme; teal for worked examples, yellow for your turn.
+   COLOUR and TYPE: charcoal #1f2326, paper #f4f2ec, tape yellow #f6c21a, teal #1f7a6e, rust #a84b16; Oswald + Nunito Sans.
+   LAYOUT: header with learning intention, then Parts A-D (worked example over your turn), then a self-check. */
+:root{color-scheme:light;--ink:#1f2326;--paper:#f4f2ec;--card:#fffdf8;--soft:#4a5157;--line:#dcd7cc;--y:#f6c21a;--teal:#1f7a6e;--rust:#a84b16}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.55 'Nunito Sans',system-ui,sans-serif}
+a{color:inherit}
+.wrap{max-width:920px;margin:0 auto;padding:0 max(4vw,16px)}
+h1,h2,h3{font-family:Oswald,'Arial Narrow',sans-serif;font-weight:600;margin:0;text-wrap:balance}
+.top{background:var(--ink);color:var(--paper);padding:28px 0 30px}
+.eye{font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--y);margin:0 0 8px}
+.top h1{font-size:clamp(30px,5vw,44px);line-height:1.08}
+.top h1 small{display:block;font-size:.5em;color:#c9cfd3;font-weight:500;letter-spacing:.02em;margin-bottom:4px}
+.lisc{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.lisc div{background:#2c3236;border-radius:12px;padding:14px 18px}
+.lisc h3{font-size:17px;color:var(--y);margin-bottom:4px;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+.lisc p,.lisc li{margin:0;color:#e6e3dc;font-size:15.5px}
+.lisc ul{margin:0;padding-left:20px}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.links a,.links button{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:10px;background:#2c3236;color:var(--paper);font:800 15px 'Nunito Sans',sans-serif;text-decoration:none;border:0;cursor:pointer}
+.links a.hl{background:var(--y);color:var(--ink)}
+.links a:hover,.links button:hover{filter:brightness(1.15)}
+:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.how{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin:26px 0 8px;font-size:15.5px}
+.how ol{margin:6px 0 0;padding-left:22px}
+.part{margin:34px 0 0}
+.phead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:3px solid var(--ink);padding-bottom:6px;margin-bottom:14px}
+.pl{font:600 15px Oswald,sans-serif;letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:var(--y);padding:3px 10px;border-radius:6px}
+.phead h2{font-size:26px;line-height:1.15;flex:1}
+.phead a{font-size:14px;font-weight:700;color:var(--teal)}
+.we,.yt{background:var(--card);border-radius:14px;padding:18px 22px 20px;margin-bottom:14px}
+.we{border-top:8px solid var(--teal)} .yt{border-top:8px solid var(--y)}
+.tag{font:600 16px Oswald,sans-serif;letter-spacing:.06em;text-transform:uppercase;margin:0 0 6px}
+.we .tag{color:var(--teal)} .yt .tag{color:var(--rust)}
+.we .q{font-weight:800;font-size:18px;margin:0 0 10px}
+.steps{margin:0;padding-left:24px;color:var(--soft)}
+.steps li{margin:4px 0}
+.ans{font-weight:800;color:var(--teal);font-size:18px;border-top:2px solid var(--line);padding-top:8px;margin:10px 0 0}
+.ctrl{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.ctrl button{min-height:44px;padding:0 16px;border-radius:10px;border:2px solid var(--teal);background:#fff;color:var(--teal);font:800 15px 'Nunito Sans',sans-serif;cursor:pointer}
+.ctrl button.main{background:var(--teal);color:#fff}
+.js .steps li.hid,.js .ans.hid{display:none}
+.no-js-note{display:none}
+.tip{font-size:15px;color:var(--soft);background:#fff6d6;border-left:6px solid var(--y);border-radius:8px;padding:8px 14px;margin:0 0 14px}
+.qq{display:grid;grid-template-columns:34px 1fr;gap:0 6px;padding:10px 0;border-top:1px solid var(--line)}
+.qq:first-of-type{border-top:0}
+.qn{font:600 20px Oswald,sans-serif;color:var(--rust);line-height:1.3}
+.qq p{margin:0}
+.parts{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px 18px}
+.c1{grid-template-columns:1fr}.c2{grid-template-columns:repeat(2,1fr)}.c3{grid-template-columns:repeat(3,1fr)}.c4{grid-template-columns:repeat(4,1fr)}
+.parts li{display:flex;gap:6px}
+.parts b{color:var(--soft);font-weight:800}
+.sp{display:none}
+table.fill{border-collapse:collapse;margin-top:8px;width:100%;max-width:520px}
+table.fill th,table.fill td{border:1.5px solid #b9b3a6;padding:6px 10px;text-align:center;height:34px}
+table.fill th{background:#efebe2;font-weight:800}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.05;font-size:.86em;margin:0 2px}
+.fr span:first-child{border-bottom:1.5px solid currentColor;padding:0 2px}
+.reflect{margin:34px 0 10px;background:var(--card);border-radius:14px;padding:18px 22px;border-top:8px solid var(--ink)}
+.reflect h2{font-size:24px;margin-bottom:8px}
+.reflect table{border-collapse:collapse;width:100%;font-size:15.5px}
+.reflect th,.reflect td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left}
+.reflect td.bx,.reflect th.bx{text-align:center;width:92px}
+.box{display:inline-block;width:20px;height:20px;border:2px solid var(--ink);border-radius:4px}
+footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
+.printonly{display:none}
+.sec-h{font-size:22px;margin:30px 0 8px;border-bottom:3px solid var(--ink);padding-bottom:4px}
+.sec-h span{color:var(--rust);font-size:.7em;letter-spacing:.06em;text-transform:uppercase;margin-right:8px}
+@media (max-width:640px){.lisc{grid-template-columns:1fr}.c3,.c4{grid-template-columns:repeat(2,1fr)}}
+@media print{
+  @page{size:A4;margin:13mm 13mm 15mm}
+  body{background:#fff;font-size:10.5pt;line-height:1.4}
+  .wrap{max-width:none;padding:0}
+  .top{background:#fff;color:var(--ink);padding:0 0 6px;border-bottom:2.5pt solid var(--ink)}
+  .eye{color:var(--rust)} .top h1 small{color:var(--soft)}
+  .lisc div{background:#fff;border:1pt solid var(--line);padding:6px 10px}
+  .lisc h3{color:var(--rust)} .lisc p,.lisc li{color:var(--ink);font-size:9.5pt}
+  .links,.ctrl,.how:not(.instr),.no-print{display:none!important}
+  .instr{border:1pt solid var(--line);padding:6px 10px;margin:8px 0}
+  .sec-h{break-after:avoid;margin-top:14px}
+  .printonly{display:block}
+  .nameline{display:flex;gap:30px;margin:8px 0 2px;font-weight:700}
+  .nameline span{flex:1;border-bottom:1pt solid var(--ink);height:18pt}
+  .js .steps li.hid{display:list-item!important}.js .ans.hid{display:block!important}
+  .we,.yt{border:1pt solid var(--line);padding:8px 12px;margin-bottom:8px;break-inside:auto}
+  .we{break-inside:avoid}
+  .part{margin-top:14px} .phead{break-after:avoid}
+  .phead a{display:none}
+  .qq{break-inside:avoid;padding:6px 0}
+  .tip{background:#fff;border-left-width:4pt}
+  .sp{display:block;height:calc(var(--l,2) * 7.5mm);background:repeating-linear-gradient(to bottom,transparent 0,transparent calc(7.5mm - .6pt),#c9c4b8 calc(7.5mm - .6pt),#c9c4b8 7.5mm)}
+  .parts .sp{height:calc(var(--l,2) * 7.5mm)}
+  .parts li{flex-direction:column;gap:0}
+  .reflect{break-inside:avoid;border:1pt solid var(--line)}
+  footer{display:none}
+}
+</style></head>
+<body>
+<header class="top"><div class="wrap">
+<p class="eye">VM Numeracy · Chapter 1 · Doing the Numbers</p>
+<h1><small>Worksheet 1.2</small>Addition and subtraction</h1>
+<div class="lisc"><div><h3>Learning intention</h3><p>We are learning to add and subtract whole numbers, decimals, money, fractions and negative numbers.</p></div><div><h3>Success criteria</h3><ul><li>I can line up the decimal points</li><li>I can add fractions with the same denominator</li><li>I can use negative numbers in real situations</li></ul></div></div>
+<nav class="links" aria-label="Page links"><a href="index.html">← All chapters</a><a class="hl" href="chapter-1.html#sec-2">Slides for this section</a><a href="chapter-1-worksheet-1.html">← Worksheet 1.1</a><a href="chapter-1-worksheet-3.html">Worksheet 1.3 →</a><button data-print>Print this sheet</button></nav>
+<div class="printonly nameline"><b>Name</b><span></span><b>Date</b><span style="flex:.5"></span></div>
+</div></header>
+<main class="wrap">
+<section class="how"><b>How to use this worksheet</b><ol>
+<li>Read the worked example and try it yourself first.</li>
+<li>Click <b>Show first step</b> to check the working one step at a time.</li>
+<li>Do the <b>Your turn</b> questions in your book (or on the printed sheet). Show your working, like the worked example.</li></ol></section>
+<section class="part" id="part-a">
+<div class="phead"><span class="pl">Part A</span><h2>Adding and subtracting decimals</h2><a href="chapter-1.html#8">Slide 8</a></div>
+<div class="we"><p class="tag">Worked example</p><p class="q">Calculate 12.5 + 3.75 + 108.2</p>
+<ol class="steps"><li>Set it out in columns with the decimal points lined up</li><li>Fill the gaps with zeros: 12.50 + 3.75 + 108.20</li><li>Add the columns, starting from the right</li></ol><p class="ans">12.5 + 3.75 + 108.2 = 124.45</p>
+<div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
+<p class="tip"><b>Tip:</b> Line up the decimal points, not the last digits. Estimate first: 13 + 4 + 108 = 125.</p>
+<div class="yt"><p class="tag">Your turn</p>
+<div class="qq"><span class="qn">1</span><div><p>Calculate. Estimate first, then set out in columns.</p><ol class="parts c3"><li><span><b>a)</b> 7.4 + 26.85 + 0.9</span><div class="sp" style="--l:1"></div></li><li><span><b>b)</b> 50.3 − 18.75</span><div class="sp" style="--l:1"></div></li><li><span><b>c)</b> 4.06 + 19.7 + 0.385</span><div class="sp" style="--l:1"></div></li><li><span><b>d)</b> 15 − 6.48</span><div class="sp" style="--l:1"></div></li><li><span><b>e)</b> 102.4 − 37.95</span><div class="sp" style="--l:1"></div></li><li><span><b>f)</b> 0.875 + 1.25 − 0.5</span><div class="sp" style="--l:1"></div></li></ol></div></div>
+<div class="qq"><span class="qn">2</span><div><p>A builder cuts 1.35 m and 0.875 m off a 3.6 m length of timber. How much is left?</p><div class="sp" style="--l:3"></div></div></div>
+<div class="qq"><span class="qn">3</span><div><p>Estimate 19.8 + 41.25 + 7.9, then calculate it exactly. How close was your estimate?</p><div class="sp" style="--l:3"></div></div></div>
+</div></section>
+<section class="part" id="part-b">
+<div class="phead"><span class="pl">Part B</span><h2>Money and change</h2><a href="chapter-1.html#9">Slide 9</a></div>
+<div class="we"><p class="tag">Worked example</p><p class="q">You buy items for $14.95, $6.40 and $23.50, and pay with $50. How much change do you get?</p>
+<ol class="steps"><li>Estimate: $15 + $6 + $24 = $45, so about $5 change</li><li>Total: $14.95 + $6.40 + $23.50 = $44.85</li><li>Change: $50.00 − $44.85 = $5.15</li><li>Check: $5.15 is close to the $5 estimate</li></ol><p class="ans">Change is $5.15</p>
+<div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
+<p class="tip"><b>Tip:</b> Estimate first, then check your answer is close.</p>
+<div class="yt"><p class="tag">Your turn</p>
+<div class="qq"><span class="qn">4</span><div><p>You buy items for $8.75, $12.60 and $3.99, and pay with $40. How much change do you get?</p><div class="sp" style="--l:3"></div></div></div>
+<div class="qq"><span class="qn">5</span><div><p>Groceries cost $4.50, $11.95, $2.80 and $7.25. You pay with $30. How much change?</p><div class="sp" style="--l:3"></div></div></div>
+<div class="qq"><span class="qn">6</span><div><p>You have $85.00 in your account. You spend $23.40 on fuel, $9.95 on an app and $36.50 on a shirt. How much is left?</p><div class="sp" style="--l:3"></div></div></div>
+<div class="qq"><span class="qn">7</span><div><p>Your weekly pay is $412.60. You pay rent $180, phone $25.50, transport $42.80 and food $96.35. How much is left for the week?</p><div class="sp" style="--l:4"></div></div></div>
+<div class="qq"><span class="qn">8</span><div><p>You pay for $31.65 of shopping with a $50 note. How much change, and which notes and coins could you get?</p><div class="sp" style="--l:3"></div></div></div>
+</div></section>
+<section class="part" id="part-c">
+<div class="phead"><span class="pl">Part C</span><h2>Adding fractions</h2><a href="chapter-1.html#10">Slide 10</a></div>
+<div class="we"><p class="tag">Worked example</p><p class="q">a) <span class="fr"><span>3</span><span>8</span></span> + <span class="fr"><span>7</span><span>8</span></span> &nbsp;&nbsp; b) 2 <span class="fr"><span>1</span><span>4</span></span> + 1 <span class="fr"><span>3</span><span>4</span></span></p>
+<ol class="steps"><li>a) Same bottom number, so add the tops: 3 + 7 = 10, giving <span class="fr"><span>10</span><span>8</span></span></li><li><span class="fr"><span>10</span><span>8</span></span> = 1 <span class="fr"><span>2</span><span>8</span></span> = 1 <span class="fr"><span>1</span><span>4</span></span></li><li>b) Add the wholes: 2 + 1 = 3</li><li>Add the parts: <span class="fr"><span>1</span><span>4</span></span> + <span class="fr"><span>3</span><span>4</span></span> = <span class="fr"><span>4</span><span>4</span></span> = 1, so 3 + 1 = 4</li></ol><p class="ans">a) 1 <span class="fr"><span>1</span><span>4</span></span> &nbsp;&nbsp; b) 4</p>
+<div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
+<p class="tip"><b>Tip:</b> When the bottom numbers (denominators) are the same, add or subtract the tops. Simplify at the end.</p>
+<div class="yt"><p class="tag">Your turn</p>
+<div class="qq"><span class="qn">9</span><div><p>Calculate. Simplify your answers.</p><ol class="parts c3"><li><span><b>a)</b> <span class="fr"><span>5</span><span>6</span></span> + <span class="fr"><span>4</span><span>6</span></span></span><div class="sp" style="--l:1"></div></li><li><span><b>b)</b> 3 <span class="fr"><span>2</span><span>5</span></span> + 1 <span class="fr"><span>4</span><span>5</span></span></span><div class="sp" style="--l:1"></div></li><li><span><b>c)</b> <span class="fr"><span>7</span><span>10</span></span> − <span class="fr"><span>3</span><span>10</span></span></span><div class="sp" style="--l:1"></div></li><li><span><b>d)</b> <span class="fr"><span>2</span><span>9</span></span> + <span class="fr"><span>4</span><span>9</span></span></span><div class="sp" style="--l:1"></div></li><li><span><b>e)</b> 4 <span class="fr"><span>3</span><span>8</span></span> − 1 <span class="fr"><span>1</span><span>8</span></span></span><div class="sp" style="--l:1"></div></li><li><span><b>f)</b> 5 − <span class="fr"><span>2</span><span>3</span></span></span><div class="sp" style="--l:1"></div></li></ol></div></div>
+<div class="qq"><span class="qn">10</span><div><p>A recipe uses <span class="fr"><span>3</span><span>4</span></span> cup of milk in the batter and <span class="fr"><span>3</span><span>4</span></span> cup in the sauce. How much milk is that altogether?</p><div class="sp" style="--l:2"></div></div></div>
+<div class="qq"><span class="qn">11</span><div><p>A plumber has 5 <span class="fr"><span>1</span><span>4</span></span> m of pipe and uses 2 <span class="fr"><span>3</span><span>4</span></span> m. How much pipe is left? (Hint: change 5 <span class="fr"><span>1</span><span>4</span></span> to 4 <span class="fr"><span>5</span><span>4</span></span>.)</p><div class="sp" style="--l:3"></div></div></div>
+<div class="qq"><span class="qn">12</span><div><p>Challenge: <span class="fr"><span>1</span><span>2</span></span> + <span class="fr"><span>1</span><span>4</span></span>. (Hint: <span class="fr"><span>1</span><span>2</span></span> = <span class="fr"><span>2</span><span>4</span></span>.)</p><div class="sp" style="--l:2"></div></div></div>
+</div></section>
+<section class="part" id="part-d">
+<div class="phead"><span class="pl">Part D</span><h2>Negative numbers</h2><a href="chapter-1.html#11">Slide 11</a></div>
+<div class="we"><p class="tag">Worked example</p><p class="q">a) At 6 am it is −4 °C. By noon it is 11 degrees warmer. What is the temperature? &nbsp; b) Your bank balance is −$35. You deposit $120, then spend $64. What is your balance?</p>
+<ol class="steps"><li>a) Start at −4 and go up 11 on a number line: −4 + 11 = 7</li><li>b) −35 + 120 = 85</li><li>Then 85 − 64 = 21</li></ol><p class="ans">a) 7 °C &nbsp;&nbsp; b) $21</p>
+<div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
+<p class="tip"><b>Tip:</b> Adding moves you up the number line. Subtracting moves you down. Draw a number line if it helps.</p>
+<div class="yt"><p class="tag">Your turn</p>
+<div class="qq"><span class="qn">13</span><div><p>a) At 9 pm it is 3 °C. Overnight it falls 9 degrees. What is the temperature? &nbsp; b) Your bank balance is −$18. You deposit $75, then spend $40. What is your balance?</p><div class="sp" style="--l:3"></div></div></div>
+<div class="qq"><span class="qn">14</span><div><p>Calculate.</p><ol class="parts c3"><li><span><b>a)</b> −5 + 12</span><div class="sp" style="--l:1"></div></li><li><span><b>b)</b> −8 − 6</span><div class="sp" style="--l:1"></div></li><li><span><b>c)</b> 4 − 11</span><div class="sp" style="--l:1"></div></li><li><span><b>d)</b> −3 − 7</span><div class="sp" style="--l:1"></div></li><li><span><b>e)</b> −15 + 9</span><div class="sp" style="--l:1"></div></li><li><span><b>f)</b> −20 + 35 − 10</span><div class="sp" style="--l:1"></div></li></ol></div></div>
+<div class="qq"><span class="qn">15</span><div><p>A freezer is at −18 °C and a fridge is at 4 °C. What is the difference in temperature?</p><div class="sp" style="--l:2"></div></div></div>
+<div class="qq"><span class="qn">16</span><div><p>At Mt Hotham the minimum temperature was −7 °C and the maximum was 5 °C. By how many degrees did it rise?</p><div class="sp" style="--l:2"></div></div></div>
+<div class="qq"><span class="qn">17</span><div><p>Your account has $46. You withdraw $60, and the bank charges a $15 overdrawn fee. What is your balance now?</p><div class="sp" style="--l:2"></div></div></div>
+</div></section>
+<section class="reflect"><h2>Check yourself</h2><p style="margin:0 0 8px;font-size:15px">Tick one box for each success criterion. Show your teacher anything you ticked “Not yet”.</p>
+<table><tr><th>Success criteria</th><th class="bx">Not yet</th><th class="bx">Getting there</th><th class="bx">Got it</th></tr><tr><td>I can line up the decimal points</td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td></tr><tr><td>I can add fractions with the same denominator</td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td></tr><tr><td>I can use negative numbers in real situations</td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td></tr></table></section>
+</main><footer class="wrap"><a href="index.html">All chapters</a> · <a href="chapter-1.html#sec-2">Slides for this section</a> · <a href="chapter-1-worksheet-1.html">← Worksheet 1.1</a> · <a href="chapter-1-worksheet-3.html">Worksheet 1.3 →</a></footer>
+<script>
+document.documentElement.classList.add('js');
+document.querySelectorAll('.we').forEach(we=>{
+  const steps=[...we.querySelectorAll('.steps li')],ans=we.querySelector('.ans'),next=we.querySelector('.next'),all=we.querySelector('.all');
+  let k=0;
+  const render=()=>{steps.forEach((s,i)=>s.classList.toggle('hid',i>=k));ans.classList.toggle('hid',k<=steps.length);
+    if(k>steps.length){next.textContent='Hide working';all.hidden=true}
+    else{next.textContent=k===steps.length?'Show answer':(k?'Show next step':'Show first step')+' ('+(k+1)+' of '+steps.length+')';all.hidden=false}};
+  next.onclick=()=>{k=k>steps.length?0:k+1;render()};
+  all.onclick=()=>{k=steps.length+1;render()};
+  render();
+});
+document.querySelectorAll('[data-print]').forEach(b=>b.onclick=()=>print());
+</script>
+</body></html>

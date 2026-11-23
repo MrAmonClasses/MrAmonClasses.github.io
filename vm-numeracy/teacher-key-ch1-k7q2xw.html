@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Chapter 1 answer key (teacher)</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Nunito+Sans:wght@400;700;800&display=swap" rel="stylesheet"><style>
+/* VOICE: a worksheet a student works through at their own pace, on screen or printed.
+   IDEA: the slide's worked example, slowed down: reveal one step at a time, then try your own.
+   PICTURE: a paper sheet on the site's charcoal-and-tape-yellow theme; teal for worked examples, yellow for your turn.
+   COLOUR and TYPE: charcoal #1f2326, paper #f4f2ec, tape yellow #f6c21a, teal #1f7a6e, rust #a84b16; Oswald + Nunito Sans.
+   LAYOUT: header with learning intention, then Parts A-D (worked example over your turn), then a self-check. */
+:root{color-scheme:light;--ink:#1f2326;--paper:#f4f2ec;--card:#fffdf8;--soft:#4a5157;--line:#dcd7cc;--y:#f6c21a;--teal:#1f7a6e;--rust:#a84b16}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.55 'Nunito Sans',system-ui,sans-serif}
+a{color:inherit}
+.wrap{max-width:920px;margin:0 auto;padding:0 max(4vw,16px)}
+h1,h2,h3{font-family:Oswald,'Arial Narrow',sans-serif;font-weight:600;margin:0;text-wrap:balance}
+.top{background:var(--ink);color:var(--paper);padding:28px 0 30px}
+.eye{font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--y);margin:0 0 8px}
+.top h1{font-size:clamp(30px,5vw,44px);line-height:1.08}
+.top h1 small{display:block;font-size:.5em;color:#c9cfd3;font-weight:500;letter-spacing:.02em;margin-bottom:4px}
+.lisc{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.lisc div{background:#2c3236;border-radius:12px;padding:14px 18px}
+.lisc h3{font-size:17px;color:var(--y);margin-bottom:4px;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+.lisc p,.lisc li{margin:0;color:#e6e3dc;font-size:15.5px}
+.lisc ul{margin:0;padding-left:20px}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.links a,.links button{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:10px;background:#2c3236;color:var(--paper);font:800 15px 'Nunito Sans',sans-serif;text-decoration:none;border:0;cursor:pointer}
+.links a.hl{background:var(--y);color:var(--ink)}
+.links a:hover,.links button:hover{filter:brightness(1.15)}
+:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.how{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin:26px 0 8px;font-size:15.5px}
+.how ol{margin:6px 0 0;padding-left:22px}
+.part{margin:34px 0 0}
+.phead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:3px solid var(--ink);padding-bottom:6px;margin-bottom:14px}
+.pl{font:600 15px Oswald,sans-serif;letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:var(--y);padding:3px 10px;border-radius:6px}
+.phead h2{font-size:26px;line-height:1.15;flex:1}
+.phead a{font-size:14px;font-weight:700;color:var(--teal)}
+.we,.yt{background:var(--card);border-radius:14px;padding:18px 22px 20px;margin-bottom:14px}
+.we{border-top:8px solid var(--teal)} .yt{border-top:8px solid var(--y)}
+.tag{font:600 16px Oswald,sans-serif;letter-spacing:.06em;text-transform:uppercase;margin:0 0 6px}
+.we .tag{color:var(--teal)} .yt .tag{color:var(--rust)}
+.we .q{font-weight:800;font-size:18px;margin:0 0 10px}
+.steps{margin:0;padding-left:24px;color:var(--soft)}
+.steps li{margin:4px 0}
+.ans{font-weight:800;color:var(--teal);font-size:18px;border-top:2px solid var(--line);padding-top:8px;margin:10px 0 0}
+.ctrl{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.ctrl button{min-height:44px;padding:0 16px;border-radius:10px;border:2px solid var(--teal);background:#fff;color:var(--teal);font:800 15px 'Nunito Sans',sans-serif;cursor:pointer}
+.ctrl button.main{background:var(--teal);color:#fff}
+.js .steps li.hid,.js .ans.hid{display:none}
+.no-js-note{display:none}
+.tip{font-size:15px;color:var(--soft);background:#fff6d6;border-left:6px solid var(--y);border-radius:8px;padding:8px 14px;margin:0 0 14px}
+.qq{display:grid;grid-template-columns:34px 1fr;gap:0 6px;padding:10px 0;border-top:1px solid var(--line)}
+.qq:first-of-type{border-top:0}
+.qn{font:600 20px Oswald,sans-serif;color:var(--rust);line-height:1.3}
+.qq p{margin:0}
+.parts{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px 18px}
+.c1{grid-template-columns:1fr}.c2{grid-template-columns:repeat(2,1fr)}.c3{grid-template-columns:repeat(3,1fr)}.c4{grid-template-columns:repeat(4,1fr)}
+.parts li{display:flex;gap:6px}
+.parts b{color:var(--soft);font-weight:800}
+.sp{display:none}
+table.fill{border-collapse:collapse;margin-top:8px;width:100%;max-width:520px}
+table.fill th,table.fill td{border:1.5px solid #b9b3a6;padding:6px 10px;text-align:center;height:34px}
+table.fill th{background:#efebe2;font-weight:800}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.05;font-size:.86em;margin:0 2px}
+.fr span:first-child{border-bottom:1.5px solid currentColor;padding:0 2px}
+.reflect{margin:34px 0 10px;background:var(--card);border-radius:14px;padding:18px 22px;border-top:8px solid var(--ink)}
+.reflect h2{font-size:24px;margin-bottom:8px}
+.reflect table{border-collapse:collapse;width:100%;font-size:15.5px}
+.reflect th,.reflect td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left}
+.reflect td.bx,.reflect th.bx{text-align:center;width:92px}
+.box{display:inline-block;width:20px;height:20px;border:2px solid var(--ink);border-radius:4px}
+footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
+.printonly{display:none}
+.sec-h{font-size:22px;margin:30px 0 8px;border-bottom:3px solid var(--ink);padding-bottom:4px}
+.sec-h span{color:var(--rust);font-size:.7em;letter-spacing:.06em;text-transform:uppercase;margin-right:8px}
+@media (max-width:640px){.lisc{grid-template-columns:1fr}.c3,.c4{grid-template-columns:repeat(2,1fr)}}
+@media print{
+  @page{size:A4;margin:13mm 13mm 15mm}
+  body{background:#fff;font-size:10.5pt;line-height:1.4}
+  .wrap{max-width:none;padding:0}
+  .top{background:#fff;color:var(--ink);padding:0 0 6px;border-bottom:2.5pt solid var(--ink)}
+  .eye{color:var(--rust)} .top h1 small{color:var(--soft)}
+  .lisc div{background:#fff;border:1pt solid var(--line);padding:6px 10px}
+  .lisc h3{color:var(--rust)} .lisc p,.lisc li{color:var(--ink);font-size:9.5pt}
+  .links,.ctrl,.how:not(.instr),.no-print{display:none!important}
+  .instr{border:1pt solid var(--line);padding:6px 10px;margin:8px 0}
+  .sec-h{break-after:avoid;margin-top:14px}
+  .printonly{display:block}
+  .nameline{display:flex;gap:30px;margin:8px 0 2px;font-weight:700}
+  .nameline span{flex:1;border-bottom:1pt solid var(--ink);height:18pt}
+  .js .steps li.hid{display:list-item!important}.js .ans.hid{display:block!important}
+  .we,.yt{border:1pt solid var(--line);padding:8px 12px;margin-bottom:8px;break-inside:auto}
+  .we{break-inside:avoid}
+  .part{margin-top:14px} .phead{break-after:avoid}
+  .phead a{display:none}
+  .qq{break-inside:avoid;padding:6px 0}
+  .tip{background:#fff;border-left-width:4pt}
+  .sp{display:block;height:calc(var(--l,2) * 7.5mm);background:repeating-linear-gradient(to bottom,transparent 0,transparent calc(7.5mm - .6pt),#c9c4b8 calc(7.5mm - .6pt),#c9c4b8 7.5mm)}
+  .parts .sp{height:calc(var(--l,2) * 7.5mm)}
+  .parts li{flex-direction:column;gap:0}
+  .reflect{break-inside:avoid;border:1pt solid var(--line)}
+  footer{display:none}
+}
+
+.key h2{font-size:26px;margin:30px 0 6px;border-bottom:3px solid var(--ink);padding-bottom:4px}
+.key h3{font-size:19px;margin:16px 0 4px;color:var(--teal)}
+.key table{border-collapse:collapse;width:100%;font-size:15px;background:var(--card)}
+.key td,.key th{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+.key td:first-child{width:44px;font-weight:800;color:var(--rust)}
+.key th{background:#efebe2}
+@media print{.key h2{break-after:avoid}.key h3{break-after:avoid}.key tr{break-inside:avoid}.key{font-size:9.5pt}}
+</style></head>
+<body>
+<header class="top"><div class="wrap"><p class="eye">VM Numeracy · Teacher only · not linked from student pages</p><h1><small>Chapter 1 · Doing the Numbers</small>Answer key</h1><nav class="links"><a href="chapter-1-diagnostic.html">Diagnostic</a><a href="chapter-1-worksheet-1.html">1.1</a><a href="chapter-1-worksheet-2.html">1.2</a><a href="chapter-1-worksheet-3.html">1.3</a><a href="chapter-1-worksheet-4.html">1.4</a><a href="chapter-1-worksheet-5.html">1.5</a><a href="chapter-1-worksheet-6.html">1.6</a><button data-print>Print</button></nav></div></header><main class="wrap key">
+<h2>Diagnostic</h2><p>Each section of the diagnostic matches a worksheet. Students who miss two or more questions in a section need that worksheet’s worked examples taught explicitly before they start.</p>
+<table><tr><th>Q</th><th>Answer</th><th>Section</th></tr>
+<tr><td>1</td><td>24 (3 × 4 = 12 first, then 12 + 12)</td><td>Worksheet 1.1</td></tr>
+<tr><td>2</td><td>4 (brackets first: 12 ÷ 3)</td><td>Worksheet 1.1</td></tr>
+<tr><td>3</td><td>29 (12 ÷ 4 = 3, then 30 − 3 + 2)</td><td>Worksheet 1.1</td></tr>
+<tr><td>4</td><td>$72 (4 × $15 = $60, + $12)</td><td>Worksheet 1.1</td></tr>
+<tr><td>5</td><td>17.05</td><td>Worksheet 1.2</td></tr>
+<tr><td>6</td><td>$6.35</td><td>Worksheet 1.2</td></tr>
+<tr><td>7</td><td><span class="fr"><span>4</span><span>5</span></span></td><td>Worksheet 1.2</td></tr>
+<tr><td>8</td><td>5 °C</td><td>Worksheet 1.2</td></tr>
+<tr><td>9</td><td>a) 56 b) 8</td><td>Worksheet 1.3</td></tr>
+<tr><td>10</td><td>230</td><td>Worksheet 1.3</td></tr>
+<tr><td>11</td><td>$13.50</td><td>Worksheet 1.3</td></tr>
+<tr><td>12</td><td>a) 4 minibuses (30 ÷ 8 = 3 remainder 6, so round up) b) −24</td><td>Worksheet 1.3</td></tr>
+<tr><td>13</td><td>a) 0.5 b) <span class="fr"><span>1</span><span>4</span></span></td><td>Worksheet 1.4</td></tr>
+<tr><td>14</td><td>$15</td><td>Worksheet 1.4</td></tr>
+<tr><td>15</td><td>$10 and $30 (4 parts, 1 part = $10)</td><td>Worksheet 1.4</td></tr>
+<tr><td>16</td><td>60 km/h</td><td>Worksheet 1.4</td></tr>
+<tr><td>17</td><td>40</td><td>Worksheet 1.5</td></tr>
+<tr><td>18</td><td>$35</td><td>Worksheet 1.5</td></tr>
+<tr><td>19</td><td>$30 (25% of $40 = $10)</td><td>Worksheet 1.5</td></tr>
+<tr><td>20</td><td>75%</td><td>Worksheet 1.5</td></tr>
+<tr><td>21</td><td>6.5</td><td>Worksheet 1.6</td></tr>
+<tr><td>22</td><td>3900</td><td>Worksheet 1.6</td></tr>
+<tr><td>23</td><td>a) 25 b) 7</td><td>Worksheet 1.6</td></tr>
+<tr><td>24</td><td>5 cm (3² + 4² = 25, √25 = 5)</td><td>Worksheet 1.6</td></tr>
+</table>
+<h2>Worksheet 1.1 · Solving problems</h2>
+<h3>Part A · Order of operations: × and ÷ first</h3><table>
+<tr><td>1</td><td><b>a)</b> 25 − 15 + 3 = 13; <b>b)</b> 5 + 21 = 26; <b>c)</b> 50 − 42 = 8; <b>d)</b> 36 ÷ 4 = 9, × 2 = 18; 9 + 18 = 27; <b>e)</b> 100 − 9 + 24 = 115; <b>f)</b> 56 − 8 − 6 = 42</td></tr>
+<tr><td>2</td><td>She subtracted first (20 − 4 = 16, then 16 × 3 = 48). × comes first: 4 × 3 = 12, 20 − 12 = 8.</td></tr>
+<tr><td>3</td><td>a) 50 − 3 × 4 − 2 × 6 b) 50 − 12 − 12 = $26</td></tr>
+</table>
+<h3>Part B · Order of operations: brackets first</h3><table>
+<tr><td>4</td><td><b>a)</b> 5 × 12 − 5 = 60 − 5 = 55; <b>b)</b> 40 ÷ 8 = 5; <b>c)</b> 3 × 8 ÷ 6 = 24 ÷ 6 = 4; <b>d)</b> inside brackets 18 − 12 = 6; 2 × 6 = 12; <b>e)</b> 60 ÷ 6 × 3 = 10 × 3 = 30; <b>f)</b> 36 ÷ 4 + 1 = 9 + 1 = 10</td></tr>
+<tr><td>5</td><td><b>a)</b> (4 + 6) × 3 = 30; <b>b)</b> (20 − 8) ÷ 4 = 3; <b>c)</b> (2 × 5 + 3) × 4 = 52</td></tr>
+<tr><td>6</td><td>The calculator does ÷ first: 24 + 5.33 + 5 = 34.33. Type (24 + 16) ÷ (3 + 5) with the brackets.</td></tr>
+</table>
+<h3>Part C · Using the problem-solving cycle</h3><table>
+<tr><td>7</td><td>210 ÷ 30 = 7, 180 ÷ 30 = 6, 7 × 6 = 42 tiles; + 10% = 46.2, so 47 tiles; 5 boxes (50 tiles); 5 × $38 = $190.</td></tr>
+<tr><td>8</td><td>240 ÷ 20 = 12, 160 ÷ 20 = 8, 12 × 8 = 96 tiles; + 10% = 105.6, so 106 tiles; 4 boxes = 100 (not enough), so 5 boxes; 5 × $55 = $275.</td></tr>
+<tr><td>9</td><td>a) Total area, litres needed, tins, cost. b) 2 × 38 = 76 m²; 76 ÷ 12 = 6.33 L; 2 tins (8 L); 2 × $62 = $124. c) 8 − 6.33 ≈ 1.7 L left. d) Buy 2 tins of paint for $124.</td></tr>
+</table>
+<h3>Part D · Pay with overtime</h3><table>
+<tr><td>10</td><td>35 × $22.80 = $798.00; $22.80 × 1.5 = $34.20; 3 × $34.20 = $102.60; total $900.60</td></tr>
+<tr><td>11</td><td>38 × $26 = $988.00; $26 × 1.5 = $39.00; 5 × $39 = $195.00; total $1183.00</td></tr>
+<tr><td>12</td><td>30 × $25.40 = $762.00; $25.40 × 2 = $50.80; 4 × $50.80 = $203.20; total $965.20</td></tr>
+<tr><td>13</td><td>38 × $23.60 = $896.80; 2 × $35.40 = $70.80; 3 × $47.20 = $141.60; total $1109.20</td></tr>
+<tr><td>14</td><td>Yes. 4 × 1.5 = 6, so 4 overtime hours pay the same as 6 normal hours.</td></tr>
+</table>
+<h2>Worksheet 1.2 · Addition and subtraction</h2>
+<h3>Part A · Adding and subtracting decimals</h3><table>
+<tr><td>1</td><td><b>a)</b> 7.40 + 26.85 + 0.90 = 35.15; <b>b)</b> 50.30 − 18.75 = 31.55; <b>c)</b> 4.060 + 19.700 + 0.385 = 24.145; <b>d)</b> 15.00 − 6.48 = 8.52; <b>e)</b> 102.40 − 37.95 = 64.45; <b>f)</b> 2.125 − 0.500 = 1.625</td></tr>
+<tr><td>2</td><td>1.35 + 0.875 = 2.225 m; 3.600 − 2.225 = 1.375 m</td></tr>
+<tr><td>3</td><td>Estimate 20 + 41 + 8 = 69; exact 68.95. Very close.</td></tr>
+</table>
+<h3>Part B · Money and change</h3><table>
+<tr><td>4</td><td>Total $25.34; change $40.00 − $25.34 = $14.66</td></tr>
+<tr><td>5</td><td>Total $26.50; change $3.50</td></tr>
+<tr><td>6</td><td>Spent $69.85; left $85.00 − $69.85 = $15.15</td></tr>
+<tr><td>7</td><td>Bills total $344.65; $412.60 − $344.65 = $67.95 left</td></tr>
+<tr><td>8</td><td>$18.35, e.g. $10 + $5 + $2 + $1 + 20c + 10c + 5c</td></tr>
+</table>
+<h3>Part C · Adding fractions</h3><table>
+<tr><td>9</td><td><b>a)</b> <span class="fr"><span>9</span><span>6</span></span> = 1 <span class="fr"><span>3</span><span>6</span></span> = 1 <span class="fr"><span>1</span><span>2</span></span>; <b>b)</b> wholes 4, parts <span class="fr"><span>6</span><span>5</span></span> = 1 <span class="fr"><span>1</span><span>5</span></span>; total 5 <span class="fr"><span>1</span><span>5</span></span>; <b>c)</b> <span class="fr"><span>4</span><span>10</span></span> = <span class="fr"><span>2</span><span>5</span></span>; <b>d)</b> <span class="fr"><span>6</span><span>9</span></span> = <span class="fr"><span>2</span><span>3</span></span>; <b>e)</b> 3 <span class="fr"><span>2</span><span>8</span></span> = 3 <span class="fr"><span>1</span><span>4</span></span>; <b>f)</b> 4 <span class="fr"><span>1</span><span>3</span></span></td></tr>
+<tr><td>10</td><td><span class="fr"><span>6</span><span>4</span></span> = 1 <span class="fr"><span>2</span><span>4</span></span> = 1 <span class="fr"><span>1</span><span>2</span></span> cups</td></tr>
+<tr><td>11</td><td>4 <span class="fr"><span>5</span><span>4</span></span> − 2 <span class="fr"><span>3</span><span>4</span></span> = 2 <span class="fr"><span>2</span><span>4</span></span> = 2 <span class="fr"><span>1</span><span>2</span></span> m</td></tr>
+<tr><td>12</td><td><span class="fr"><span>2</span><span>4</span></span> + <span class="fr"><span>1</span><span>4</span></span> = <span class="fr"><span>3</span><span>4</span></span></td></tr>
+</table>
+<h3>Part D · Negative numbers</h3><table>
+<tr><td>13</td><td>a) 3 − 9 = −6 °C b) −18 + 75 = 57, 57 − 40 = $17</td></tr>
+<tr><td>14</td><td><b>a)</b> 7; <b>b)</b> −14; <b>c)</b> −7; <b>d)</b> −10; <b>e)</b> −6; <b>f)</b> 5</td></tr>
+<tr><td>15</td><td>4 − (−18) = 22 degrees</td></tr>
+<tr><td>16</td><td>12 degrees</td></tr>
+<tr><td>17</td><td>46 − 60 − 15 = −$29</td></tr>
+</table>
+<h2>Worksheet 1.3 · Multiplying and dividing</h2>
+<h3>Part A · Multiplying larger numbers</h3><table>
+<tr><td>1</td><td><b>a)</b> 400 + 24 = 424; <b>b)</b> 940 + 282 = 1222; <b>c)</b> 640 + 320 = 960; <b>d)</b> 1250 + 250 = 1500; <b>e)</b> 2100 + 420 + 35 = 2555; <b>f)</b> 15 × 60 = 900</td></tr>
+<tr><td>2</td><td><b>a)</b> 1, 2, 3, 4, 6, 8, 12, 24; <b>b)</b> 7, 14, 21, 28, 35; <b>c)</b> 1 × 36, 2 × 18, 3 × 12, 4 × 9, 6 × 6 (and the reverses)</td></tr>
+<tr><td>3</td><td>288</td></tr>
+</table>
+<h3>Part B · Multiplying money</h3><table>
+<tr><td>4</td><td><b>a)</b> $40 + $4.80 = $44.80; <b>b)</b> $18.90 + $9.45 = $28.35; <b>c)</b> $36 + $3 = $39.00; <b>d)</b> $8.40 + $4.20 = $12.60; <b>e)</b> $22.50 + $1.50 = $24.00; <b>f)</b> $12 − $0.20 = $11.80</td></tr>
+<tr><td>5</td><td>$15.40 + $7.80 + $19.80 = $43.00</td></tr>
+<tr><td>6</td><td>a) $10.20 ÷ 6 = $1.70; $36.00 ÷ 24 = $1.50 b) the 24-pack</td></tr>
+</table>
+<h3>Part C · Division with a remainder</h3><table>
+<tr><td>7</td><td>213 ÷ 8 = 26 r 5. a) 27 minibuses b) 26 packs</td></tr>
+<tr><td>8</td><td><b>a)</b> 97 r 2; <b>b)</b> 83 r 4; <b>c)</b> 22 r 0</td></tr>
+<tr><td>9</td><td>50 ÷ 3 = 16 r 2, so 17 pizzas</td></tr>
+<tr><td>10</td><td>140 ÷ 12 = 11 r 8, so 12 boxes</td></tr>
+<tr><td>11</td><td>250 ÷ 18 = 13 r 16: 13 tickets, $16 left</td></tr>
+<tr><td>12</td><td>$30.75</td></tr>
+</table>
+<h3>Part D · Multiplying and dividing negatives</h3><table>
+<tr><td>13</td><td><b>a)</b> −21; <b>b)</b> 8; <b>c)</b> −6; <b>d)</b> 40; <b>e)</b> −60; <b>f)</b> −9; <b>g)</b> 24; <b>h)</b> −24</td></tr>
+<tr><td>14</td><td>a) −3 × 6 = −18 °C b) 10 − 18 = −8 °C</td></tr>
+<tr><td>15</td><td>−12 × 7 = −$84</td></tr>
+<tr><td>16</td><td>−24 ÷ 4 = −6</td></tr>
+</table>
+<h2>Worksheet 1.4 · Fractions, decimals and ratios</h2>
+<h3>Part A · Fractions to decimals and back</h3><table>
+<tr><td>1</td><td><b>a)</b> 0.625; <b>b)</b> 2.25; <b>c)</b> 0.4; <b>d)</b> 0.15</td></tr>
+<tr><td>2</td><td><b>a)</b> <span class="fr"><span>4</span><span>5</span></span>; <b>b)</b> <span class="fr"><span>9</span><span>20</span></span>; <b>c)</b> <span class="fr"><span>1</span><span>8</span></span>; <b>d)</b> <span class="fr"><span>3</span><span>50</span></span></td></tr>
+<tr><td>3</td><td>0.333</td></tr>
+<tr><td>4</td><td>0.65, <span class="fr"><span>2</span><span>3</span></span> (0.667), 0.7, <span class="fr"><span>3</span><span>4</span></span> (0.75)</td></tr>
+<tr><td>5</td><td><span class="fr"><span>375</span><span>1000</span></span> = <span class="fr"><span>3</span><span>8</span></span> m</td></tr>
+</table>
+<h3>Part B · Fraction of an amount</h3><table>
+<tr><td>6</td><td><b>a)</b> $90 × 3 = $270; <b>b)</b> <span class="fr"><span>6</span><span>24</span></span> = <span class="fr"><span>1</span><span>4</span></span>; <b>c)</b> 21 × 3 = 63; <b>d)</b> 15 × 5 = 75 minutes; <b>e)</b> <span class="fr"><span>4</span><span>10</span></span> = <span class="fr"><span>2</span><span>5</span></span>; <b>f)</b> $125 × 7 = $875</td></tr>
+<tr><td>7</td><td>750 ÷ 5 × 2 = 300 mL</td></tr>
+<tr><td>8</td><td>Used 40 GB, so 24 GB free</td></tr>
+<tr><td>9</td><td><span class="fr"><span>1</span><span>2</span></span> × <span class="fr"><span>3</span><span>4</span></span> = <span class="fr"><span>3</span><span>8</span></span> cup</td></tr>
+</table>
+<h3>Part C · Sharing in a ratio</h3><table>
+<tr><td>10</td><td>a) 5 parts, 1 part = 15 kg: 15 kg cement, 60 kg sand b) 1 part = 400 mL: 400 mL cordial, 1600 mL water</td></tr>
+<tr><td>11</td><td>5 parts, 1 part = $24: Ana $48, Ben $72</td></tr>
+<tr><td>12</td><td>1 part = 2 L: 6 L blue, 4 L white</td></tr>
+<tr><td>13</td><td>5000 ÷ 25 = 200 mL of oil</td></tr>
+<tr><td>14</td><td><b>a)</b> 2 : 3; <b>b)</b> 1 : 4; <b>c)</b> 40 : 200 = 1 : 5</td></tr>
+<tr><td>15</td><td>4 × 50 000 = 200 000 cm = 2000 m = 2 km</td></tr>
+</table>
+<h3>Part D · Rates</h3><table>
+<tr><td>16</td><td>a) 78 km/h b) $29.00 per hour c) 45 ÷ 6 = 7.5 L/100 km</td></tr>
+<tr><td>17</td><td>15 L/min</td></tr>
+<tr><td>18</td><td>45 words per minute</td></tr>
+<tr><td>19</td><td>$9.90/kg and $10.80/kg; the 2 kg pack</td></tr>
+<tr><td>20</td><td>a) 6.8 × 3.5 = 23.8 L b) 23.8 × $1.95 = $46.41</td></tr>
+</table>
+<h2>Worksheet 1.5 · Percentages</h2>
+<h3>Part A · Percentages, fractions and decimals</h3><table>
+<tr><td>1</td><td>a) <span class="fr"><span>3</span><span>5</span></span>, 0.6 b) <span class="fr"><span>1</span><span>20</span></span>, 0.05 c) 12.5% d) 40%</td></tr>
+<tr><td>2</td><td><span class="fr"><span>1</span><span>2</span></span> 0.5 50%; <span class="fr"><span>1</span><span>4</span></span> 0.25 25%; <span class="fr"><span>1</span><span>5</span></span> 0.2 20%; <span class="fr"><span>1</span><span>10</span></span> 0.1 10%; <span class="fr"><span>3</span><span>4</span></span> 0.75 75%; <span class="fr"><span>1</span><span>3</span></span> 0.333 33.3%; <span class="fr"><span>2</span><span>5</span></span> 0.4 40%; <span class="fr"><span>1</span><span>100</span></span> 0.01 1%; 1 <span class="fr"><span>1</span><span>2</span></span> 1.5 150%</td></tr>
+<tr><td>3</td><td><b>a)</b> 84%; <b>b)</b> 75%</td></tr>
+</table>
+<h3>Part B · The 10% method</h3><table>
+<tr><td>4</td><td><b>a)</b> $18 + $9 = $27; <b>b)</b> 4 × $6.50 = $26; <b>c)</b> a quarter of $96 = $24; <b>d)</b> half of $34 = $17; <b>e)</b> 2 × $8.50 = $17; <b>f)</b> $8 + $2 = $10</td></tr>
+<tr><td>5</td><td>$6.40 + $3.20 = $9.60</td></tr>
+<tr><td>6</td><td>a) $35 b) $385</td></tr>
+<tr><td>7</td><td>50% = $24 and 25% = $12, so 75% = $36</td></tr>
+</table>
+<h3>Part C · Discounts</h3><table>
+<tr><td>8</td><td>a) 0.75 × $160 = $120 b) 0.85 × $899 = $764.15</td></tr>
+<tr><td>9</td><td><b>a)</b> $36; <b>b)</b> $2.52; <b>c)</b> $875</td></tr>
+<tr><td>10</td><td>A: $60. B: $61.20. Store A is cheaper by $1.20.</td></tr>
+<tr><td>11</td><td>$200 × 0.8 = $160, × 0.9 = $144. 30% off is $140. Not the same: $144 is $4 more.</td></tr>
+</table>
+<h3>Part D · Percentage increase and change</h3><table>
+<tr><td>12</td><td>a) 1.06 × $480 = $508.80 b) $12 ÷ $80 × 100 = 15% decrease</td></tr>
+<tr><td>13</td><td><b>a)</b> 1.04 × 22.50 = $23.40; <b>b)</b> 1.08 × 12 500 = 13 500; <b>c)</b> $60.50</td></tr>
+<tr><td>14</td><td><b>a)</b> 50 ÷ 250 × 100 = 20% increase; <b>b)</b> 4 ÷ 80 × 100 = 5% decrease; <b>c)</b> 1.80 ÷ 18 × 100 = 10% increase</td></tr>
+<tr><td>15</td><td>$100 × 1.1 = $110, × 0.9 = $99. No: the 10% decrease is taken off the bigger amount.</td></tr>
+</table>
+<h2>Worksheet 1.6 · Rounding, powers and roots</h2>
+<h3>Part A · Rounding to decimal places</h3><table>
+<tr><td>1</td><td>a) 128.6 b) 128.65 c) 129 d) $27.46</td></tr>
+<tr><td>2</td><td><b>a)</b> 3.1; <b>b)</b> 3.14; <b>c)</b> 3.142</td></tr>
+<tr><td>3</td><td><b>a)</b> 48 570; <b>b)</b> 48 600; <b>c)</b> 49 000</td></tr>
+<tr><td>4</td><td>a) 0.079 b) 0.08</td></tr>
+<tr><td>5</td><td><b>a)</b> four million, sixty thousand, five hundred; <b>b)</b> 2 300 000; <b>c)</b> five thousandths; <b>d)</b> 87 000</td></tr>
+</table>
+<h3>Part B · Cash rounding to 5 cents</h3><table>
+<tr><td>6</td><td><b>a)</b> $8.40; <b>b)</b> $8.45; <b>c)</b> $23.95; <b>d)</b> $24.00; <b>e)</b> $5.05; <b>f)</b> $17.55; <b>g)</b> $1.00; <b>h)</b> $40.00</td></tr>
+<tr><td>7</td><td>a) $22.73 b) $22.75</td></tr>
+<tr><td>8</td><td>Pay $14.60, change $5.40</td></tr>
+</table>
+<h3>Part C · Powers and square roots</h3><table>
+<tr><td>9</td><td><b>a)</b> 81; <b>b)</b> 27; <b>c)</b> 12; <b>d)</b> 5.48; <b>e)</b> 1000; <b>f)</b> 2.25; <b>g)</b> 8; <b>h)</b> 14.14</td></tr>
+<tr><td>10</td><td>√20.25 = 4.5 m</td></tr>
+<tr><td>11</td><td>3.2² = 10.24 m²</td></tr>
+<tr><td>12</td><td>40³ = 64 000 cm³</td></tr>
+<tr><td>13</td><td>a) √90 = 9.486… → 9.49 m b) 4 × 9.4868 ≈ 37.95 m</td></tr>
+</table>
+<h3>Part D · Pythagoras’ theorem</h3><table>
+<tr><td>14</td><td>a) 2.56 + 1.44 = 4, √4 = 2 m b) 16 + 0.25 = 16.25, √16.25 = 4.031… → 4.03 m</td></tr>
+<tr><td>15</td><td>14 400 + 4624 = 19 024, √19 024 = 137.9 cm</td></tr>
+<tr><td>16</td><td>a) 144 + 81 = 225, √225 = 15 m b) 12 + 9 = 21 m, so 6 m shorter</td></tr>
+<tr><td>17</td><td>3² + 4² = 25, so a square corner has a 5 m diagonal. 5.02 m is too long, so the corner is not quite square (a bit more than 90°).</td></tr>
+<tr><td>18</td><td>5² − 1.4² = 25 − 1.96 = 23.04, √23.04 = 4.8 m</td></tr>
+</table>
+</main>
+<script>
+document.documentElement.classList.add('js');
+document.querySelectorAll('.we').forEach(we=>{
+  const steps=[...we.querySelectorAll('.steps li')],ans=we.querySelector('.ans'),next=we.querySelector('.next'),all=we.querySelector('.all');
+  let k=0;
+  const render=()=>{steps.forEach((s,i)=>s.classList.toggle('hid',i>=k));ans.classList.toggle('hid',k<=steps.length);
+    if(k>steps.length){next.textContent='Hide working';all.hidden=true}
+    else{next.textContent=k===steps.length?'Show answer':(k?'Show next step':'Show first step')+' ('+(k+1)+' of '+steps.length+')';all.hidden=false}};
+  next.onclick=()=>{k=k>steps.length?0:k+1;render()};
+  all.onclick=()=>{k=steps.length+1;render()};
+  render();
+});
+document.querySelectorAll('[data-print]').forEach(b=>b.onclick=()=>print());
+</script>
+</body></html>

@@ -40,6 +40,18 @@ h2{font-size:30px;line-height:1.15;margin-bottom:4px}
 .sec a{display:flex;gap:12px;align-items:center;min-height:44px;padding:8px 12px;border-radius:10px;background:#f1eee6;text-decoration:none}
 .sec a:hover{background:#e7e2d6}
 .sec b{color:var(--teal);font:600 16px Oswald,sans-serif;min-width:28px}
+.sec li{display:flex;gap:6px}
+.sec li>a:first-child{flex:1}
+.sec a.ws{flex:none;background:#fff3c4;color:var(--ink);font-weight:800;font-size:14px;padding:8px 12px}
+.sec a.ws:hover{background:#fbe7a0}
+.diag{display:flex;align-items:center;justify-content:center;min-height:44px;border-radius:12px;border:2px solid var(--char);font-weight:800;text-decoration:none;padding:0 12px;text-align:center}
+.diag:hover{background:#efebe2}
+.start{display:grid;gap:2px;text-decoration:none;background:var(--tape);color:var(--char);border-radius:16px;padding:20px 24px}
+.start .sk{font:800 13px 'Nunito Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.start .st{font:600 28px/1.15 Oswald,sans-serif}
+.start .sm{font-size:15px}
+.start:hover{filter:brightness(1.05)}
+.start:focus-visible,.diag:focus-visible,.sec a.ws:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
 .ch.soon{background:none;border-style:dashed}
 .ch.soon .num{background:#e4dfd3;color:var(--mu)}
 .ch.soon .later{color:var(--mu);font-size:14px;margin:0}
@@ -51,7 +63,7 @@ h2{font-size:30px;line-height:1.15;margin-bottom:4px}
 <body>
 <header class="band hero"><div class="wrap">
   <h1>VM Numeracy Units 3 and 4</h1>
-  <p class="lead">Every chapter of your coursebook, one deck each. Open your chapter, follow the worked example on the left, then try the matching question on the right in your book.</p>
+  <p class="lead">Every chapter of your coursebook, one deck each. Follow the worked example on the slides, then do the matching worksheet for that section. New to Units 3 and 4? Start with “How this course works”.</p>
   <svg class="tape" viewBox="0 0 1000 150" role="img" aria-label="A tape measure pulled out across the page, marked with chapters 1 to 10. Chapter 1 is highlighted.">
     <defs>
       <linearGradient id="tp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd84d"/><stop offset=".55" stop-color="#f6c21a"/><stop offset="1" stop-color="#d9a400"/></linearGradient>
@@ -71,6 +83,9 @@ h2{font-size:30px;line-height:1.15;margin-bottom:4px}
 </div></header>
 
 <main>
+<section class="band" style="padding-bottom:0"><div class="wrap">
+  <a class="start" href="start-here.html#1"><span class="sk">Start here</span><span class="st">How this course works</span><span class="sm">The three outcomes, the six numeracies and the four areas of study</span></a>
+</div></section>
 <section class="band"><div class="wrap">
   <h2>Unit 3</h2>
   <p class="sub">Terms 1 and 2. Number, shape, measurement, time and relationships.</p>
@@ -78,6 +93,7 @@ h2{font-size:30px;line-height:1.15;margin-bottom:4px}
     <article class="ch">
       <div class="top"><div class="num">1</div><div><h3>Doing the Numbers</h3><div class="meta">Number · Book pp. 1–32</div></div></div>
       <a class="open" href="chapter-1.html#1">Open Chapter 1 slides</a>
+      <a class="diag" href="chapter-1-diagnostic.html">Before you start: Chapter 1 diagnostic</a>
       <ul class="sec" id="sec1"></ul>
     </article>
     <div id="u3soon" style="display:contents"></div>
@@ -99,7 +115,7 @@ h2{font-size:30px;line-height:1.15;margin-bottom:4px}
 <script>
 {
 const SECS=[['1','Solving problems','sec-1'],['2','Addition and subtraction','sec-2'],['3','Multiplying and dividing','sec-3'],['4','Fractions, decimals and ratios','sec-4'],['5','Percentages','sec-5'],['6','Rounding, powers and roots','sec-6'],['AT1','Party by the Numbers','at1']];
-document.getElementById('sec1').innerHTML=SECS.map(([c,t,h])=>`<li><a href="chapter-1.html#${h}"><b>${c}</b><span>${t}</span></a></li>`).join('');
+document.getElementById('sec1').innerHTML=SECS.map(([c,t,h])=>`<li><a href="chapter-1.html#${h}"><b>${c}</b><span>${t}</span></a>${/^\d$/.test(c)?`<a class="ws" href="chapter-1-worksheet-${c}.html" aria-label="Worksheet 1.${c}: ${t}">Worksheet</a>`:''}</li>`).join('');
 const soon=(n,t,m)=>`<div class="ch soon"><div class="top"><div class="num">${n}</div><div><h3>${t}</h3><div class="meta">${m}</div></div></div><p class="later">Slides coming soon.</p></div>`;
 document.getElementById('u3soon').innerHTML=[[2,'Shape Up','Shape · pp. 33–60'],[3,'Measuring Up','Quantity and measures · pp. 61–86'],[4,'Got the Time?','Quantity and measures · pp. 87–110'],[5,'Relationships','Relationships · pp. 111–140']].map(a=>soon(...a)).join('');
 document.getElementById('u4').innerHTML=[[6,'Data and Systematics','Data, systematics · from p. 141'],[7,'Location and Direction','Dimension and direction · from p. 179'],[8,'What’s the Chances?','Uncertainty · from p. 205'],[9,'Working With Money','Number, data, systematics · from p. 227'],[10,'Managing Money','Number, data, systematics · from p. 255']].map(a=>soon(...a)).join('');
