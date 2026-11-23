@@ -452,11 +452,19 @@ html,body{background:#03100f}#stage{background:#061a19}.slide[data-mode=lab]{--m
 /* exit tickets: a page in the workbook, not a whiteboard */
 .pwb.wkb{background:#fffdf6 repeating-linear-gradient(transparent 0 47px,#cfe0ec 47px 49px);background-position:0 30px;border:0;border-left:6px solid #e8a3a3;border-radius:6px;box-shadow:0 18px 40px rgba(0,0,0,.45);color:#1f3c3a}
 .pwb.wkb:after{display:none}
-.toc .vlabs{max-width:280px} .toc .plabs .sh2:last-of-type b{color:#4ade80} .toc a.pl .lp{min-width:48px;color:#4ade80} .toc a.pl{display:flex;align-items:baseline;gap:10px;width:100%;font:600 18px/1.3 Inter;color:#d3f1ee;background:#193936;border-radius:10px;padding:8px 12px;text-decoration:none} .toc a.pl:hover{background:#2e645f} .toc a.pl i{font:600 13px Inter;font-style:normal;color:#99c3bf} .toc a.pl .nm{flex:1} .pracopen{align-self:flex-start;margin-top:22px;font:700 22px Inter;color:#06201c;background:#4ade80;border-radius:12px;padding:12px 20px;text-decoration:none} .pracopen:hover{background:#86efac}
+.toc .vlabs{max-width:280px} .toc .plabs .sh2 b{color:#4ade80} .toc a.pl .lp{min-width:48px;color:#4ade80} .toc a.pl{display:flex;align-items:baseline;gap:10px;width:100%;font:600 18px/1.3 Inter;color:#d3f1ee;background:#193936;border-radius:10px;padding:8px 12px;text-decoration:none} .toc a.pl:hover{background:#2e645f} .toc a.pl i{font:600 13px Inter;font-style:normal;color:#99c3bf} .toc a.pl .nm{flex:1} .pracopen{align-self:flex-start;margin-top:22px;font:700 22px Inter;color:#06201c;background:#4ade80;border-radius:12px;padding:12px 20px;text-decoration:none} .pracopen:hover{background:#86efac}
 .toc .vlabs .sh b{color:#5eead4}
 .toc .vlabs .lp{min-width:48px;color:#5eead4}
 .toc button.sh2{font:700 22px/1.2 'Space Grotesk';color:#eafdfb;padding:12px}
-.toc button.sh2 b{color:#5eead4}
+.toc button.sh2 b{color:#5eead4} .toc{gap:12px} .toc .tsec{flex:1 1 0;max-width:none;gap:7px} .toc .vlabs{flex:1.6 1 0;max-width:none;gap:5px} .toc .plabs{flex:.95 1 0;max-width:none}
+ .toc button,.toc a.pl{font:600 17px/1.3 Inter;padding:9px 12px} .toc button.sh,.toc button.sh2{font:700 21px/1.2 'Space Grotesk';padding:12px} .toc .lp{min-width:0;font-size:12px}
+ .toc details.les{background:#122c29;border-radius:10px} .toc details.les[open]{padding:0 0 6px;box-shadow:inset 0 0 0 1px #2e645f}
+ .toc details.les>summary{display:flex;align-items:baseline;gap:10px;list-style:none;cursor:pointer;font:700 19px/1.25 'Space Grotesk';color:#eafdfb;background:#1f4642;border-radius:10px;padding:11px 12px}
+ .toc details.les>summary::-webkit-details-marker{display:none} .toc details.les>summary::before{content:'▸';color:#5eead4} .toc details.les[open]>summary::before{content:'▾'}
+ .toc details.les>summary:hover{background:#2e645f} .toc details.les>summary .nm{flex:1} .toc details.les>summary i{font:600 13px Inter;font-style:normal;color:#99c3bf}
+ .toc details.les>button{margin:6px 6px 0 16px;width:calc(100% - 22px)}
+ .toc .vlabs .lp,.toc a.pl .lp{min-width:0;font-size:13px;white-space:nowrap} .toc .vlabs>button:not(.sh2){font-size:15px;padding:7px 10px} .toc button.sh{font-size:17px;padding:11px} .toc button.sh i{display:none} .contents h2{font-size:34px} .contents{gap:14px}
+
 
 /* reference pages: title raised to the top band, the lesson's learning goal on the line under it, above the red line */
 .page .phd{top:0;align-items:flex-end;padding-bottom:calc(.08*var(--u))}
@@ -1584,7 +1592,7 @@ const stage=$('#stage'),CH=CHAPTER;
 const SECS=$$('.sec',stage).map((d,i)=>({...CH.sections[i],el:d,pages:$$('.pagesrc',d)}));
 const desk=s=>`<div class="bring">${s.desk||CH.desk}</div>`;
 SECS.forEach(s=>s.el.prepend(el('section','slide title',`<div class="code">${s.code}</div><div class="sub">Unit ${CH.unit} · ${CH.aos} · Chapter ${CH.code}</div><h1>${s.title}</h1>${desk(s)}`)));
-const toc=el('section','slide contents','<h2>Contents</h2><div class="toc"></div><div class="how">Click a line to jump there, or type its slide number then G. Press C to come back to this page.</div>');
+const toc=el('section','slide contents','<h2>Contents</h2><div class="toc"></div><div class="how">Click a lesson to open it, then click a line to jump there. Or type a slide number then G. Press C to come back to this page.</div>');
 stage.prepend(toc);
 stage.prepend(el('section','slide title',`<div class="code">${CH.code}</div><div class="sub">Unit ${CH.unit} · ${CH.aos} · Chapter ${CH.code}</div><h1>${CH.title}</h1>${desk(CH)}`));
 
@@ -1614,11 +1622,18 @@ S.forEach((s,i)=>{const m=MODES[s.dataset.mode];
   if(m)s.prepend(el('div','hd',`<span class="mode">${m[2]}${m[0]}${s.dataset.labn?' '+s.dataset.labn:''}</span><span class="do">${s.dataset.do||m[1]}</span><span style="flex:1"></span>${s.dataset.tag?`<span class="ctag">${s.dataset.tag}</span>`:''}<span class="tm"></span>`));
   s.append(el('div','pg',`${i+1} / ${S.length}`))});
 const go=n=>()=>show(n);
-SECS.forEach(sec=>{const col=el('div','tsec'),first=S.indexOf($('.slide',sec.el));let k=0;
+SECS.forEach(sec=>{const col=el('div','tsec'),first=S.indexOf($('.slide',sec.el));let k=0,grp=null;
   const b=el('button','sh',`<b>${sec.code}</b><span class="nm">${sec.title}</span><i>${first+1}</i>`);b.onclick=go(first);col.append(b);
   $$('.slide[data-loop],.slide[data-part]',sec.el).forEach(s=>{const n=S.indexOf(s),lp=s.dataset.loop!=null;
-    const e=el('button','',`<span class="lp">${lp?'Loop '+(++k):''}</span><span class="nm">${lp?s.dataset.loop:s.dataset.part}</span><i>${n+1}</i>`);e.onclick=go(n);col.append(e)});
+    if(s.dataset.lesson){grp=el('details','les');grp.dataset.lesson=s.dataset.lesson;grp.append(el('summary','',`<span class="nm">Lesson ${s.dataset.lesson}</span><i>${n+1}</i>`));col.append(grp)}
+    let nm=(lp?s.dataset.loop:s.dataset.part).replace(/^Lesson \d+:\s*/,'');nm=nm.charAt(0).toUpperCase()+nm.slice(1);
+    const e=el('button','',`${lp?`<span class="lp">Loop ${++k}</span>`:''}<span class="nm">${nm}</span><i>${n+1}</i>`);e.onclick=go(n);(grp||col).append(e)});
   $('.toc',toc).append(col)});
+// lesson drop-downs: one open per column; the lesson you came from opens by itself; columns shrink only if they must
+function tocFit(){const tb=$('.toc',toc),have=tb.clientHeight;$$('.tsec',tb).forEach(c=>{c.style.zoom=1;const need=c.scrollHeight;if(need>have)c.style.zoom=have/need})}
+function tocOpen(){const from=Math.max(0,+toc.dataset.from||0);let L=null;for(let i=from;i>=0;i--)if(S[i].dataset.lesson){L=S[i].dataset.lesson;break}
+  $$('details.les',toc).forEach(d=>d.open=d.dataset.lesson===L);tocFit()}
+toc.addEventListener('toggle',e=>{const d=e.target;if(!d.matches||!d.matches('details.les'))return;if(d.open)$$('details.les',d.parentElement).forEach(x=>{if(x!==d)x.open=false});tocFit()},true);
 mathAll(stage);mathAll(pr);
 
 // ---------- moving through the deck. Every reveal is reachable with PageDown alone.
@@ -1630,7 +1645,7 @@ function saved(){try{const v=JSON.parse(localStorage.getItem(KEY));if(!v)return 
   return Math.min(S.length-1,v.n||0)}catch(e){return 0}}
 function show(n,all){S[cur].classList.remove('on');cur=Math.max(0,Math.min(S.length-1,n));const s=S[cur];s.classList.add('on');
   steps(s).forEach(e=>e.classList.toggle('shown',!!all));
-  if(s===toc){const tb=$('.toc',toc),tc=$$('.tsec',tb);tc.forEach(c=>c.style.zoom=1);const need=Math.max(...tc.map(c=>c.scrollHeight)),have=tb.clientHeight;if(need>have)tc.forEach(c=>c.style.zoom=have/need)} /* long sections: shrink the columns so every line fits */
+  if(s===toc)tocOpen(); /* open the current lesson; shrink a column only if it overflows */
   if(s===toc){const sec=SECS.find(x=>x.el.contains(S[Math.max(0,+toc.dataset.from||0)]));$$('.toc .sh',toc).forEach((b,i)=>b.classList.toggle('here',SECS[i]===sec))}
   st0=performance.now();sdur=+s.dataset.t||0;place(s);try{history.replaceState(null,'','#'+(cur+1))}catch(e){}save()}
 function next(){const h=steps(S[cur]).filter(e=>!e.classList.contains('shown'));if(h.length)h[0].classList.add('shown');else if(cur<S.length-1)show(cur+1)}
@@ -1645,7 +1660,7 @@ addEventListener('keydown',e=>{if(/INPUT|SELECT|TEXTAREA/.test(e.target.tagName)
   else if(e.key==='p'||e.key==='P'){prepPrint(e.shiftKey);print()}
   else if(e.key==='f'||e.key==='F')document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()});
 addEventListener('beforeprint',()=>{if(!$$('.page.skip,.page.brk',pr).length)prepPrint(false)});
-stage.addEventListener('click',e=>{if(e.target.closest('.tm'))st0=performance.now();if(e.target.closest('.lab,.sorter,.nav,button,input,a'))return;next()});
+stage.addEventListener('click',e=>{if(e.target.closest('.tm'))st0=performance.now();if(e.target.closest('.lab,.sorter,.nav,button,input,a,summary,details'))return;next()});
 const nav=el('div','nav','<button title="Back">◀</button><button title="Next">▶</button>');stage.append(nav);
 nav.children[0].onclick=prev;nav.children[1].onclick=next;
 // per-slide timer (data-t seconds); click it to restart
@@ -1707,9 +1722,9 @@ liDraw();
 
 // ---------- contents page: a Labs column (real practicals); each line opens the student practical sheet
 {const pr=S.filter(s=>s.dataset.pracn);if(pr.length){
-  const vl=$('.toc .vlabs',toc),col=vl||el('div','tsec vlabs');col.classList.add('plabs');const h=el('button','sh2',`<b>L</b><span class="nm">Labs</span>`);h.style.marginTop=vl?'14px':'';h.onclick=()=>show(S.indexOf(pr[0]));col.append(h);
+  const col=el('div','tsec plabs');const h=el('button','sh2',`<b>L</b><span class="nm">Labs</span>`);h.onclick=()=>show(S.indexOf(pr[0]));col.append(h);
   pr.forEach(s=>{const n=S.indexOf(s);const a=el('a','pl',`<span class="lp">${s.dataset.pracn}</span><span class="nm">${s.dataset.prac} ↗</span><i>${n+1}</i>`);a.href=s.dataset.href;a.target='_blank';a.rel='noopener';a.title='Open the practical sheet (slide '+(n+1)+')';col.append(a)});
-  if(!vl)$('.toc',toc).append(col)}}
+  $('.toc',toc).append(col)}}
 
 // ---------- links by name: #lab-6, #lesson-2, #sec-1B; a plain number is still a slide number
 function hashSlide(){const t=decodeURIComponent(location.hash.slice(1)).trim();if(!t)return -1;
