@@ -43,27 +43,26 @@ h1,h2,h3{font-family:Oswald,'Arial Narrow',sans-serif;font-weight:600;margin:0;t
 .links a.hl{background:var(--y);color:var(--ink)}
 .links a:hover,.links button:hover{filter:brightness(1.15)}
 :focus-visible{outline:3px solid var(--teal);outline-offset:2px}
-.how{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin:26px 0 8px;font-size:15.5px}
+.how{background:#fff;border:1.5px solid #1f2326;border-radius:14px;padding:16px 20px;margin:26px 0 8px;font-size:15.5px}
 .how ol{margin:6px 0 0;padding-left:22px}
 .part{margin:34px 0 0}
 .phead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:3px solid var(--ink);padding-bottom:6px;margin-bottom:14px}
 .pl{font:600 15px Oswald,sans-serif;letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:var(--y);padding:3px 10px;border-radius:6px}
 .phead h2{font-size:26px;line-height:1.15;flex:1}
 .phead a{font-size:14px;font-weight:700;color:var(--teal)}
-.we,.yt{background:var(--card);border-radius:14px;padding:18px 22px 20px;margin-bottom:14px}
-.we{border-top:8px solid var(--teal)} .yt{border-top:8px solid var(--y)}
+.we,.yt{background:#fff;border:2px solid #1f2326;border-radius:14px;padding:18px 22px 20px;margin-bottom:14px}
 .tag{font:600 16px Oswald,sans-serif;letter-spacing:.06em;text-transform:uppercase;margin:0 0 6px}
-.we .tag{color:var(--teal)} .yt .tag{color:var(--rust)}
+.we .tag,.yt .tag{color:#1f2326}
 .we .q{font-weight:800;font-size:18px;margin:0 0 10px}
 .steps{margin:0;padding-left:24px;color:var(--soft)}
 .steps li{margin:4px 0}
-.ans{font-weight:800;color:var(--teal);font-size:18px;border-top:2px solid var(--line);padding-top:8px;margin:10px 0 0}
+.ans{font-weight:800;color:#1f2326;font-size:18px;border-top:2px solid var(--line);padding-top:8px;margin:10px 0 0}
 .ctrl{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
 .ctrl button{min-height:44px;padding:0 16px;border-radius:10px;border:2px solid var(--teal);background:#fff;color:var(--teal);font:800 15px 'Nunito Sans',sans-serif;cursor:pointer}
 .ctrl button.main{background:var(--teal);color:#fff}
 .js .steps li.hid,.js .ans.hid{display:none}
 .no-js-note{display:none}
-.tip{font-size:15px;color:var(--soft);background:#fff6d6;border-left:6px solid var(--y);border-radius:8px;padding:8px 14px;margin:0 0 14px}
+.tip{font-size:15px;color:#1f2326;background:#fff;border:1.5px solid #1f2326;border-radius:8px;padding:8px 14px;margin:0 0 14px}
 .qq{display:grid;grid-template-columns:34px 1fr;gap:0 6px;padding:10px 0;border-top:1px solid var(--line)}
 .qq:first-of-type{border-top:0}
 .qn{font:600 20px Oswald,sans-serif;color:var(--rust);line-height:1.3}
@@ -78,7 +77,7 @@ table.fill th,table.fill td{border:1.5px solid #b9b3a6;padding:6px 10px;text-ali
 table.fill th{background:#efebe2;font-weight:800}
 .fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.05;font-size:.86em;margin:0 2px}
 .fr span:first-child{border-bottom:1.5px solid currentColor;padding:0 2px}
-.reflect{margin:34px 0 10px;background:var(--card);border-radius:14px;padding:18px 22px;border-top:8px solid var(--ink)}
+.reflect{margin:34px 0 10px;background:#fff;border:2px solid #1f2326;border-radius:14px;padding:18px 22px}
 .reflect h2{font-size:24px;margin-bottom:8px}
 .reflect table{border-collapse:collapse;width:100%;font-size:15.5px}
 .reflect th,.reflect td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left}
@@ -245,7 +244,7 @@ def build_diagnostic(d):
     body.append(f'<main class="wrap"><section class="how instr"><b>Instructions.</b> {d["intro"]}</section>')
     q = 1
     for s in d["sections"]:
-        body.append(f'<h2 class="sec-h"><span>Section {s["n"]}</span>{s["name"]}</h2><div class="yt" style="border-top-width:0">')
+        body.append(f'<h2 class="sec-h"><span>Section {s["n"]}</span>{s["name"]}</h2><div class="yt">')
         for item in s["qs"]:
             body.append(render_q(q, dict(item, lines=item.get("lines", 1))))
             q += 1
