@@ -55,7 +55,9 @@ h1{font:600 clamp(34px,5vw,50px)/1.05 Oswald,'Arial Narrow',sans-serif;margin:0}
 {
 const SUBJECTS=[
   {code:'NUV34A',name:'Year 12 VM Numeracy',what:'Units 3 and 4 · chapters 1–10 of the Deliver Education coursebook',href:'vm-numeracy/',c:'#f6c21a',ink:'#1f2326'},
-  {code:'CHE121',name:'Year 11 Chemistry',what:'Units 1 and 2 · chapter slides and Virtual Labs',href:'chemistry/',c:'#0f1d1b',ink:'#5eead4'}
+  {code:'CHE121',name:'Year 11 Chemistry',what:'Units 1 and 2 · chapter slides and Virtual Labs',href:'chemistry/',c:'#0f1d1b',ink:'#5eead4'},
+  {code:'MAG121',name:'Year 11 General Mathematics',what:'Units 1 and 2 · Cambridge Senior Maths General Mathematics',href:'general-maths/',c:'#0f4761',ink:'#f2a65a'},
+  {code:'MAG103',name:'Year 10 Pre-General Mathematics',what:'Year 10 · getting ready for VCE General Mathematics',href:'pre-general-maths/',c:'#14432f',ink:'#b5e655'}
 ];
 document.getElementById('subs').innerHTML=SUBJECTS.map(s=>`<a class="sub" href="${s.href}" style="--c:${s.c};--c-ink:${s.ink}">
   <div class="top"><span class="code">${s.code}</span><h2>${s.name}</h2></div>

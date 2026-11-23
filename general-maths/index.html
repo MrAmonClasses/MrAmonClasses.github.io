@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Year 11 General Mathematics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Nunito+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE: a calm class home page; students arrive, find the chapter, click.
+   IDEA: a scatterplot with its line of best fit: the year's chapters plotted as points along the line.
+   PICTURE: navy grid paper, orange data points, a white trend line rising across the first screen.
+   COLOUR and TYPE: the booklet's navy #0F4761 and orange #F2A65A, APK green #2E8B57 for links; Oswald titles, Nunito Sans text.
+   LAYOUT: title and scatterplot on the first screen, then Semester 1 and Semester 2 chapter tiles, then how to move around a deck. */
+:root{color-scheme:light;--bg:#f3f6f8;--ink:#14212b;--mu:#566572;--navy:#0f4761;--panel:#ffffff;--line:#d6e0e7;--orange:#f2a65a;--green:#2e8b57}
+:root[data-theme=light],:root[data-theme=dark]{color-scheme:light}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 'Nunito Sans',system-ui,sans-serif;overflow-x:clip}
+a{color:inherit}
+.band{padding:clamp(28px,4vw,56px) max(5vw,16px)}
+.wrap{max-width:1180px;margin:0 auto}
+h1,h2,h3{font-family:Oswald,'Arial Narrow',sans-serif;font-weight:600;margin:0;text-wrap:balance}
+h1{font-size:clamp(34px,5vw,52px);line-height:1.05;color:#fff}
+h2{font-size:30px;line-height:1.15;margin-bottom:4px}
+.hero{background:var(--navy);color:#fff}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(20px,4vw,56px);align-items:center}
+.code{display:inline-block;font:800 13px 'Nunito Sans',sans-serif;background:var(--orange);color:#14212b;border-radius:6px;padding:2px 8px;margin-bottom:12px}
+.lead{color:#c8d8e2;max-width:56ch;margin:12px 0 0;font-size:17px}
+.plot{display:block;width:100%;height:auto}
+.sub{color:var(--mu);margin:0 0 18px;max-width:70ch}
+.chapters{display:grid;align-items:start;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:16px}
+.ch{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px}
+.ch .top{display:flex;gap:16px;align-items:flex-start}
+.num{flex:none;width:60px;height:60px;border-radius:10px;background:var(--navy);color:var(--orange);display:flex;align-items:center;justify-content:center;font:600 28px Oswald,sans-serif}
+.ch h3{font-size:22px;line-height:1.2}
+.meta{color:var(--mu);font-size:14px;margin-top:2px}
+.ch.soon{background:none;border-style:dashed}
+.ch.soon .num{background:#e1e8ed;color:var(--mu)}
+.later{color:var(--mu);font-size:14px;margin:0}
+.how{color:var(--mu);max-width:72ch;margin:0}
+.how kbd{font:700 13px 'Nunito Sans',sans-serif;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 7px;color:var(--ink);background:#fff}
+@media(max-width:760px){.hero .wrap{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:no-preference){.pt{animation:pop .5s cubic-bezier(.2,.8,.2,1) both}@keyframes pop{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:none}}
+  .fit{stroke-dasharray:900;stroke-dashoffset:900;animation:draw 1.2s .6s ease-out forwards}@keyframes draw{to{stroke-dashoffset:0}}}
+</style>
+</head>
+<body>
+<header class="band hero"><div class="wrap">
+  <div>
+    <span class="code">MAG121</span>
+    <h1>Year 11 General Mathematics</h1>
+    <p class="lead">Units 1 and 2, following the Cambridge Senior Maths General Mathematics textbook. Each chapter's slides will appear here as we reach it. Use your student booklet alongside the slides.</p>
+  </div>
+  <svg class="plot" viewBox="0 0 520 320" role="img" aria-label="A scatterplot on grid paper with orange points and a rising line of best fit.">
+    <g id="grid"></g>
+    <line x1="40" y1="290" x2="505" y2="290" stroke="#c8d8e2" stroke-width="2"/>
+    <line x1="40" y1="290" x2="40" y2="15" stroke="#c8d8e2" stroke-width="2"/>
+    <line class="fit" x1="50" y1="268" x2="500" y2="48" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+    <g id="pts"></g>
+  </svg>
+</div></header>
+
+<main>
+<section class="band"><div class="wrap">
+  <h2>Semester 1</h2>
+  <p class="sub">Unit 1. Percentages and ratios, data, finance, matrices and linear relations.</p>
+  <div class="chapters" id="s1"></div>
+</div></section>
+
+<section class="band" style="padding-top:0"><div class="wrap">
+  <h2>Semester 2</h2>
+  <p class="sub">Unit 2. Bivariate data, networks, variation, measurement and trigonometry.</p>
+  <div class="chapters" id="s2"></div>
+</div></section>
+
+<section class="band" style="padding-top:0"><div class="wrap">
+  <h2>Moving around a deck</h2>
+  <p class="how">Use the arrow keys, swipe, or the arrows at the bottom right. Press <kbd>C</kbd> for the contents list. Type a slide number then <kbd>G</kbd> to jump to it. The “All chapters” button at the bottom left brings you back here.</p>
+</div></section>
+</main>
+
+<script>
+{
+const soon=([n,t,m])=>`<div class="ch soon"><div class="top"><div class="num">${n}</div><div><h3>${t}</h3><div class="meta">${m}</div></div></div><p class="later">Slides coming soon.</p></div>`;
+document.getElementById('s1').innerHTML=[
+  [1,'Percentages and ratios','Unit 1 · Arithmetic and number'],
+  [2,'Univariate data','Unit 1 · Data analysis'],
+  [3,'Sequences and finance','Unit 1 · Arithmetic and number'],
+  [4,'Matrices','Unit 1 · Discrete mathematics'],
+  [5,'Linear relations','Unit 1 · Graphs of linear and non-linear relations']
+].map(soon).join('');
+document.getElementById('s2').innerHTML=[
+  [7,'Bivariate data','Unit 2 · Data analysis'],
+  [8,'Graphs and networks','Unit 2 · Discrete mathematics'],
+  [9,'Variation','Unit 2 · Graphs of linear and non-linear relations'],
+  ['10–11','Measurement and trigonometry','Unit 2 · Space and measurement']
+].map(soon).join('');
+let g='';for(let x=40;x<=505;x+=31)g+=`<line x1="${x}" y1="15" x2="${x}" y2="290" stroke="#1c5a77" stroke-width="1"/>`;
+for(let y=290;y>=15;y-=27.5)g+=`<line x1="40" y1="${y}" x2="505" y2="${y}" stroke="#1c5a77" stroke-width="1"/>`;
+document.getElementById('grid').innerHTML=g;
+const P=[[70,250],[95,268],[120,232],[150,240],[175,205],[205,214],[230,186],[255,196],[285,160],[310,170],[340,140],[365,150],[395,112],[420,124],[450,86],[478,70]];
+document.getElementById('pts').innerHTML=P.map(([x,y],i)=>`<circle class="pt" style="animation-delay:${i*40}ms;transform-origin:${x}px ${y}px" cx="${x}" cy="${y}" r="7" fill="#f2a65a" stroke="#0f4761" stroke-width="2"/>`).join('');
+}
+</script>
+</body>
+</html>

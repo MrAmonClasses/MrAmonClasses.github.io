@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Year 10 Pre-General Mathematics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Nunito+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE: a calm class home page; students arrive, find the chapter, click.
+   IDEA: the hundred square, the first picture of a percentage. The year fills in, square by square.
+   PICTURE: a 10 by 10 grid on the first screen with part of it shaded lime.
+   COLOUR and TYPE: deep green ground #14432f, lime #b5e655 accent, paper ground below; Oswald titles, Nunito Sans text.
+   LAYOUT: title and hundred square on the first screen, then the chapter tiles, then how to move around a deck. */
+:root{color-scheme:light;--bg:#f3f5ef;--ink:#17231c;--mu:#56635a;--deep:#14432f;--panel:#ffffff;--line:#d7ded3;--lime:#b5e655}
+:root[data-theme=light],:root[data-theme=dark]{color-scheme:light}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 'Nunito Sans',system-ui,sans-serif;overflow-x:clip}
+a{color:inherit}
+.band{padding:clamp(28px,4vw,56px) max(5vw,16px)}
+.wrap{max-width:1180px;margin:0 auto}
+h1,h2,h3{font-family:Oswald,'Arial Narrow',sans-serif;font-weight:600;margin:0;text-wrap:balance}
+h1{font-size:clamp(34px,5vw,52px);line-height:1.05;color:#fff}
+h2{font-size:30px;line-height:1.15;margin-bottom:4px}
+.hero{background:var(--deep);color:#fff}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:center}
+.code{display:inline-block;font:800 13px 'Nunito Sans',sans-serif;background:var(--lime);color:var(--ink);border-radius:6px;padding:2px 8px;margin-bottom:12px}
+.lead{color:#c6dccf;max-width:56ch;margin:12px 0 0;font-size:17px}
+.sq{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:4px;max-width:340px;justify-self:end;width:100%}
+.sq i{aspect-ratio:1;border-radius:3px;background:#1d5a40}
+.sq i.on{background:var(--lime)}
+.sub{color:var(--mu);margin:0 0 18px;max-width:70ch}
+.chapters{display:grid;align-items:start;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:16px}
+.ch{border:1px dashed var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:6px;justify-content:center;min-height:150px}
+.ch h3{font-size:22px;line-height:1.2}
+.later{color:var(--mu);margin:0}
+.sub{color:var(--mu);margin:0 0 18px;max-width:70ch}
+.how{color:var(--mu);max-width:72ch;margin:0}
+.how kbd{font:700 13px 'Nunito Sans',sans-serif;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 7px;color:var(--ink);background:#fff}
+@media(max-width:760px){.hero .wrap{grid-template-columns:minmax(0,1fr)}.sq{justify-self:start;max-width:260px}}
+@media (prefers-reduced-motion:no-preference){.sq i.on{animation:fill .4s ease-out both}@keyframes fill{from{background:#1d5a40}}}
+</style>
+</head>
+<body>
+<header class="band hero"><div class="wrap">
+  <div>
+    <span class="code">MAG103</span>
+    <h1>Year 10 Pre&#8209;General Mathematics</h1>
+    <p class="lead">Getting ready for VCE General Mathematics. Each chapter's slides will appear here as we reach it.</p>
+  </div>
+  <div class="sq" id="sq" aria-hidden="true"></div>
+</div></header>
+
+<main>
+<section class="band"><div class="wrap">
+  <h2>Chapters</h2>
+  <p class="sub">Slides for each chapter, in the order we teach them.</p>
+  <div class="chapters">
+    <div class="ch"><h3>More chapters on the way</h3><p class="later">Chapters will appear here as they are made.</p></div>
+  </div>
+</div></section>
+
+<section class="band" style="padding-top:0"><div class="wrap">
+  <h2>Moving around a deck</h2>
+  <p class="how">Use the arrow keys, swipe, or the arrows at the bottom right. Press <kbd>C</kbd> for the contents list. Type a slide number then <kbd>G</kbd> to jump to it. The “All chapters” button at the bottom left brings you back here.</p>
+</div></section>
+</main>
+
+<script>
+{
+let h='';for(let i=0;i<100;i++)h+=i<37?`<i class="on" style="animation-delay:${i*18}ms"></i>`:'<i></i>';
+document.getElementById('sq').innerHTML=h;
+}
+</script>
+</body>
+</html>
