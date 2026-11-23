@@ -56,6 +56,10 @@ a{color:inherit;}
 .slide:not(.on){display:none}
 .yt-ans{display:none;font-size:28px;font-weight:700;color:var(--rust);background:#fff3c4;border-radius:10px;padding:12px 16px;margin:12px 0 0}
 body.answers .yt-ans{display:block}
+.we .step.hid,.we .ans.hid{visibility:hidden}
+.we.building{cursor:pointer}
+.we .cue{display:none;font-size:22px;font-weight:700;color:var(--teal);margin:16px 0 0;opacity:.75}
+.we.building .cue{display:block}
 .bar{position:fixed;bottom:10px;display:flex;gap:8px;align-items:center;z-index:5;font:600 15px 'Nunito Sans',Arial,sans-serif}
 .bar.l{left:12px}.bar.r{right:12px}
 .btn{min-height:44px;min-width:44px;padding:0 14px;border:0;border-radius:10px;background:#2c3236;color:#f4f2ec;font:inherit;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:6px}
@@ -110,6 +114,7 @@ body.answers .yt-ans{display:block}
 <p class="step">× and ÷ first: 6 × 4 = 24 and 10 ÷ 2 = 5</p>
 <p class="step">Then + and − from left to right:</p>
 <p class="step">18 + 24 − 5</p>
+<p class="cue">Click or press → for the next step</p>
 <p class="ans">= 37</p>
 </div>
 <div class="yt">
@@ -131,6 +136,7 @@ body.answers .yt-ans{display:block}
 <p class="step">Brackets first: 15 − 7 = 8</p>
 <p class="step">Then ×: 8 × 4 = 32</p>
 <p class="step">Then +: 32 + 6</p>
+<p class="cue">Click or press → for the next step</p>
 <p class="ans">= 38</p>
 </div>
 <div class="yt">
@@ -153,6 +159,7 @@ body.answers .yt-ans{display:block}
 <p class="step">10 × 8 = 80 tiles, + 10% = 88 tiles</p>
 <p class="step">88 tiles needs 9 boxes (90 tiles)</p>
 <p class="step">9 × $42 = $378</p>
+<p class="cue">Click or press → for the next step</p>
 <p class="ans">Buy 9 boxes for $378</p>
 </div>
 <div class="yt">
@@ -174,6 +181,7 @@ body.answers .yt-ans{display:block}
 <p class="step">Overtime rate: $24.50 × 1.5 = $36.75</p>
 <p class="step">Overtime: 4 × $36.75 = $147.00</p>
 <p class="step">Total: $931.00 + $147.00</p>
+<p class="cue">Click or press → for the next step</p>
 <p class="ans">= $1078.00</p>
 </div>
 <div class="yt">
@@ -203,6 +211,7 @@ body.answers .yt-ans{display:block}
 <p class="step">Line up the decimal points</p>
 <p class="step">Fill the gaps with zeros:</p>
 <p class="step">12.50 + 3.75 + 108.20</p>
+<p class="cue">Click or press → for the next step</p>
 <p class="ans">= 124.45</p>
 </div>
 <div class="yt">
@@ -224,6 +233,7 @@ body.answers .yt-ans{display:block}
 <p class="step">Estimate: $15 + $6 + $24 = $45, so about $5</p>
 <p class="step">Total: $14.95 + $6.40 + $23.50 = $44.85</p>
 <p class="step">Change: $50.00 − $44.85</p>
+<p class="cue">Click or press → for the next step</p>
 <p class="ans">= $5.15</p>
 </div>
 <div class="yt">
@@ -245,6 +255,7 @@ body.answers .yt-ans{display:block}
 <p class="step">3 + 7 = 10, so 10/8 = 1 2/8 = 1 1/4</p>
 <p class="step">b) Wholes: 2 + 1 = 3</p>
 <p class="step">Parts: 1/4 + 3/4 = 4/4 = 1, so 3 + 1</p>
+<p class="cue">Click or press → for the next step</p>
 <p class="ans">a) 1 1/4 &nbsp;&nbsp; b) 4</p>
 </div>
 <div class="yt">
@@ -267,6 +278,7 @@ body.answers .yt-ans{display:block}
 <p class="q">b) Your bank balance is −$35. You deposit $120, then spend $64. What is your balance?</p>
 <p class="step">a) Start at −4 and go up 11: −4 + 11 = 7</p>
 <p class="step">b) −35 + 120 = 85, then 85 − 64 = 21</p>
+<p class="cue">Click or press → for the next step</p>
 <p class="ans">a) 7 °C &nbsp;&nbsp; b) $21</p>
 </div>
 <div class="yt">
@@ -298,6 +310,7 @@ body.answers .yt-ans{display:block}
 <p class="step">38 × 20 = 760</p>
 <p class="step">38 × 4 = 152</p>
 <p class="step">Add the parts: 760 + 152</p>
+<p class="cue">Click or press → for the next step</p>
 <p class="ans">= 912</p>
 </div>
 <div class="yt">
@@ -322,6 +335,7 @@ body.answers .yt-ans{display:block}
 <p class="step">$24 + $4.80 = $28.80</p>
 <p class="step">b) 2 × $12.40 = $24.80</p>
 <p class="step">0.5 × $12.40 = $6.20, so $24.80 + $6.20</p>
+<p class="cue">Click or press → for the next step</p>
 <p class="ans">a) $28.80 &nbsp;&nbsp; b) $31.00</p>
 </div>
 <div class="yt">
@@ -344,6 +358,7 @@ body.answers .yt-ans{display:block}
 <p class="step">158 ÷ 6 = 26 remainder 2</p>
 <p class="step">a) 26 rows leaves 2 people standing: round up</p>
 <p class="step">b) 2 eggs can’t fill a carton: round down</p>
+<p class="cue">Click or press → for the next step</p>
 <p class="ans">a) 27 rows &nbsp;&nbsp; b) 26 cartons</p>
 </div>
 <div class="yt">
@@ -367,6 +382,7 @@ body.answers .yt-ans{display:block}
 <p class="step">a) different signs: 6 × 4 = 24, so −24</p>
 <p class="step">b) same signs: 30 ÷ 5 = 6, so +6</p>
 <p class="step">c) different signs: 9 × 3 = 27, so −27</p>
+<p class="cue">Click or press → for the next step</p>
 <p class="ans">a) −24 &nbsp;&nbsp; b) 6 &nbsp;&nbsp; c) −27</p>
 </div>
 <div class="yt">
@@ -400,6 +416,7 @@ body.answers .yt-ans{display:block}
 <p class="step">a) 3 ÷ 4 = 0.75 &nbsp;&nbsp; b) 7 ÷ 5 = 1.4</p>
 <p class="step">Decimal → fraction: use place value, then simplify</p>
 <p class="step">c) 0.35 = 35/100 = 7/20 (÷ 5 top and bottom)</p>
+<p class="cue">Click or press → for the next step</p>
 <p class="ans">a) 0.75 &nbsp;&nbsp; b) 1.4 &nbsp;&nbsp; c) 7/20</p>
 </div>
 <div class="yt">
@@ -423,6 +440,7 @@ body.answers .yt-ans{display:block}
 <p class="step">Multiply by the top: $120 × 2 = $240</p>
 <p class="step">b) Multiply tops and bottoms: 6/20</p>
 <p class="step">Simplify (÷ 2): 3/10</p>
+<p class="cue">Click or press → for the next step</p>
 <p class="ans">a) $240 &nbsp;&nbsp; b) 3/10</p>
 </div>
 <div class="yt">
@@ -445,6 +463,7 @@ body.answers .yt-ans{display:block}
 <p class="step">One part: 60 kg ÷ 6 = 10 kg</p>
 <p class="step">Cement 1 × 10, sand 2 × 10, gravel 3 × 10</p>
 <p class="step">Check: 10 + 20 + 30 = 60 kg</p>
+<p class="cue">Click or press → for the next step</p>
 <p class="ans">10 kg cement, 20 kg sand, 30 kg gravel</p>
 </div>
 <div class="yt">
@@ -467,6 +486,7 @@ body.answers .yt-ans{display:block}
 <p class="step">Rate = amount ÷ time</p>
 <p class="step">a) 270 ÷ 3 = 90</p>
 <p class="step">b) 186 ÷ 7.5 = 24.80</p>
+<p class="cue">Click or press → for the next step</p>
 <p class="ans">a) 90 km/h &nbsp;&nbsp; b) $24.80 per hour</p>
 </div>
 <div class="yt">
@@ -499,6 +519,7 @@ body.answers .yt-ans{display:block}
 <p class="step">35% = 35/100 = 7/20 and 35 ÷ 100 = 0.35</p>
 <p class="step">b) 3 ÷ 4 = 0.75</p>
 <p class="step">0.75 × 100 = 75%</p>
+<p class="cue">Click or press → for the next step</p>
 <p class="ans">a) 7/20 and 0.35 &nbsp;&nbsp; b) 75%</p>
 </div>
 <div class="yt">
@@ -521,6 +542,7 @@ body.answers .yt-ans{display:block}
 <p class="step">30%: 3 × $24 = $72</p>
 <p class="step">5%: half of 10% = $12</p>
 <p class="step">35% = 30% + 5% = $72 + $12</p>
+<p class="cue">Click or press → for the next step</p>
 <p class="ans">= $84</p>
 </div>
 <div class="yt">
@@ -545,6 +567,7 @@ body.answers .yt-ans{display:block}
 <p class="step">$120 − $42 = $78</p>
 <p class="step">Method 2: you pay 100% − 35% = 65%</p>
 <p class="step">0.65 × $120</p>
+<p class="cue">Click or press → for the next step</p>
 <p class="ans">= $78</p>
 </div>
 <div class="yt">
@@ -567,6 +590,7 @@ body.answers .yt-ans{display:block}
 <p class="step">a) 104% of $26.40: 1.04 × 26.40 = 27.456</p>
 <p class="step">b) % change = change ÷ original × 100</p>
 <p class="step">5 ÷ 20 × 100 = 25%</p>
+<p class="cue">Click or press → for the next step</p>
 <p class="ans">a) $27.46 an hour &nbsp;&nbsp; b) 25%</p>
 </div>
 <div class="yt">
@@ -598,6 +622,7 @@ body.answers .yt-ans{display:block}
 <p class="step">a) 47.3<b>8</b>6: 8 rounds up → 47.4</p>
 <p class="step">b) 47.38<b>6</b>: 6 rounds up → 47.39</p>
 <p class="step">c) 47.<b>3</b>86: 3 stays → 47</p>
+<p class="cue">Click or press → for the next step</p>
 <p class="ans">a) 47.4 &nbsp;&nbsp; b) 47.39 &nbsp;&nbsp; c) 47</p>
 </div>
 <div class="yt">
@@ -620,6 +645,7 @@ body.answers .yt-ans{display:block}
 <p class="step">Ends in 3 or 4: round up to 5</p>
 <p class="step">Ends in 6 or 7: round down to 5</p>
 <p class="step">Ends in 8 or 9: round up to 10</p>
+<p class="cue">Click or press → for the next step</p>
 <p class="ans">a) $12.60 &nbsp; b) $12.65 &nbsp; c) $12.65 &nbsp; d) $12.70</p>
 </div>
 <div class="yt">
@@ -643,6 +669,7 @@ body.answers .yt-ans{display:block}
 <p class="step">b) 4³ = 4 × 4 × 4 = 64</p>
 <p class="step">c) Which number times itself is 81? 9 × 9</p>
 <p class="step">d) Calculator: √50 = 7.071… → 7.07</p>
+<p class="cue">Click or press → for the next step</p>
 <p class="ans">a) 36 &nbsp; b) 64 &nbsp; c) 9 &nbsp; d) 7.07</p>
 </div>
 <div class="yt">
@@ -666,6 +693,7 @@ body.answers .yt-ans{display:block}
 <p class="step">Longest side: c² = a² + b²</p>
 <p class="step">c² = 1.2² + 0.9² = 1.44 + 0.81</p>
 <p class="step">c² = 2.25, so c = √2.25</p>
+<p class="cue">Click or press → for the next step</p>
 <p class="ans">c = 1.5 m</p>
 </div>
 <div class="yt">
@@ -707,7 +735,12 @@ const S=[...document.querySelectorAll('.slide')],N=S.length,stage=document.getEl
 const SECS={"sec-1": 2, "sec-2": 7, "sec-3": 12, "sec-4": 17, "sec-5": 22, "sec-6": 27, "at1": 32},TOC=[{"n": 1, "t": "Doing the Numbers", "sec": null, "li": true}, {"n": 2, "t": "Solving problems", "sec": "sec-1", "li": true}, {"n": 3, "t": "Order of operations: \u00d7 and \u00f7 first", "sec": null, "li": false}, {"n": 4, "t": "Order of operations: brackets first", "sec": null, "li": false}, {"n": 5, "t": "Using the problem-solving cycle", "sec": null, "li": false}, {"n": 6, "t": "Pay with overtime", "sec": null, "li": false}, {"n": 7, "t": "Addition and subtraction", "sec": "sec-2", "li": true}, {"n": 8, "t": "Adding and subtracting decimals", "sec": null, "li": false}, {"n": 9, "t": "Money and change", "sec": null, "li": false}, {"n": 10, "t": "Adding fractions", "sec": null, "li": false}, {"n": 11, "t": "Negative numbers", "sec": null, "li": false}, {"n": 12, "t": "Multiplying and dividing", "sec": "sec-3", "li": true}, {"n": 13, "t": "Multiplying larger numbers", "sec": null, "li": false}, {"n": 14, "t": "Multiplying money", "sec": null, "li": false}, {"n": 15, "t": "Division with a remainder", "sec": null, "li": false}, {"n": 16, "t": "Multiplying and dividing negatives", "sec": null, "li": false}, {"n": 17, "t": "Fractions and ratios", "sec": "sec-4", "li": true}, {"n": 18, "t": "Fractions to decimals and back", "sec": null, "li": false}, {"n": 19, "t": "Fraction of an amount", "sec": null, "li": false}, {"n": 20, "t": "Sharing in a ratio", "sec": null, "li": false}, {"n": 21, "t": "Rates", "sec": null, "li": false}, {"n": 22, "t": "Percentages", "sec": "sec-5", "li": true}, {"n": 23, "t": "Percentages, fractions and decimals", "sec": null, "li": false}, {"n": 24, "t": "The 10% method", "sec": null, "li": false}, {"n": 25, "t": "Discounts", "sec": null, "li": false}, {"n": 26, "t": "Percentage increase and change", "sec": null, "li": false}, {"n": 27, "t": "Rounding and powers", "sec": "sec-6", "li": true}, {"n": 28, "t": "Rounding to decimal places", "sec": null, "li": false}, {"n": 29, "t": "Cash rounding to 5 cents", "sec": null, "li": false}, {"n": 30, "t": "Powers and square roots", "sec": null, "li": false}, {"n": 31, "t": "Pythagoras\u2019 theorem", "sec": null, "li": false}, {"n": 32, "t": "Party by the Numbers", "sec": "at1", "li": true}];
 let cur=0,buf='',bt=0;
 const fit=()=>{const s=Math.min(innerWidth/1920,(innerHeight-64)/1080);stage.style.transform=`translate(-50%,calc(-50% - 26px)) scale(${s})`};
-function go(i,fromHash){i=Math.max(0,Math.min(N-1,i));S[cur].classList.remove('on');cur=i;S[cur].classList.add('on');
+const B=i=>[...S[i].querySelectorAll('.we .step,.we .ans')];
+function mark(i){const w=S[i].querySelector('.we');if(w)w.classList.toggle('building',B(i).some(e=>e.classList.contains('hid')))}
+function setBuild(i,shown){B(i).forEach(e=>e.classList.toggle('hid',!shown));mark(i)}
+function next(){const h=B(cur).find(e=>e.classList.contains('hid'));if(h){h.classList.remove('hid');mark(cur)}else go(cur+1)}
+function prev(){const v=B(cur).filter(e=>!e.classList.contains('hid'));if(v.length&&B(cur).length){v[v.length-1].classList.add('hid');mark(cur)}else go(cur-1,false,true)}
+function go(i,fromHash,back){i=Math.max(0,Math.min(N-1,i));if(i!==cur||!S[cur].classList.contains('on'))setBuild(i,!!back);S[cur].classList.remove('on');cur=i;S[cur].classList.add('on');
   document.getElementById('count').textContent=(cur+1)+' / '+N;
   if(!fromHash)try{history.replaceState(null,'','#'+(cur+1))}catch(e){}}
 function fromHash(){const h=decodeURIComponent(location.hash.slice(1));
@@ -718,21 +751,22 @@ const openToc=o=>{toc.classList.toggle('open',o);if(o)(toc.querySelector(`a[data
 toc.addEventListener('click',e=>{const a=e.target.closest('a[data-n]');if(a){e.preventDefault();go(+a.dataset.n-1);openToc(false)}});
 document.getElementById('tocbtn').onclick=()=>openToc(true);
 document.getElementById('tocclose').onclick=()=>openToc(false);
-document.getElementById('prev').onclick=()=>go(cur-1);
-document.getElementById('next').onclick=()=>go(cur+1);
-stage.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(a){e.preventDefault();const h=a.getAttribute('href').slice(1);go((/^\d+$/.test(h)?+h:SECS[h]||1)-1)}});
+document.getElementById('prev').onclick=()=>prev();
+document.getElementById('next').onclick=()=>next();
+stage.addEventListener('click',e=>{if(!e.target.closest('a')&&e.target.closest('.we.building')){next();return}const a=e.target.closest('a[href^="#"]');if(a){e.preventDefault();const h=a.getAttribute('href').slice(1);go((/^\d+$/.test(h)?+h:SECS[h]||1)-1)}});
 const jumpEl=document.getElementById('jump');
 addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey||e.altKey)return;const k=e.key;
   if(toc.classList.contains('open')){if(k==='Escape'||k==='c'||k==='C'){openToc(false);e.preventDefault()}return}
-  if(['ArrowRight','ArrowDown','PageDown',' '].includes(k)){go(cur+1);e.preventDefault()}
-  else if(['ArrowLeft','ArrowUp','PageUp'].includes(k)){go(cur-1);e.preventDefault()}
+  if(['ArrowRight','ArrowDown','PageDown',' '].includes(k)){next();e.preventDefault()}
+  else if(['ArrowLeft','ArrowUp','PageUp'].includes(k)){prev();e.preventDefault()}
+  else if(k==='w'||k==='W'){setBuild(cur,B(cur).some(x=>x.classList.contains('hid')))}
   else if(k==='Home')go(0);else if(k==='End')go(N-1);
   else if(k==='c'||k==='C')openToc(true);
   else if(k==='a'||k==='A')document.body.classList.toggle('answers');
   else if(/^\d$/.test(k)){buf+=k;jumpEl.textContent='Go to slide '+buf+' (press G)';jumpEl.style.display='block';clearTimeout(bt);bt=setTimeout(()=>{buf='';jumpEl.style.display='none'},2500)}
   else if((k==='g'||k==='G')&&buf){go(+buf-1);buf='';jumpEl.style.display='none'}});
 let tx=0;addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
-addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>60)go(cur+(dx<0?1:-1))});
+addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>60)(dx<0?next():prev())});
 addEventListener('resize',fit);addEventListener('hashchange',fromHash);
 fit();S[0].classList.add('on');fromHash();
 }
