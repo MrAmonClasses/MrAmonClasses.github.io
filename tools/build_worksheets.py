@@ -115,6 +115,23 @@ footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
   .parts li{flex-direction:column;gap:0}
   .reflect{break-inside:avoid;border:1pt solid var(--line)}
   footer{display:none}
+  /* black-and-white printing: plain white boxes with thin black outlines, no fills, all text black */
+  *{color:#000!important;background:#fff!important;box-shadow:none!important}
+  .top{border-bottom:1.5pt solid #000}
+  .lisc div,.we,.reflect,.tip,.instr{border:1pt solid #000!important;border-radius:4px}
+  .we,.reflect{border-top-width:1pt!important}
+  .yt{border:0!important;border-top:1.5pt solid #000!important}
+  .tip{border-left-width:1pt!important}
+  .pl{border:1pt solid #000;padding:1px 8px}
+  .phead,.sec-h{border-bottom:1.5pt solid #000}
+  .ans{border-top:1pt solid #000}
+  .qq{border-top:.5pt solid #999}
+  table.fill th,table.fill td{border:1pt solid #000}
+  .reflect th,.reflect td{border-bottom:.5pt solid #999}
+  .box{border:1.2pt solid #000}
+  .fr span:first-child{border-bottom-color:#000}
+  .sp{background:repeating-linear-gradient(to bottom,transparent 0,transparent calc(8mm - .6pt),#888 calc(8mm - .6pt),#888 8mm)!important}
+  .key th{border-bottom:1pt solid #000}
 }
 """
 
