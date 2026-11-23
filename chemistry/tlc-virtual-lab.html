@@ -1,0 +1,1093 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TLC Virtual Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/*
+VOICE: calm, scaffolded lab-sheet voice for Year 11 students, matching the Pondweed Lab series.
+IDEA: a lab bench with a developing chamber; the TLC plate itself is the record students measure.
+PICTURE: a live developing chamber where the solvent front climbs and pigment spots separate.
+COLOUR and TYPE: the Pondweed Lab palette and fonts (Space Grotesk, Inter, JetBrains Mono) so the series looks like one set.
+LAYOUT: stepper, intro card, bench beside the variables panel, then results, plate viewer and graph.
+*/
+:root{
+  --bg:#F3F6F4; --panel:#FFFFFF; --ink:#16231E; --muted:#5B6B64; --line:#D7E0DB;
+  --leaf:#1F7A4F; --leaf-soft:#E2F1E8;
+  --iv:#2563C9; --iv-soft:#E4EDFB;
+  --dv:#C2600F; --dv-soft:#FBEBDD;
+  --cv:#56635D; --cv-soft:#ECEFED;
+  --warn:#B42318; --warn-soft:#FDECEA; --ok:#18794E; --ok-soft:#E3F4EA;
+  --wall:#E7EEEA; --bench:#C9B79A; --bench-edge:#A89270; --water:#CFE9F2; --glass:#9FB8C2;
+  --f-display:"Space Grotesk",system-ui,sans-serif; --f-body:"Inter",system-ui,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1714; --panel:#17221E; --ink:#E6EFEA; --muted:#9AAEA5; --line:#2A3A33;
+  --leaf:#4CC38A; --leaf-soft:#173328; --iv:#79A6F2; --iv-soft:#1A2A45; --dv:#F0A35E; --dv-soft:#3A2714;
+  --cv:#A9B7B0; --cv-soft:#222E29; --warn:#F28B7F; --warn-soft:#3B1D1A; --ok:#5DD39B; --ok-soft:#163327;
+  --wall:#1B2824; --bench:#5A4C38; --bench-edge:#3F3526; --water:#1E3A45; --glass:#5E7A86; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1714; --panel:#17221E; --ink:#E6EFEA; --muted:#9AAEA5; --line:#2A3A33;
+  --leaf:#4CC38A; --leaf-soft:#173328; --iv:#79A6F2; --iv-soft:#1A2A45; --dv:#F0A35E; --dv-soft:#3A2714;
+  --cv:#A9B7B0; --cv-soft:#222E29; --warn:#F28B7F; --warn-soft:#3B1D1A; --ok:#5DD39B; --ok-soft:#163327;
+  --wall:#1B2824; --bench:#5A4C38; --bench-edge:#3F3526; --water:#1E3A45; --glass:#5E7A86; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--f-body);margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-block:20px 60px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:18px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(26px,3.4vw,34px);letter-spacing:-.01em}
+h2{font-size:21px}
+h3{font-size:16px}
+p{margin:0}
+.eyebrow{font:600 12px/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--leaf)}
+header{display:grid;gap:8px}
+header p{color:var(--muted);max-width:70ch}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:3px 10px;font:600 12px/1.4 var(--f-body);letter-spacing:.03em}
+.pill.iv{background:var(--iv-soft);color:var(--iv)} .pill.dv{background:var(--dv-soft);color:var(--dv)} .pill.cv{background:var(--cv-soft);color:var(--cv)}
+.pill.ex{background:var(--warn-soft);color:var(--warn)} .pill.ctrl{background:var(--leaf-soft);color:var(--leaf)}
+button{font:600 14px/1 var(--f-body);border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:10px 14px;cursor:pointer}
+button:hover{border-color:var(--ink)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--iv);outline-offset:2px}
+button.primary{background:var(--leaf);border-color:var(--leaf);color:#fff}
+button.primary:hover{filter:brightness(1.08)}
+button:disabled{opacity:.45;cursor:not-allowed}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{padding:9px 12px;border-radius:999px}
+.seg button[aria-pressed="true"]{background:var(--iv);border-color:var(--iv);color:#fff}
+/* plan strip */
+.plan{display:grid;grid-template-columns:1fr;gap:12px}
+.plan .roles{display:flex;flex-wrap:wrap;gap:8px;align-items:center;color:var(--muted);font-size:14px}
+/* main */
+.main{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:900px){.main{grid-template-columns:1fr}}
+.bench{padding:0;overflow:hidden}
+canvas{display:block;width:100%;height:auto;background:var(--wall);touch-action:pan-y;user-select:none}
+canvas:focus-visible{outline:3px solid var(--iv);outline-offset:-3px}
+.runbar{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;padding:14px 16px;border-top:1px solid var(--line);align-items:center}
+.readouts{display:flex;gap:22px;flex-wrap:wrap;justify-content:flex-end;background:#13201B;border-radius:12px;padding:10px 16px;box-shadow:inset 0 2px 6px rgba(0,0,0,.45)}
+.readout{display:grid;gap:2px;text-align:right}
+.readout b{font:500 26px/1 var(--f-mono);font-variant-numeric:tabular-nums;color:#7CF0B5;text-shadow:0 0 8px rgba(124,240,181,.35)}
+.readout span{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8FA79C}
+.readout.dv b{color:#FFB46B;text-shadow:0 0 8px rgba(255,180,107,.35);display:inline-block}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.tapbtn{display:none;width:100%;padding:16px;font-size:17px;background:var(--dv);border-color:var(--dv);color:#fff}
+.tapbtn.show{display:block}
+.status{padding:10px 16px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);min-height:44px}
+/* variables */
+.vars{display:grid;gap:10px}
+.var{border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:8px}
+.var.isiv{border-color:var(--iv);box-shadow:0 0 0 2px var(--iv-soft)}
+.var .top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.var .name{font-weight:600}
+.var .val{font:500 14px/1 var(--f-mono);font-variant-numeric:tabular-nums;color:var(--ink)}
+.var input[type=range]{width:100%;accent-color:var(--iv)}
+.var.locked input,.var.locked select{opacity:.5}
+.var select{font:500 14px var(--f-body);padding:7px 8px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);width:100%}
+.lock{font-size:12px;padding:5px 9px;border-radius:8px}
+.hint{font-size:13px;color:var(--muted)}
+.toggle{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.switch{position:relative;width:46px;height:26px;flex:none}
+.switch input{opacity:0;width:100%;height:100%;margin:0;position:absolute;cursor:pointer}
+.switch span{position:absolute;inset:0;border-radius:999px;background:var(--line);transition:background .2s}
+.switch span::after{content:"";position:absolute;width:20px;height:20px;left:3px;top:3px;border-radius:50%;background:#fff;transition:transform .2s}
+.switch input:checked+span{background:var(--leaf)}
+.switch input:checked+span::after{transform:translateX(20px)}
+.switch input:focus-visible+span{outline:3px solid var(--iv);outline-offset:2px}
+.group-label{font:600 12px/1 var(--f-body);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+/* fairness */
+.fair{display:grid;gap:6px}
+.flag{display:flex;gap:8px;align-items:flex-start;font-size:14px;padding:8px 10px;border-radius:10px}
+.flag.bad{background:var(--warn-soft);color:var(--warn)} .flag.good{background:var(--ok-soft);color:var(--ok)}
+/* results */
+.results{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+@media (max-width:900px){.results{grid-template-columns:1fr}}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
+th,td{border:1px solid var(--line);padding:7px 8px;text-align:center}
+th{background:var(--cv-soft);font-weight:600}
+th.ivh{background:var(--iv-soft);color:var(--iv)} th.dvh{background:var(--dv-soft);color:var(--dv)}
+td.mean{font-weight:700;color:var(--dv)}
+td.note{font-size:12px;color:var(--warn);text-align:left}
+tr.control td:first-child{color:var(--leaf);font-weight:600}
+.empty{color:var(--muted);font-size:14px;padding:16px;text-align:center;border:1px dashed var(--line);border-radius:10px}
+svg[aria-label$="graph"] text,svg[aria-label="Graph of results"] text{fill:var(--muted);font:12px var(--f-body)}
+svg .axis{stroke:var(--muted)}
+svg .grid{stroke:var(--line)}
+/* tabs */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:10px}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.panel{display:grid;gap:14px;padding-top:6px}
+.hyp{font-size:16px;line-height:2.3}
+.hyp select{font:600 15px var(--f-body);padding:5px 8px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);max-width:100%}
+.hyp .k{font-weight:700;color:var(--leaf)}
+.fb{padding:12px 14px;border-radius:10px;font-size:14px}
+.fb.ok{background:var(--ok-soft);color:var(--ok)} .fb.bad{background:var(--warn-soft);color:var(--warn)} .fb.info{background:var(--iv-soft);color:var(--iv)}
+.qgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.q{border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:10px;align-content:start}
+.q p.stem{font-weight:600}
+.q .opts{display:grid;gap:6px}
+.q .opts button{text-align:left;line-height:1.35;font-weight:500;padding:9px 11px}
+.q .opts button.right{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.q .opts button.wrong{background:var(--warn-soft);border-color:var(--warn);color:var(--warn)}
+.q .why{font-size:14px;color:var(--muted)}
+.score{font:600 14px var(--f-body);color:var(--muted)}
+.sci{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.sci .q p{font-weight:400}
+.eq{font:500 14px/1.6 var(--f-mono);background:var(--leaf-soft);color:var(--leaf);padding:10px 12px;border-radius:10px;overflow-x:auto}
+.confirm{display:none;gap:10px;align-items:center;flex-wrap:wrap;background:var(--warn-soft);color:var(--warn);padding:10px 12px;border-radius:10px;font-size:14px}
+.confirm.show{display:flex}
+.howto summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.howto summary::-webkit-details-marker{display:none}
+.howto summary .chev{font:600 13px var(--f-body);color:var(--muted)}
+.howto[open] summary .chev::after{content:"Hide"} .howto:not([open]) summary .chev::after{content:"Show"}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:14px;padding:0;list-style:none;counter-reset:st}
+.steps li{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;padding:12px;border-radius:12px;background:var(--leaf-soft)}
+.steps li::before{counter-increment:st;content:counter(st);display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--leaf);color:#fff;font:700 15px var(--f-display)}
+.steps .t{display:block;font-family:var(--f-display);font-weight:700;font-size:15px;margin-bottom:2px}
+.steps p{font-size:14px;color:var(--ink)}
+.tips{margin-top:12px;font-size:14px;color:var(--muted)}
+.progress{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chk{display:inline-flex;align-items:center;gap:7px;padding:6px 11px;border-radius:999px;font-size:13px;font-weight:600;background:var(--cv-soft);color:var(--muted)}
+.chk::before{content:"";width:14px;height:14px;border-radius:50%;border:2px solid currentColor;box-sizing:border-box}
+.chk.done{background:var(--ok-soft);color:var(--ok)} .chk.done::before{background:currentColor;box-shadow:inset 0 0 0 2px var(--ok-soft)}
+.bar{height:8px;border-radius:999px;background:var(--cv-soft);overflow:hidden;margin-top:10px} .bar i{display:block;height:100%;background:var(--leaf);transition:width .4s}
+.report{display:grid;gap:16px}
+.report section{display:grid;gap:6px}
+.report h4{font:600 13px/1 var(--f-body);letter-spacing:.07em;text-transform:uppercase;color:var(--leaf);margin:0}
+.report ol,.report ul{margin:0;padding-left:20px;display:grid;gap:4px}
+.report textarea{width:100%;min-height:130px;font:15px/1.5 var(--f-body);padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);resize:vertical}
+.model{border:1px dashed var(--leaf);border-radius:12px;padding:12px 14px;background:var(--leaf-soft)}
+.done-banner{display:flex;gap:12px;align-items:center;padding:14px 16px;border-radius:12px;background:var(--ok-soft);color:var(--ok);font-weight:600}
+.teacher{display:grid;gap:16px}
+.teacher textarea{width:100%;min-height:120px;font:13px/1.45 var(--f-mono);padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.stat{border:1px solid var(--line);border-radius:12px;padding:12px}
+.stat b{display:block;font:600 26px/1.1 var(--f-display)}
+.stat span{font-size:13px;color:var(--muted)}
+.send{display:grid;gap:10px;border-top:1px solid var(--line);padding-top:14px}
+.btnlink{display:inline-flex;align-items:center;font:600 14px/1 var(--f-body);border-radius:10px;padding:10px 14px;text-decoration:none;border:1px solid var(--leaf)}
+.btnlink.primary{background:var(--leaf);color:#fff}
+.send input{font:15px var(--f-body);padding:9px 11px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);max-width:320px;width:100%}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:var(--muted);font-size:13px}
+.foot a{color:var(--iv);font-weight:600}
+.yes{color:var(--ok);font-weight:700} .no{color:var(--warn);font-weight:700}
+.namebox{font:15px var(--f-body);padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);width:100%;max-width:320px}
+.btnlink[aria-disabled="true"]{opacity:.45;cursor:not-allowed}
+.nextbar{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding-top:10px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));background:var(--ink);color:var(--bg);font-size:15px;box-shadow:0 -4px 16px rgba(0,0,0,.18)}
+.nextbar button{background:var(--leaf);border-color:var(--leaf);color:#fff;padding:8px 14px}
+.nextbar[hidden]{display:none}
+#labView{padding-bottom:110px}
+.flash{animation:flash 1.6s ease-out}
+@keyframes flash{0%{box-shadow:0 0 0 4px var(--iv)}100%{box-shadow:0 0 0 0 transparent}}
+.stepper{display:flex;gap:6px;flex-wrap:wrap}
+.stepper button{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;font-weight:600}
+.stepper button .n{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--cv-soft);color:var(--muted);font:700 13px var(--f-display)}
+.stepper button.done .n{background:var(--ok);color:#fff}
+.stepper button[aria-current="step"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.stepper button[aria-current="step"] .n{background:var(--leaf);color:#fff}
+.intro{display:grid;gap:6px;border-color:var(--leaf);background:var(--leaf-soft)}
+.intro h2{font-size:24px}
+.intro p{font-size:16px;max-width:75ch}
+.ivcards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media (max-width:640px){.ivcards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.ivcards button{display:grid;gap:4px;text-align:left;padding:16px;border-radius:14px;border:2px solid var(--line);line-height:1.3}
+.ivcards button b{font:700 17px var(--f-display)}
+.ivcards button span{font-weight:400;color:var(--muted)}
+.ivcards button[aria-pressed="true"]{border-color:var(--iv);background:var(--iv-soft)}
+.ivcards button[aria-pressed="true"] b{color:var(--iv)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+[data-step]{display:none}
+[data-step].on{display:block}
+section.main[data-step].on{display:grid}
+.nexttxt{flex:1 1 300px;max-width:640px;text-align:center}
+@media (max-width:640px){.nextbar{gap:8px;font-size:13px}.nexttxt{order:-1;flex-basis:100%;max-width:none}}
+.nextbar .ghost{background:transparent;color:var(--bg);border-color:rgba(255,255,255,.4)}
+.roles2{display:grid;gap:8px;margin-top:6px;font-size:15px}
+.roles2>div{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.concl{display:grid;gap:10px;border:1px solid var(--line);border-radius:12px;padding:14px}
+.concl .head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.concl .score{font:700 20px var(--f-display)}
+.concl blockquote{margin:0;padding:10px 12px;border-radius:10px;background:var(--cv-soft);font-size:15px;white-space:pre-wrap}
+.crit{display:flex;flex-wrap:wrap;gap:6px}
+.crit button{font-size:13px;padding:6px 10px;border-radius:999px;font-weight:600}
+.crit button.met{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}
+.crit button.miss{background:var(--warn-soft);color:var(--warn);border-color:var(--warn)}
+.fbk{font-size:15px;padding:10px 12px;border-radius:10px;background:var(--iv-soft);color:var(--ink)}
+.fbk textarea{width:100%;min-height:60px;font:15px/1.45 var(--f-body);border:1px solid var(--line);border-radius:8px;padding:8px;background:var(--panel);color:var(--ink)}
+.photos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:12px}
+@media (max-width:640px){.photos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.photos figure{margin:0;display:grid;gap:6px;align-content:start}
+.photos img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;display:block}
+.photos figcaption{font-size:12px;line-height:1.35;color:var(--muted)}
+.ivicon{display:block;width:120px;height:80px;margin-bottom:4px}
+.ivicon svg{width:100%;height:100%}
+.credits{font-size:12px;color:var(--muted)}
+.photos figure{cursor:zoom-in}
+.photos figure:focus-visible{outline:3px solid var(--iv);outline-offset:3px;border-radius:12px}
+.zoom{position:fixed;inset:0;z-index:40;background:rgba(10,20,16,.82);display:grid;place-items:center;padding:24px;cursor:zoom-out}
+.zoom .box{max-width:min(960px,94vw);display:grid;gap:10px}
+.zoom img,.zoom svg{width:100%;height:auto;max-height:78vh;object-fit:contain;border-radius:12px;background:#fff}
+.zoom p{color:#fff;font-size:15px;margin:0}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+.plateview{display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:640px){.plateview{grid-template-columns:1fr}}
+.plateview svg{width:100%;height:auto;display:block;background:var(--wall);border-radius:12px}
+.benchsvg{display:block;width:100%;height:auto;background:var(--wall)}
+.chips{display:inline-flex;flex-wrap:wrap;gap:6px;vertical-align:middle}
+.chips label{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:4px 10px;font:600 14px/1.4 var(--f-body);cursor:pointer;background:var(--panel)}
+.chips input{accent-color:var(--iv);width:16px;height:16px}
+.chips label:has(input:checked){border-color:var(--iv);background:var(--iv-soft);color:var(--iv)}
+.calc{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;align-items:end}
+.calc label{display:grid;gap:4px;font-size:14px;font-weight:600}
+.calc input{font:16px var(--f-mono);padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);width:100%}
+.swatch{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:-1px;margin-right:6px;border:1px solid rgba(0,0,0,.15)}
+.minis{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.minis svg{width:100%;max-width:200px;height:auto;display:block;margin:0 auto;background:var(--wall);border-radius:10px}
+.caution{display:flex;gap:8px;font-size:14px;padding:8px 10px;border-radius:10px;background:var(--iv-soft);color:var(--iv)}
+</style>
+</head>
+<body>
+<div class="wrap" id="labView">
+  <header>
+    <span class="eyebrow">VCE Chemistry · Unit 1 · AoS 1 · Cambridge Practical 5B-1</span>
+    <h1>Virtual Lab: Thin-layer chromatography</h1>
+    <p>Separate the pigments in vegetables and use R<sub>f</sub> values to identify them. Work through the steps one at a time with the Next button at the bottom of the screen.</p>
+  </header>
+  <nav class="stepper" id="stepper" aria-label="Steps"></nav>
+  <div class="card intro" id="stepIntro" aria-live="polite"></div>
+
+  <!-- STEP 1 -->
+  <section class="card" data-step="1" aria-labelledby="meet-h">
+    <h2 id="meet-h">Meet thin-layer chromatography</h2>
+    <p class="hint" style="margin-top:4px">A TLC plate is a sheet coated with a thin layer of silica, which is very polar. This is the <b>stationary phase</b>. A small spot of each sample goes on a pencil line near the bottom (the <b>origin</b>), and the plate stands in a shallow pool of solvent, the <b>mobile phase</b>. The solvent soaks up the plate and carries each compound with it. Compounds that are strongly attracted to the polar silica move slowly; compounds that dissolve well in the mobile phase move further. Click a picture to see it larger.</p>
+    <div class="photos" id="figs"></div>
+  </section>
+  <section class="card" data-step="1" aria-labelledby="iv-h">
+    <h2 id="iv-h">What will you investigate?</h2>
+    <p class="hint" style="margin:4px 0 12px">Beta-carotene (β-carotene) is an orange pigment the body uses to make vitamin A. Choose one investigation.</p>
+    <div class="ivcards" id="invCards" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))"></div>
+    <div class="confirm" id="invConfirm" style="margin-top:12px"><span>Changing the investigation starts a new investigation and clears your results.</span><button id="invYes">Start new investigation</button><button id="invNo">Keep my results</button></div>
+    <div class="roles2" id="roles"></div>
+  </section>
+
+  <!-- STEP 2 -->
+  <section class="card" data-step="2"><div id="hypBox"></div></section>
+
+  <!-- STEP 3 -->
+  <section class="main" data-step="3">
+    <div class="card bench">
+      <svg class="benchsvg" id="bench" viewBox="0 0 160 150" role="img" aria-label="Developing chamber with a TLC plate"></svg>
+      <div class="runbar">
+        <div class="btns">
+          <button class="primary" id="run3">Run 3 plates</button>
+          <button id="run1">Run 1 plate</button>
+          <button id="clear">Clear results</button>
+        </div>
+        <div class="readouts">
+          <div class="readout"><b id="roPlate">0</b><span>plates run</span></div>
+          <div class="readout dv"><b id="roFront">0.0</b><span>front (mm)</span></div>
+          <div class="readout"><b id="roMix">9:1</b><span id="roMixL">acetone:water</span></div>
+        </div>
+      </div>
+      <div class="status" id="status" aria-live="polite">Set up your plate, then run it.</div>
+    </div>
+    <div class="card vars" id="vars"></div>
+  </section>
+  <section class="card" data-step="3" aria-labelledby="res-h">
+    <div class="row" style="justify-content:space-between"><h2 id="res-h">Results</h2><div class="btns"><button id="copyTable">Copy table</button></div></div>
+    <div class="fair" id="fair" style="margin-top:10px"></div>
+    <div class="results" style="margin-top:12px">
+      <div class="tablewrap" id="table"></div>
+      <div id="graph"></div>
+    </div>
+    <div id="verdict" style="margin-top:12px"></div>
+    <div class="progress" id="progress"></div>
+    <div class="bar"><i id="progBar" style="width:0%"></i></div>
+  </section>
+  <section class="card" data-step="3" aria-labelledby="pv-h">
+    <h2 id="pv-h">Measure a plate yourself</h2>
+    <p class="hint" style="margin:4px 0 12px">Distances are measured from the origin line (0 mm) to the solvent front, and to the centre of each spot.</p>
+    <div class="plateview">
+      <div id="viewer"></div>
+      <div id="handCalc"></div>
+    </div>
+  </section>
+
+  <!-- STEP 4 -->
+  <section class="card" data-step="4"><div class="report" id="report"></div></section>
+
+  <!-- STEP 5 -->
+  <section class="card send" data-step="5" style="border-top:0">
+    <h2>Send your results</h2>
+    <p class="hint">Type your full name, copy your results code, then paste it as a private comment on this Virtual Lab's Google Classroom assignment. Your teacher pastes everyone's codes into the teacher view to see the class results.</p>
+    <input class="namebox" id="stuName" placeholder="Your full name" autocomplete="name">
+    <div class="row"><button class="primary" id="copyCode">Copy my results code</button><button id="copyRep2">Copy my lab report</button></div>
+    <textarea id="codeBox" hidden aria-label="Results code" style="width:100%;min-height:70px;font:13px var(--f-mono);border-radius:10px;border:1px solid var(--line);padding:8px;background:var(--panel);color:var(--ink)"></textarea>
+    <div id="sendMsg" class="hint" aria-live="polite"></div>
+  </section>
+
+  <!-- STEP 6 -->
+  <section class="card" data-step="6">
+    <div class="tabs" role="tablist" id="xtabs">
+      <button role="tab" aria-selected="true" data-tab="mystery">Mystery sample</button>
+      <button role="tab" aria-selected="false" data-tab="spot">Spot the problem</button>
+      <button role="tab" aria-selected="false" data-tab="quiz">Check yourself</button>
+      <button role="tab" aria-selected="false" data-tab="sci">The science</button>
+    </div>
+    <div class="panel" id="xp-mystery"></div>
+    <div class="panel" id="xp-spot" hidden></div>
+    <div class="panel" id="xp-quiz" hidden></div>
+    <div class="panel" id="xp-sci" hidden></div>
+  </section>
+
+  <footer class="foot"><span>TLC Virtual Lab · VCE Chemistry Unit 1 · based on Cambridge Practical 5B-1 · R<sub>f</sub> values come from a model with random variation</span><a href="#teacher">Teacher view</a></footer>
+</div>
+
+<div class="wrap" id="teacherView" hidden>
+  <header>
+    <span class="eyebrow">TLC Virtual Lab · Teacher view</span>
+    <h1>Class results</h1>
+    <p>Students finish the lab, copy their results code in Step 5 and post it to you (for example, as a private comment on the Google Classroom assignment). Paste all the codes below to see the whole class together.</p>
+  </header>
+  <div class="card teacher">
+    <h3>Paste results codes</h3>
+    <p class="hint">Paste everything at once: a page of Classroom comments, a spreadsheet column or an email. Anything that is not a code is ignored.</p>
+    <textarea id="codes" placeholder="TLC1:..."></textarea>
+    <div class="row"><span class="hint" id="codeCount">0 codes found</span><button id="copySummary">Copy class summary</button><button id="exampleClass">Load an example class</button><button id="clearCodes">Clear</button><a class="btnlink" href="#">Back to the lab</a></div>
+    <div id="classOut"></div>
+  </div>
+</div>
+
+<div class="nextbar" id="nextbar"><button class="ghost" id="back">← Back</button><span class="nexttxt" id="nexttxt"></span><button id="next">Next →</button></div>
+<div class="zoom" id="zoom" hidden></div>
+
+<script>
+{
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
+const mean = a => a.reduce((x,y)=>x+y,0) / a.length;
+const r2 = v => (Math.round(v*100)/100).toFixed(2);
+const round05 = v => Math.round(v*2)/2;
+function gauss(){ let u=0,v=0; while(!u) u=Math.random(); while(!v) v=Math.random(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); }
+
+// ---------------- chemistry model ----------------
+const ORIGIN = 10, PH = 100, MAXD = PH - ORIGIN; // mm
+const CMP = {
+  bc:{n:'β-carotene', c:'#F08A1C', cn:'orange'},
+  chla:{n:'chlorophyll a', c:'#2F8F74', cn:'blue-green'},
+  chlb:{n:'chlorophyll b', c:'#8AA23C', cn:'olive-green'},
+  lut:{n:'lutein (a xanthophyll)', c:'#E2BE1A', cn:'yellow'},
+  cry:{n:'β-cryptoxanthin', c:'#E89A2E', cn:'yellow-orange'},
+  bet:{n:'betanin', c:'#9B2A5A', cn:'red-purple'},
+  ink1:{n:'pen ink (violet dye)', c:'#5B3FA8', cn:'violet'},
+  ink2:{n:'pen ink (blue dye)', c:'#2C5BD6', cn:'blue'}
+};
+const SAMPLES = {
+  bc:{n:'β-carotene standard', s:'BC', m:{bc:1}},
+  c:{n:'Carrot', s:'C', m:{bc:.9}},
+  sp:{n:'Sweet potato', s:'SP', m:{bc:.55}},
+  s:{n:'Spinach', s:'S', m:{bc:.32, chla:.9, chlb:.5, lut:.42}},
+  o:{n:'Onion', s:'O', m:{}},
+  orange:{n:'Mystery', s:'?', m:{bc:.35, cry:.5}},
+  pumpkin:{n:'Mystery', s:'?', m:{bc:.85, lut:.28}},
+  beet:{n:'Mystery', s:'?', m:{bet:.9}},
+  lettuce:{n:'Mystery', s:'?', m:{bc:.2, chla:.55, chlb:.32, lut:.22}}
+};
+const RF_ID = {bc:.63, chla:.45, chlb:.36, lut:.30, cry:.50, bet:.04, ink1:.18, ink2:.56};
+function rfModel(cid, inv, pct){
+  if(inv === 'id' || cid.startsWith('ink') || cid === 'bet' || cid === 'cry') return RF_ID[cid];
+  const e = k => 1 - Math.exp(-pct/k);
+  return { bc:.90 + .07*e(15), chla:.04 + .80*e(22), chlb:.02 + .70*e(26), lut:.01 + .62*e(30) }[cid];
+}
+const INV = {
+  id:{ short:'which vegetables contain β-carotene', lanes:['bc','c','sp','s','o'],
+       title:'Which vegetables contain β-carotene?', blurb:'Run extracts of carrot, sweet potato, spinach and onion beside a pure β-carotene standard. Match R<sub>f</sub> values to identify β-carotene. (Cambridge 5B-1)',
+       iv:'the sample (vegetable extract)', dv:'the R<sub>f</sub> value of each spot', cv:'plate type, mobile phase (acetone:water 9:1), origin height, spotting, chamber and lid' },
+  pol:{ short:'mobile-phase polarity', lanes:['bc','s'],
+       title:'How does mobile-phase polarity change R<sub>f</sub>?', blurb:'Run spinach extract in hexane:acetone mixtures from 0% to 60% acetone. Measure how far the blue-green chlorophyll a spot travels.',
+       iv:'% acetone in the mobile phase (hexane:acetone)', dv:'R<sub>f</sub> of the chlorophyll a (blue-green) spot', cv:'plate type, sample, origin height, spotting, chamber and lid' }
+};
+
+// ---------------- state ----------------
+const DEF = { inv:'id', step:1, hyp:null, plates:[], set:{pct:30, spots:5, pen:false, depth:5, lid:true, stop:'near', mark:true}, hand:null, concl:'', concl2:'', sent:false, name:'' };
+let S = JSON.parse(JSON.stringify(DEF));
+try { const raw = localStorage.getItem('tlc-state'); if(raw) S = Object.assign(S, JSON.parse(raw)); } catch(e){}
+let running = false, last = null, pendingInv = null;
+function save(){ try { localStorage.setItem('tlc-state', JSON.stringify(S)); } catch(e){} }
+
+function condKey(c){ return [c.spots, c.pen, c.depth, c.lid, c.stop, c.mark].join('|'); }
+function plateIssues(c){
+  const out = [];
+  if(c.pen) out.push('origin drawn in pen');
+  if(c.depth > ORIGIN) out.push('solvent above the origin');
+  if(!c.lid) out.push('no lid on the chamber');
+  if(c.stop === 'top') out.push('solvent front ran to the top');
+  if(!c.mark) out.push('front not marked straight away');
+  if(c.spots >= 7) out.push('spots overloaded');
+  if(c.spots <= 2) out.push('too few applications');
+  return out;
+}
+const ISSUE_TXT = {
+  'origin drawn in pen':'The origin was drawn in pen. Ink dissolves in the solvent and runs up the plate, adding violet and blue spots to every lane.',
+  'solvent above the origin':'The solvent was deeper than the origin line, so the samples dissolved into the solvent pool instead of travelling up the plate.',
+  'no lid on the chamber':'Without a lid, solvent evaporated from the plate. The front was uneven and the R<sub>f</sub> values varied much more between plates.',
+  'solvent front ran to the top':'The solvent reached the top of the plate, so the true distance of the front is unknown. Every R<sub>f</sub> value is too high.',
+  'front not marked straight away':'The solvent front dried back before it was marked, so the measured front is too short and the R<sub>f</sub> values are too high.',
+  'spots overloaded':'Too much sample was applied. Spots streaked up the plate, so their centres were hard to judge.',
+  'too few applications':'Too little sample was applied, so some spots were too faint to see.'
+};
+
+function makePlate(c, lanes){
+  const flooded = c.depth > ORIGIN;
+  const front = c.stop === 'half' ? 45 : c.stop === 'top' ? 112 : 80;
+  const sd = c.lid ? .011 : .045;
+  const tilt = c.lid ? gauss()*.5 : gauss()*3.2;
+  const L = lanes.map(k => {
+    const mix = Object.assign({}, SAMPLES[k].m); if(c.pen){ mix.ink1 = .55; mix.ink2 = .5; }
+    const spots = [];
+    if(!flooded) Object.keys(mix).forEach(cid => {
+      const conc = mix[cid] * (cid.startsWith('ink') ? 1 : c.spots/5);
+      if(conc < .14) return;
+      const over = !cid.startsWith('ink') && c.spots >= 7 && conc > .75;
+      const rf = clamp(rfModel(cid, c.inv, c.pct) + gauss()*(sd + (over ? .025 : 0)), .01, .985);
+      let d = rf * front; if(d > MAXD - 1) d = MAXD - 1.5 - Math.random()*2.5;
+      spots.push({cid, conc, over, d});
+    });
+    return {k, spots};
+  });
+  const vis = Math.min(front, MAXD);
+  const mFront = round05(vis - (c.mark ? 0 : 2 + Math.random()*4) + gauss()*.25);
+  L.forEach(l => l.spots.forEach(s => { s.m = round05(s.d + gauss()*.3); s.rf = +(s.m/mFront).toFixed(2); }));
+  return { ...c, front, vis, mFront, tilt, flooded, lanes:L, issues:plateIssues(c) };
+}
+
+// ---------------- drawing ----------------
+function laneX(i){ return 7 + i*10; }
+function plateW(n){ return 14 + (n-1)*10; }
+// draws a plate whose bottom-left corner is (x0,yb); frac = development progress 0..1
+function plateGroup(p, x0, yb, frac, marks){
+  const n = p.lanes.length, W = plateW(n), y = mm => yb - mm;
+  const fr = (p.vis) * frac;
+  let g = `<rect x="${x0}" y="${yb-PH}" width="${W}" height="${PH}" rx="1" fill="#FBFBF7" stroke="#B9C2BD" stroke-width=".4"/>`;
+  if(fr > 0){
+    const tl = p.tilt*frac;
+    g += `<path d="M${x0} ${yb} L${x0} ${y(ORIGIN+fr-tl)} L${x0+W} ${y(ORIGIN+fr+tl)} L${x0+W} ${yb} Z" fill="#DCEBF0" opacity=".75"/>`;
+  }
+  if(p.flooded && frac > .2) g += `<rect x="${x0+.3}" y="${yb-(p.depth||15)+2}" width="${W-.6}" height="${(p.depth||15)-2}" fill="#E9A85A" opacity=".35"/>`;
+  g += `<line x1="${x0+1.5}" y1="${y(ORIGIN)}" x2="${x0+W-1.5}" y2="${y(ORIGIN)}" stroke="${p.pen ? '#3048B8' : '#7A7F7C'}" stroke-width="${p.pen ? .5 : .35}"/>`;
+  p.lanes.forEach((l,i) => {
+    const x = x0 + laneX(i);
+    g += `<text x="${x}" y="${y(ORIGIN-4.2)}" text-anchor="middle" font-size="2.9" fill="#6B716E" font-family="Inter,sans-serif">${SAMPLES[l.k].s}</text>`;
+    if(frac === 0 || p.flooded){ const src = SAMPLES[l.k].m; const any = Object.keys(src).length; if(any && !(p.flooded && frac > .05)) g += `<ellipse cx="${x}" cy="${y(ORIGIN)}" rx="1.6" ry="1.3" fill="#B98A3A" opacity=".55"/>`; return; }
+    l.spots.forEach(s => {
+      const d = Math.min(s.d * frac, fr), col = CMP[s.cid].c, op = clamp(.25 + .6*s.conc, .25, .95), rx = clamp(1.5 + s.conc*.9, 1.6, 3.1);
+      if(s.over) for(let k=1;k<=5;k++) g += `<ellipse cx="${x}" cy="${y(ORIGIN + d - k*1.6)}" rx="${rx*.85}" ry="${rx*.7}" fill="${col}" opacity="${(op*(1-k/6)).toFixed(2)}"/>`;
+      g += `<ellipse cx="${x}" cy="${y(ORIGIN+d)}" rx="${rx}" ry="${rx*.8}" fill="${col}" opacity="${op.toFixed(2)}"/>`;
+      if(marks && frac === 1) g += `<ellipse cx="${x}" cy="${y(ORIGIN+d)}" rx="${rx+1}" ry="${rx*.8+1}" fill="none" stroke="#6B716E" stroke-width=".25" stroke-dasharray=".8 .6"/>`;
+    });
+  });
+  if(marks && frac === 1) g += `<line x1="${x0+1}" y1="${y(ORIGIN+p.mFront)}" x2="${x0+W-1}" y2="${y(ORIGIN+p.mFront)}" stroke="#6B716E" stroke-width=".35" stroke-dasharray="1.5 .8"/>`;
+  return g;
+}
+function benchSVG(p, frac){
+  const n = p ? p.lanes.length : INV[S.inv].lanes.length, W = plateW(n), x0 = 80 - W/2, yb = 142;
+  const depth = p ? p.depth : S.set.depth, lid = p ? p.lid : S.set.lid;
+  const ghost = p || { lanes:INV[S.inv].lanes.map(k=>({k,spots:[]})), vis:0, tilt:0, pen:S.set.pen, flooded:false };
+  const tint = p && p.flooded && frac > .2 ? '#E9C7A0' : '#CFE6EF';
+  let s = `<rect x="0" y="143" width="160" height="7" fill="#C9B79A"/><rect x="0" y="143" width="160" height="1" fill="#A89270"/>`;
+  s += `<rect x="46" y="40" width="68" height="103" rx="3" fill="#EEF5F7" opacity=".55" stroke="#9FB8C2" stroke-width=".8"/>`;
+  s += `<rect x="46.6" y="${142-depth}" width="66.8" height="${depth}" fill="${tint}" opacity=".95"/>`;
+  s += plateGroup(ghost, x0, yb, frac, frac === 1);
+  s += `<rect x="46.6" y="${142-depth}" width="66.8" height="${depth}" fill="${tint}" opacity=".45"/>`;
+  s += `<text x="118" y="141" font-size="3.6" fill="#5B6B64" font-family="Inter,sans-serif">mobile phase</text>`;
+  s += `<text x="118" y="${142-ORIGIN+1}" font-size="3.6" fill="#5B6B64" font-family="Inter,sans-serif">origin (1 cm)</text>`;
+  s += `<line x1="${x0+W}" y1="${142-ORIGIN}" x2="117" y2="${142-ORIGIN}" stroke="#9AAEA5" stroke-width=".3" stroke-dasharray="1 1"/>`;
+  if(lid) s += `<rect x="40" y="24" width="80" height="119" rx="5" fill="#9FB8C2" opacity=".14" stroke="#7F98A3" stroke-width=".8"/><text x="80" y="30" text-anchor="middle" font-size="3.6" fill="#56635D" font-family="Inter,sans-serif">upturned 800 mL beaker (lid)</text>`;
+  s += `<text x="3" y="12" font-size="4.2" fill="#56635D" font-family="Inter,sans-serif">${S.inv === 'id' ? 'Mobile phase: acetone:water 9:1' : 'Mobile phase: hexane:acetone, ' + (p ? p.pct : S.set.pct) + '% acetone'}</text>`;
+  s += `<text x="3" y="18" font-size="3.6" fill="#5B6B64" font-family="Inter,sans-serif">Stationary phase: silica (polar)</text>`;
+  return s;
+}
+function viewerSVG(p){
+  const n = p.lanes.length, W = plateW(n), x0 = 16, yb = 108;
+  let s = `<svg viewBox="0 0 ${x0 + W + 6} 114" role="img" aria-label="Developed TLC plate beside a millimetre ruler">`;
+  s += plateGroup(p, x0, yb, 1, true);
+  // ruler: 0 at origin
+  s += `<rect x="3" y="${yb-PH}" width="10" height="${PH}" fill="#F3E7B8" stroke="#C9B36A" stroke-width=".3"/>`;
+  for(let mm=0; mm<=MAXD; mm++){
+    const yy = yb - ORIGIN - mm, len = mm%10===0 ? 4 : mm%5===0 ? 2.8 : 1.6;
+    s += `<line x1="${13-len}" y1="${yy}" x2="13" y2="${yy}" stroke="#5C4B12" stroke-width="${mm%10===0?.3:.15}"/>`;
+    if(mm%10===0) s += `<text x="${12.6-len}" y="${yy+1.1}" text-anchor="end" font-size="2.6" fill="#5C4B12" font-family="JetBrains Mono,monospace">${mm}</text>`;
+  }
+  s += `<text x="8" y="${yb+4}" text-anchor="middle" font-size="2.4" fill="#6B716E" font-family="Inter,sans-serif">mm</text>`;
+  return s + '</svg>';
+}
+
+// ---------------- figures (step 1) ----------------
+function figs(){
+  const demo = makePlate({inv:'id', pct:30, spots:5, pen:false, depth:5, lid:true, stop:'near', mark:true}, ['bc','c','s']);
+  demo.tilt = 0; demo.lanes.forEach(l=>l.spots.forEach(s=>{ s.d = RF_ID[s.cid]*80; }));
+  const f1 = `<svg viewBox="0 0 160 150" role="img" aria-label="Set-up: plate standing in solvent inside a covered beaker">${benchSVG(null,0)}</svg>`;
+  const f2 = `<svg viewBox="0 0 70 114" role="img" aria-label="A developed plate">${plateGroup(demo, 12, 108, 1, true)}<text x="2" y="6" font-size="3.2" fill="#56635D" font-family="Inter,sans-serif">solvent front</text></svg>`;
+  const f3 = `<svg viewBox="0 0 120 90" role="img" aria-label="How to calculate Rf"><rect width="120" height="90" fill="#fff"/><rect x="14" y="8" width="24" height="76" fill="#FBFBF7" stroke="#B9C2BD" stroke-width=".5"/><line x1="16" y1="74" x2="36" y2="74" stroke="#7A7F7C" stroke-width=".5"/><line x1="16" y1="16" x2="36" y2="16" stroke="#6B716E" stroke-width=".5" stroke-dasharray="2 1"/><ellipse cx="26" cy="38" rx="3" ry="2.4" fill="#F08A1C"/><path d="M44 74 V16" stroke="#2563C9" stroke-width="1"/><path d="M42 18 L44 14 L46 18" fill="#2563C9"/><text x="48" y="30" font-size="5" fill="#2563C9" font-family="Inter,sans-serif">solvent front: 58 mm</text><path d="M8 74 V38" stroke="#C2600F" stroke-width="1"/><path d="M6 40 L8 36 L10 40" fill="#C2600F"/><text x="48" y="48" font-size="5" fill="#C2600F" font-family="Inter,sans-serif">spot: 36 mm</text><text x="48" y="64" font-size="5.4" fill="#16231E" font-family="Inter,sans-serif">Rf = 36 ÷ 58 = 0.62</text></svg>`;
+  const f4 = `<svg viewBox="0 0 120 90" role="img" aria-label="Polar compounds stick to silica, non-polar compounds travel with the solvent"><rect width="120" height="90" fill="#fff"/><rect x="0" y="62" width="120" height="28" fill="#E7E1D3"/><g fill="#C9BFA8">${Array.from({length:12},(_,i)=>`<circle cx="${6+i*10}" cy="70" r="4"/>`).join('')}</g><text x="4" y="86" font-size="4.6" fill="#5C4B12" font-family="Inter,sans-serif">polar silica (stationary phase)</text><circle cx="30" cy="61" r="4" fill="#2F8F74"/><text x="16" y="52" font-size="4.4" fill="#2F8F74" font-family="Inter,sans-serif">polar: held back</text><circle cx="86" cy="26" r="4" fill="#F08A1C"/><path d="M70 36 h30" stroke="#2563C9" stroke-width="1"/><path d="M100 33 l4 3 -4 3" fill="#2563C9"/><text x="58" y="16" font-size="4.4" fill="#C2600F" font-family="Inter,sans-serif">non-polar: carried up</text><text x="62" y="46" font-size="4.2" fill="#2563C9" font-family="Inter,sans-serif">mobile phase flow</text></svg>`;
+  const items = [[f1,'The set-up. The origin sits above the solvent, and an upturned beaker stops the solvent evaporating.'],[f2,'A developed plate. Each compound has moved its own distance; the solvent front is marked in pencil.'],[f3,'R<sub>f</sub> = distance moved by the spot ÷ distance moved by the solvent front, both from the origin.'],[f4,'Why compounds separate: polar molecules are attracted to the silica; non-polar molecules stay dissolved in the mobile phase.']];
+  $('figs').innerHTML = items.map((f,i)=>`<figure tabindex="0" data-fig="${i}">${f[0].replace('<svg','<svg style="width:100%;aspect-ratio:4/3;border-radius:12px;display:block;background:var(--wall)"')}<figcaption>${f[1]}</figcaption></figure>`).join('');
+  $('figs').querySelectorAll('figure').forEach(fg => { const open = () => { const z = $('zoom'); z.innerHTML = `<div class="box">${fg.querySelector('svg').outerHTML}<p>${fg.querySelector('figcaption').innerHTML}</p></div>`; z.hidden = false; }; fg.onclick = open; fg.onkeydown = e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); } }; });
+  $('zoom').onclick = () => { $('zoom').hidden = true; };
+}
+
+// ---------------- step 1: investigation ----------------
+function renderInv(){
+  $('invCards').innerHTML = Object.keys(INV).map(k => `<button aria-pressed="${S.inv===k}" data-inv="${k}"><b>${INV[k].title}</b><span>${INV[k].blurb}</span></button>`).join('');
+  $('invCards').querySelectorAll('button').forEach(b => b.onclick = () => { const k = b.dataset.inv; if(k === S.inv) return; if(S.plates.length || S.hyp){ pendingInv = k; $('invConfirm').classList.add('show'); } else setInv(k); });
+  const I = INV[S.inv];
+  $('roles').innerHTML = `<div><span class="pill iv">IV</span><span>You change: ${I.iv}</span></div><div><span class="pill dv">DV</span><span>You measure: ${I.dv}</span></div><div><span class="pill cv">CV</span><span>You keep the same: ${I.cv}</span></div>`;
+}
+function setInv(k){ S.inv = k; S.plates = []; S.hyp = null; S.hand = null; S.concl = ''; S.concl2 = ''; S.sent = false; last = null; $('invConfirm').classList.remove('show'); save(); renderAll(); status('New investigation: ' + INV[k].short + '.'); }
+$('invYes').onclick = () => { if(pendingInv) setInv(pendingInv); pendingInv = null; };
+$('invNo').onclick = () => { pendingInv = null; $('invConfirm').classList.remove('show'); };
+
+// ---------------- step 2: hypothesis ----------------
+const HA = { dv:['the same R<sub>f</sub> as','a higher R<sub>f</sub> than','a lower R<sub>f</sub> than'],
+  why:['the same compound is attracted to the stationary phase and dissolves in the mobile phase to the same extent under the same conditions','heavier molecules always travel further up the plate','the colour of a compound decides how far it travels'] };
+const HB = { dir:['increase','decrease','stay the same'],
+  why:['a more polar mobile phase competes more strongly with the polar silica for the polar chlorophyll molecules','chlorophyll becomes less polar when acetone is added','acetone evaporates faster than hexane'] };
+const VEG = [['c','carrot'],['sp','sweet potato'],['s','spinach'],['o','onion']];
+function hypText(h){
+  if(!h) return '';
+  if(h.inv === 'id'){
+    const names = VEG.filter(v => h.veg.includes(v[0])).map(v => v[1]);
+    const list = names.length > 1 ? names.slice(0,-1).join(', ') + ' and ' + names[names.length-1] : names[0];
+    if(!names.length) return 'If none of the vegetables contain β-carotene, then none of their extracts will produce a spot with ' + HA.dv[h.dv].replace(/<[^>]+>/g,'') + ' the β-carotene standard, because ' + HA.why[h.why] + '.';
+    return `If ${list} contain${names.length===1?'s':''} β-carotene, then ${names.length===1?'its extract':'each of their extracts'} will produce a spot with ${HA.dv[h.dv].replace(/<[^>]+>/g,'')} the β-carotene standard, because ${HA.why[h.why]}.`;
+  }
+  return `If the percentage of acetone in the mobile phase increases, then the Rf of chlorophyll a will ${HB.dir[h.dir]}, because ${HB.why[h.why]}.`;
+}
+function renderHyp(){
+  const h = S.hyp && S.hyp.inv === S.inv ? S.hyp : null;
+  let html = '<h3>Build your hypothesis</h3><p class="hint" style="margin:4px 0 10px">A good hypothesis names the independent variable, the dependent variable, a prediction and a chemical reason.</p><div class="hyp">';
+  if(S.inv === 'id'){
+    html += `<span class="k">If</span> <span class="chips" id="hVeg">${VEG.map(v=>`<label><input type="checkbox" value="${v[0]}" ${h && h.veg.includes(v[0]) ? 'checked' : ''}>${v[1]}</label>`).join('')}</span> contain β-carotene, <span class="k">then</span> their extracts will produce a spot with <select id="hDv"><option value="">choose…</option>${HA.dv.map((t,i)=>`<option value="${i}" ${h&&h.dv===i?'selected':''}>${t.replace(/<[^>]+>/g,'')}</option>`).join('')}</select> the β-carotene standard, <span class="k">because</span> <select id="hWhy"><option value="">choose a reason…</option>${HA.why.map((t,i)=>`<option value="${i}" ${h&&h.why===i?'selected':''}>${t}</option>`).join('')}</select>.`;
+  } else {
+    html += `<span class="k">If</span> the percentage of acetone in the mobile phase increases, <span class="k">then</span> the R<sub>f</sub> of chlorophyll a will <select id="hDir"><option value="">choose…</option>${HB.dir.map((t,i)=>`<option value="${i}" ${h&&h.dir===i?'selected':''}>${t}</option>`).join('')}</select>, <span class="k">because</span> <select id="hWhy"><option value="">choose a reason…</option>${HB.why.map((t,i)=>`<option value="${i}" ${h&&h.why===i?'selected':''}>${t}</option>`).join('')}</select>.`;
+  }
+  html += '</div><div class="row" style="margin-top:12px"><button class="primary" id="hCheck">Check my hypothesis</button></div><div id="hFb" style="margin-top:12px"></div>';
+  $('hypBox').innerHTML = html;
+  $('hCheck').onclick = checkHyp;
+  if(h) showHypFb(h);
+}
+function checkHyp(){
+  const why = $('hWhy').value;
+  if(S.inv === 'id'){
+    const dv = $('hDv').value, veg = [...$('hVeg').querySelectorAll('input:checked')].map(i=>i.value);
+    if(dv === '' || why === ''){ $('hFb').innerHTML = '<div class="fb bad">Choose an option in each box to complete the hypothesis.</div>'; return; }
+    S.hyp = {inv:'id', veg, dv:+dv, why:+why};
+  } else {
+    const dir = $('hDir').value;
+    if(dir === '' || why === ''){ $('hFb').innerHTML = '<div class="fb bad">Choose a direction and a reason to complete the hypothesis.</div>'; return; }
+    S.hyp = {inv:'pol', dir:+dir, why:+why};
+  }
+  S.hyp.text = hypText(S.hyp); save(); showHypFb(S.hyp); renderProgress(); updateNext();
+}
+function showHypFb(h){
+  const lines = [];
+  let ok = true;
+  if(h.inv === 'id'){
+    if(h.dv === 0) lines.push('<b>✓ Dependent variable:</b> you will compare R<sub>f</sub> values with the standard. Same compound, same conditions, same R<sub>f</sub>.');
+    else { ok = false; lines.push('<b>✗ Dependent variable:</b> think about it. If a vegetable contains β-carotene, where should its β-carotene spot be compared with the pure standard?'); }
+    lines.push(`<b>Prediction:</b> you predict β-carotene in ${h.veg.length ? VEG.filter(v=>h.veg.includes(v[0])).map(v=>v[1]).join(', ') : 'none of the vegetables'}. Step 3 will test this.`);
+  } else {
+    if(h.dir === 0) lines.push('<b>✓ Prediction:</b> this is what the chemistry suggests.');
+    else { ok = false; lines.push('<b>✗ Prediction:</b> this is not what the chemistry suggests. Silica is polar. Which mobile phase would pull polar chlorophyll off the silica more easily? You can change it, or keep it and test it in Step 3.'); }
+  }
+  if(h.why === 0) lines.push('<b>✓ Reason:</b> this explains the result using polarity and the two phases.');
+  else { ok = false; lines.push('<b>✗ Reason:</b> this is not why spots move. Think about attraction to the stationary phase and solubility in the mobile phase.'); }
+  const top = ok ? '<b>Strong hypothesis.</b> It is testable, names the variables, makes a prediction and gives a chemical reason.' : 'You can change the part marked ✗ and check again, or press Next to test your hypothesis as it is.';
+  $('hFb').innerHTML = `<div class="fb ${ok?'ok':'info'}" style="display:grid;gap:8px"><span>${top}</span>${lines.map(l=>`<span>${l}</span>`).join('')}<span><b>Your hypothesis:</b> ${esc(h.text)}</span></div>`;
+}
+
+// ---------------- step 3: variables panel ----------------
+function seg(id, opts, val){ return `<div class="seg" id="${id}">${opts.map(o=>`<button aria-pressed="${String(o[0])===String(val)}" data-v="${o[0]}">${o[1]}</button>`).join('')}</div>`; }
+function renderVars(){
+  const st = S.set, pol = S.inv === 'pol';
+  let h = '<span class="group-label">Independent variable</span>';
+  if(pol) h += `<div class="var isiv"><div class="top"><span class="name">Acetone in the mobile phase</span><span class="val" id="pctV">${st.pct}%</span></div><input type="range" id="pct" min="0" max="60" step="10" value="${st.pct}" aria-label="Percentage acetone"><span class="hint">Hexane is non-polar; acetone is more polar. Test at least five mixtures.</span></div>`;
+  else h += `<div class="var isiv"><div class="top"><span class="name">Sample in each lane</span><span class="val">BC · C · SP · S · O</span></div><span class="hint">β-carotene standard, carrot, sweet potato, spinach and onion extracts are already loaded.</span></div>`;
+  h += '<span class="group-label">Your technique (keep it the same for every plate)</span>';
+  h += `<div class="var"><div class="top"><span class="name">Times each sample is spotted</span><span class="val" id="spotsV">${st.spots}×</span></div><input type="range" id="spots" min="1" max="8" step="1" value="${st.spots}" aria-label="Times spotted"><span class="hint">Let the spot dry between each application.</span></div>`;
+  h += `<div class="var"><div class="name">Draw the origin line with</div>${seg('pen',[[false,'Pencil'],[true,'Ballpoint pen']],st.pen)}</div>`;
+  h += `<div class="var"><div class="name">Depth of solvent in the beaker</div>${seg('depth',[[5,'0.5 cm'],[15,'1.5 cm']],st.depth)}<span class="hint">The origin line is 1.0 cm above the bottom of the plate.</span></div>`;
+  h += `<div class="var"><div class="toggle"><span class="name">Upturned beaker over the chamber (lid)</span><label class="switch"><input type="checkbox" id="lid" ${st.lid?'checked':''} aria-label="Lid"><span></span></label></div></div>`;
+  h += `<div class="var"><div class="name">Remove the plate when the solvent front is</div>${seg('stop',[['half','Halfway up'],['near','1 cm from the top'],['top','At the very top']],st.stop)}</div>`;
+  h += `<div class="var"><div class="toggle"><span class="name">Mark the solvent front as soon as the plate comes out</span><label class="switch"><input type="checkbox" id="mark" ${st.mark?'checked':''} aria-label="Mark front immediately"><span></span></label></div></div>`;
+  $('vars').innerHTML = h;
+  const bindSeg = (id, key, cast) => $(id).querySelectorAll('button').forEach(b => b.onclick = () => { if(running) return; S.set[key] = cast(b.dataset.v); renderVars(); changed(); });
+  bindSeg('pen','pen', v => v === 'true'); bindSeg('depth','depth', v => +v); bindSeg('stop','stop', v => v);
+  $('spots').oninput = e => { S.set.spots = +e.target.value; $('spotsV').textContent = S.set.spots + '×'; changed(); };
+  $('lid').onchange = e => { S.set.lid = e.target.checked; changed(); status(S.set.lid ? 'Lid on: the chamber stays saturated with solvent vapour.' : 'Lid off: watch what happens to the solvent front.'); };
+  $('mark').onchange = e => { S.set.mark = e.target.checked; changed(); };
+  if(pol) $('pct').oninput = e => { S.set.pct = +e.target.value; $('pctV').textContent = S.set.pct + '%'; changed(); };
+}
+function status(t){ $('status').innerHTML = t; }
+function drawBench(){
+  $('bench').innerHTML = benchSVG(last, last ? 1 : 0);
+  $('roPlate').textContent = S.plates.length;
+  $('roFront').textContent = last ? last.mFront.toFixed(1) : '0.0';
+  $('roMix').textContent = S.inv === 'id' ? '9:1' : (last ? last.pct : S.set.pct) + '%';
+  $('roMixL').textContent = S.inv === 'id' ? 'acetone:water' : 'acetone';
+}
+function changed(){ last = null; save(); drawBench(); renderFair(); }
+// ---------------- running plates ----------------
+function cfgNow(){ return { inv:S.inv, pct:S.inv==='pol' ? S.set.pct : 0, spots:S.set.spots, pen:S.set.pen, depth:S.set.depth, lid:S.set.lid, stop:S.set.stop, mark:S.set.mark }; }
+function animate(p, ms){
+  return new Promise(res => {
+    const t0 = performance.now(), reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const tick = now => {
+      const f = reduce ? 1 : clamp((now - t0)/ms, 0, 1);
+      $('bench').innerHTML = benchSVG(p, f);
+      $('roFront').textContent = (p.vis*f).toFixed(1);
+      if(f < 1) requestAnimationFrame(tick); else res();
+    };
+    requestAnimationFrame(tick);
+  });
+}
+async function run(n){
+  if(running) return;
+  const c = cfgNow();
+  if(S.inv === 'id' && S.plates.length >= 3 && n === 3){ S.plates = []; }
+  if(S.inv === 'pol' && n === 3) S.plates = S.plates.filter(p => p.pct !== c.pct);
+  if(S.inv === 'id' && S.plates.length >= 3){ status('You already have three plates. Press <b>Run 3 plates</b> to start a fresh set, or <b>Clear results</b>.'); return; }
+  if(S.inv === 'pol' && S.plates.filter(p=>p.pct===c.pct).length >= 3){ status(`You already have three plates at ${c.pct}% acetone. Choose another mixture, or press <b>Run 3 plates</b> to redo this one.`); return; }
+  running = true; ['run1','run3','clear'].forEach(id => $(id).disabled = true); updateNext();
+  const todo = S.inv === 'id' ? Math.min(n, 3 - S.plates.length) : Math.min(n, 3 - S.plates.filter(p=>p.pct===c.pct).length);
+  for(let i=0;i<todo;i++){
+    const p = makePlate(c, INV[S.inv].lanes); last = p;
+    status(`Developing plate ${i+1} of ${todo}… the solvent is soaking up the silica.`);
+    await animate(p, todo > 1 ? 1300 : 2400);
+    $('roFront').textContent = p.mFront.toFixed(1);
+    S.plates.push(p); $('roPlate').textContent = S.plates.length;
+  }
+  running = false; ['run1','run3','clear'].forEach(id => $(id).disabled = false);
+  save(); drawBench(); afterRun();
+}
+function afterRun(){
+  const p = last, iss = p ? p.issues : [];
+  if(p && p.flooded) status('No spots moved up the plate. Look at the solvent level compared with the origin line.');
+  else if(iss.length) status('Plate done. Something in your technique affected this plate: check the yellow notes under Results.');
+  else status(S.inv === 'id' ? `Plate done. ${S.plates.length < 3 ? 'Run ' + (3 - S.plates.length) + ' more for three plates.' : 'You have three plates. Now calculate one R<sub>f</sub> value yourself below.'}` : `Plate done at ${p.pct}% acetone. Test at least five mixtures with three plates each.`);
+  renderResults(); renderViewer(); renderProgress(); updateNext();
+}
+$('run1').onclick = () => run(1);
+$('run3').onclick = () => run(3);
+$('clear').onclick = () => { if(running) return; S.plates = []; S.hand = null; last = null; save(); drawBench(); renderResults(); renderViewer(); renderProgress(); updateNext(); status('Results cleared.'); };
+
+// ---------------- results ----------------
+function spotStats(plates, laneKey){
+  const by = {};
+  plates.forEach((p,pi) => { const l = p.lanes.find(x=>x.k===laneKey); if(!l) return; l.spots.forEach(s => { (by[s.cid] = by[s.cid] || {cid:s.cid, v:[]}).v[pi] = s.rf; }); });
+  return Object.values(by).map(o => ({...o, mean: mean(o.v.filter(x=>x!==undefined)) })).sort((a,b)=>b.mean-a.mean);
+}
+function stdMean(plates){ const s = spotStats(plates,'bc').find(o=>o.cid==='bc') || spotStats(plates,'bc')[0]; return s ? s.mean : null; }
+function rowsPol(){
+  const pcts = [...new Set(S.plates.map(p=>p.pct))].sort((a,b)=>a-b);
+  return pcts.map(pct => {
+    const ps = S.plates.filter(p=>p.pct===pct);
+    const chl = ps.map(p => { const s = p.lanes.find(l=>l.k==='s').spots.find(x=>x.cid==='chla'); return s ? s.rf : null; });
+    const bcs = ps.map(p => { const s = p.lanes.find(l=>l.k==='bc').spots.find(x=>x.cid==='bc'); return s ? s.rf : null; });
+    const okc = chl.filter(x=>x!==null), okb = bcs.filter(x=>x!==null);
+    return { pct, n:ps.length, chl, m: okc.length ? mean(okc) : null, bc: okb.length ? mean(okb) : null };
+  });
+}
+function stats(){
+  const keys = [...new Set(S.plates.map(p=>condKey(p)))];
+  const issues = [...new Set(S.plates.flatMap(p=>p.issues))];
+  const sameTech = keys.length <= 1;
+  let full = false, nVals = 0;
+  if(S.inv === 'id') full = S.plates.length >= 3;
+  else { const rows = rowsPol(); nVals = rows.filter(r=>r.n===3).length; full = nVals >= 5; }
+  const fair = S.plates.length > 0 && sameTech && !issues.length;
+  return { keys, issues, sameTech, full, nVals, fair };
+}
+function renderFair(){
+  const st = stats(), now = plateIssues(cfgNow());
+  let h = '';
+  st.issues.forEach(i => h += `<div class="flag bad">⚠ ${ISSUE_TXT[i]}</div>`);
+  if(!st.sameTech) h += `<div class="flag bad">⚠ Your technique changed between plates, so this is not a fair test. Clear your results and keep the technique the same.</div>`;
+  if(S.plates.some(p=>p.stop==='half')) h += `<div class="caution">ℹ Removing the plate halfway makes every distance shorter, so the ±0.5 mm reading uncertainty is a bigger percentage of each measurement.</div>`;
+  if(!S.plates.length && now.length) h += `<div class="caution">ℹ Your current set-up may cause a problem. Run a plate and see.</div>`;
+  if(S.plates.length && st.fair) h += `<div class="flag good">✓ Fair test: good technique, kept the same on every plate.</div>`;
+  $('fair').innerHTML = h;
+}
+function renderResults(){
+  renderFair();
+  if(!S.plates.length){ $('table').innerHTML = `<div class="empty">No results yet. Press <b>Run 3 plates</b>: you need three plates so you can calculate a mean R<sub>f</sub> for each spot.</div>`; $('graph').innerHTML = ''; renderVerdict(); return; }
+  if(S.inv === 'id'){
+    const sm = stdMean(S.plates);
+    let t = '<table><thead><tr><th class="ivh">Sample</th><th>Spot colour</th>' + [0,1,2].map(i=>`<th class="dvh">R<sub>f</sub> plate ${i+1}</th>`).join('') + '<th class="dvh">Mean R<sub>f</sub></th><th>Same R<sub>f</sub> as standard?</th></tr></thead><tbody>';
+    INV.id.lanes.forEach(k => {
+      const sp = spotStats(S.plates, k);
+      if(!sp.length){ t += `<tr><td>${SAMPLES[k].n}</td><td colspan="6" class="note" style="color:var(--muted)">no visible spots</td></tr>`; return; }
+      sp.forEach((o,j) => {
+        const match = k !== 'bc' && sm !== null && Math.abs(o.mean - sm) <= .03;
+        t += `<tr>${j===0?`<td rowspan="${sp.length}">${SAMPLES[k].n}</td>`:''}<td style="text-align:left"><span class="swatch" style="background:${CMP[o.cid].c}"></span>${CMP[o.cid].cn}</td>${[0,1,2].map(i=>`<td>${o.v[i]!==undefined ? r2(o.v[i]) : '–'}</td>`).join('')}<td class="mean">${r2(o.mean)}</td><td>${k==='bc' ? 'standard' : match ? '<span class="yes">Yes</span>' : '<span class="no">No</span>'}</td></tr>`;
+      });
+    });
+    $('table').innerHTML = t + '</tbody></table>';
+    $('graph').innerHTML = dotPlot(sm);
+  } else {
+    const rows = rowsPol();
+    let t = '<table><thead><tr><th class="ivh">Acetone (%)</th>' + [0,1,2].map(i=>`<th class="dvh">Chl a R<sub>f</sub> ${i+1}</th>`).join('') + '<th class="dvh">Mean</th><th>β-carotene mean</th></tr></thead><tbody>';
+    rows.forEach(r => { t += `<tr><td>${r.pct}</td>${[0,1,2].map(i=>`<td>${r.chl[i]===undefined ? '–' : r.chl[i]===null ? 'none' : r2(r.chl[i])}</td>`).join('')}<td class="mean">${r.m===null?'–':r2(r.m)}</td><td>${r.bc===null?'–':r2(r.bc)}</td></tr>`; });
+    $('table').innerHTML = t + '</tbody></table>';
+    $('graph').innerHTML = lineGraph(rows);
+  }
+  renderVerdict();
+}
+function dotPlot(sm){
+  const lanes = INV.id.lanes, W = 520, H = 60 + lanes.length*40, L = 120, R = 20, x = v => L + v*(W-L-R);
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Graph of results" style="width:100%;height:auto">`;
+  for(let v=0; v<=1.0001; v+=.2){ s += `<line class="grid" x1="${x(v)}" x2="${x(v)}" y1="20" y2="${H-36}"/><text x="${x(v)}" y="${H-20}" text-anchor="middle">${v.toFixed(1)}</text>`; }
+  s += `<text x="${(L+W-R)/2}" y="${H-4}" text-anchor="middle">Mean Rf</text>`;
+  if(sm !== null) s += `<line x1="${x(sm)}" x2="${x(sm)}" y1="16" y2="${H-36}" stroke="${CMP.bc.c}" stroke-width="2" stroke-dasharray="5 4"/><text x="${x(sm)}" y="12" text-anchor="middle">standard ${r2(sm)}</text>`;
+  lanes.forEach((k,i) => { const yy = 40 + i*40; s += `<text x="${L-10}" y="${yy+4}" text-anchor="end">${SAMPLES[k].n.replace(' standard','')}</text><line class="grid" x1="${L}" x2="${W-R}" y1="${yy}" y2="${yy}"/>`;
+    spotStats(S.plates,k).forEach(o => { s += `<circle cx="${x(o.mean)}" cy="${yy}" r="7" fill="${CMP[o.cid].c}" stroke="#fff" stroke-width="1.5"/>`; }); });
+  return s + '</svg>';
+}
+function lineGraph(rows){
+  const W = 520, H = 320, L = 52, R = 18, T = 18, B = 46, x = v => L + v/60*(W-L-R), y = v => T + (1-v)*(H-T-B);
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Graph of results" style="width:100%;height:auto">`;
+  for(let v=0; v<=1.0001; v+=.2) s += `<line class="grid" x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L-8}" y="${y(v)+4}" text-anchor="end">${v.toFixed(1)}</text>`;
+  for(let p=0; p<=60; p+=10) s += `<text x="${x(p)}" y="${H-B+18}" text-anchor="middle">${p}</text>`;
+  s += `<line class="axis" x1="${L}" x2="${W-R}" y1="${y(0)}" y2="${y(0)}"/><line class="axis" x1="${L}" x2="${L}" y1="${T}" y2="${y(0)}"/>`;
+  s += `<text x="${(L+W-R)/2}" y="${H-6}" text-anchor="middle">Acetone in mobile phase (%)</text><text transform="translate(14 ${(T+H-B)/2}) rotate(-90)" text-anchor="middle">Mean Rf</text>`;
+  const pts = (key, col) => { const ok = rows.filter(r=>r[key]!==null); if(!ok.length) return '';
+    let g = `<polyline fill="none" stroke="${col}" stroke-width="2.5" points="${ok.map(r=>x(r.pct)+','+y(r[key])).join(' ')}"/>`;
+    ok.forEach(r => { if(key==='m'){ const v = r.chl.filter(z=>z!==null&&z!==undefined); if(v.length>1) g += `<line x1="${x(r.pct)}" x2="${x(r.pct)}" y1="${y(Math.max(...v))}" y2="${y(Math.min(...v))}" stroke="${col}" stroke-width="1.5"/>`; } g += `<circle cx="${x(r.pct)}" cy="${y(r[key])}" r="5" fill="${col}"/>`; });
+    return g; };
+  s += pts('bc', CMP.bc.c) + pts('m', CMP.chla.c);
+  s += `<circle cx="${W-170}" cy="${T+8}" r="5" fill="${CMP.chla.c}"/><text x="${W-160}" y="${T+12}">chlorophyll a (DV)</text><circle cx="${W-170}" cy="${T+26}" r="5" fill="${CMP.bc.c}"/><text x="${W-160}" y="${T+30}">β-carotene</text>`;
+  return s + '</svg>';
+}
+function observedVeg(){ const sm = stdMean(S.plates); if(sm === null) return null; return VEG.map(v=>v[0]).filter(k => spotStats(S.plates,k).some(o => Math.abs(o.mean - sm) <= .03)); }
+function verdict(){
+  const h = S.hyp && S.hyp.inv === S.inv ? S.hyp : null, st = stats();
+  if(!h || !st.full) return null;
+  if(S.inv === 'id'){ const ob = observedVeg(); if(!ob) return null; const same = ob.length === h.veg.length && ob.every(k=>h.veg.includes(k)); return { sup: same && h.dv === 0, ob }; }
+  const rows = rowsPol().filter(r=>r.m!==null); if(rows.length < 3) return null;
+  const diff = rows[rows.length-1].m - rows[0].m, dir = diff > .1 ? 0 : diff < -.1 ? 1 : 2;
+  return { sup: dir === h.dir, dir };
+}
+function renderVerdict(){
+  const v = verdict(), h = S.hyp;
+  if(!h || h.inv !== S.inv){ $('verdict').innerHTML = '<div class="fb info">Write your hypothesis in Step 2, then come back to see whether your results support it.</div>'; return; }
+  if(!v){ $('verdict').innerHTML = `<div class="fb info">${S.inv==='id' ? 'Run three plates (with a visible standard spot)' : 'Collect three plates at five or more mixtures'} to see whether your results support your hypothesis.</div>`; return; }
+  let why;
+  if(S.inv === 'id') why = `Spots matching the standard (R<sub>f</sub> within 0.03) appeared for: <b>${v.ob.length ? v.ob.map(k=>SAMPLES[k].n.toLowerCase()).join(', ') : 'no samples'}</b>. A matching R<sub>f</sub> under the same conditions is evidence for the same compound. Spinach's green chlorophyll hides its orange β-carotene from your eyes, but not from chromatography.`;
+  else why = 'Silica is polar. As more polar acetone is added, the mobile phase competes more strongly for the polar chlorophyll molecules, so they spend more time dissolved in the mobile phase and travel further. Non-polar β-carotene barely sticks to silica, so it stays near the solvent front in every mixture.';
+  $('verdict').innerHTML = `<div class="fb ${v.sup?'ok':'bad'}" style="display:grid;gap:6px"><span><b>Your results ${v.sup?'support':'do not support'}</b> your hypothesis. (Scientists say results support or do not support a hypothesis. One experiment never proves it.)</span><span><b>Why:</b> ${why}</span>${v.sup?'':'<span>That is fine: a hypothesis that is not supported is still a useful result. Explain why in your write-up.</span>'}</div>`;
+}
+
+// ---------------- measure a plate yourself ----------------
+function handTarget(){
+  if(!S.plates.length) return null;
+  let p = S.plates[0];
+  if(S.inv === 'pol'){ const pct = rowsPol()[0].pct; p = S.plates.find(x=>x.pct===pct); }
+  const lane = S.inv === 'id' ? 'bc' : 's', cid = S.inv === 'id' ? 'bc' : 'chla';
+  const s = p.lanes.find(l=>l.k===lane).spots.find(x=>x.cid===cid);
+  return { p, s, label: S.inv === 'id' ? 'the orange spot in the β-carotene standard lane (BC)' : 'the blue-green chlorophyll a spot in the spinach lane (S)' };
+}
+function renderViewer(){
+  const t = handTarget();
+  if(!t){ $('viewer').innerHTML = '<div class="empty">Your first plate appears here.</div>'; $('handCalc').innerHTML = ''; return; }
+  $('viewer').innerHTML = viewerSVG(t.p);
+  if(!t.s){ $('handCalc').innerHTML = '<div class="fb bad">There is no spot to measure on this plate. Fix your technique, clear your results and run new plates.</div>'; return; }
+  const h = S.hand;
+  $('handCalc').innerHTML = `<p>Use the ruler to read plate 1${S.inv==='pol' ? ` (${t.p.pct}% acetone)` : ''}. Measure from the origin (0 mm) to the pencil line marking the solvent front, and to the centre of ${t.label}.</p>
+   <div class="calc" style="margin-top:12px"><label><span>Solvent front (mm)</span><input id="hcF" inputmode="decimal" value="${h?h.f:''}"></label><label><span>Spot (mm)</span><input id="hcS" inputmode="decimal" value="${h?h.s:''}"></label><label><span>R<sub>f</sub> (2 decimal places)</span><input id="hcR" inputmode="decimal" value="${h?h.r:''}"></label><button class="primary" id="hcGo">Check</button></div><div id="hcFb" style="margin-top:12px">${h && h.ok ? '<div class="fb ok">✓ Correct. You read the ruler and calculated R<sub>f</sub> by hand.</div>' : ''}</div>`;
+  $('hcGo').onclick = () => {
+    const f = parseFloat($('hcF').value), sv = parseFloat($('hcS').value), r = parseFloat($('hcR').value), fb = [];
+    if([f,sv,r].some(isNaN)){ $('hcFb').innerHTML = '<div class="fb bad">Enter all three numbers.</div>'; return; }
+    const okF = Math.abs(f - t.p.mFront) <= 1.5, okS = Math.abs(sv - t.s.m) <= 1.5, okR = Math.abs(r - sv/f) <= .015 && Math.abs(r - t.s.m/t.p.mFront) <= .035;
+    if(!okF) fb.push('Check the solvent front: read where the dashed pencil line crosses the ruler.');
+    if(!okS) fb.push('Check the spot: measure to the centre of the spot, not its top or bottom edge.');
+    if(okF && okS && !okR) fb.push('Your distances are right. R<sub>f</sub> = distance moved by spot ÷ distance moved by solvent front. It has no units and is always less than 1.');
+    const ok = okF && okS && okR; S.hand = {f, s:sv, r, ok}; save();
+    $('hcFb').innerHTML = ok ? `<div class="fb ok">✓ Correct. R<sub>f</sub> = ${sv} ÷ ${f} = ${r2(sv/f)}. The lab's measurement for this spot was ${r2(t.s.rf)}.</div>` : `<div class="fb bad" style="display:grid;gap:6px">${fb.map(x=>`<span>${x}</span>`).join('')}</div>`;
+    renderProgress(); updateNext();
+  };
+}
+
+// ---------------- progress ----------------
+function concDone(){ return (S.concl||'').trim().length > 40 && (S.concl2||'').trim().length > 15; }
+function renderProgress(){
+  const st = stats();
+  const items = [['Hypothesis written', !!(S.hyp && S.hyp.inv===S.inv)], [S.inv==='id' ? 'Three plates' : `Five or more mixtures, three plates each (${st.nVals}/5)`, st.full], ['Fair test', st.fair && st.full], ['Rf calculated by hand', !!(S.hand && S.hand.ok)], ['Write-up', concDone()]];
+  const done = items.filter(i=>i[1]).length;
+  $('progress').innerHTML = items.map(i=>`<span class="chk ${i[1]?'done':''}">${i[0]}</span>`).join('');
+  $('progBar').style.width = (done/items.length*100) + '%';
+}
+
+// ---------------- step 4: report ----------------
+function methodSteps(){
+  const p = S.plates[S.plates.length-1] || cfgNow();
+  const stop = {half:'halfway up the plate', near:'about 1 cm from the top', top:'at the very top of the plate'}[p.stop];
+  const steps = [
+    `Draw an origin line 1 cm from the bottom of a silica TLC plate in ${p.pen?'ballpoint pen':'pencil'} and label a position for each sample.`,
+    S.inv==='id' ? 'Grind each vegetable with a little ground glass and hexane:acetone (1:1) to extract the pigments.' : 'Grind spinach with a little ground glass and hexane:acetone (1:1) to extract the pigments.',
+    `Spot each extract and the β-carotene standard onto the origin ${p.spots} time${p.spots>1?'s':''}, letting each spot dry in between.`,
+    S.inv==='id' ? `Stand the plate in ${p.depth/10} cm of acetone:water (9:1)${p.lid?' and cover with an upturned 800 mL beaker':''}.` : `Stand the plate in ${p.depth/10} cm of hexane:acetone mobile phase${p.lid?' and cover with an upturned 800 mL beaker':''}. Repeat with each mixture: ${[...new Set(S.plates.map(x=>x.pct))].sort((a,b)=>a-b).join(', ') || '…'} % acetone.`,
+    `Remove the plate when the solvent front is ${stop}${p.mark?' and immediately mark the front in pencil':''}. Circle each spot.`,
+    'Measure the distance from the origin to the solvent front and to the centre of each spot, and calculate R<sub>f</sub>.',
+    'Repeat with three plates and calculate the mean R<sub>f</sub> for each spot.'
+  ];
+  return steps;
+}
+function tableTSV(){
+  if(S.inv==='id'){ const lines = [['Sample','Spot colour','Rf 1','Rf 2','Rf 3','Mean Rf'].join('\t')];
+    INV.id.lanes.forEach(k => { const sp = spotStats(S.plates,k); if(!sp.length) lines.push([SAMPLES[k].n,'no spots','','','',''].join('\t')); sp.forEach(o => lines.push([SAMPLES[k].n, CMP[o.cid].cn, ...[0,1,2].map(i=>o.v[i]!==undefined?r2(o.v[i]):''), r2(o.mean)].join('\t'))); });
+    return lines.join('\n'); }
+  return [['Acetone (%)','Chl a Rf 1','Chl a Rf 2','Chl a Rf 3','Mean Rf (chl a)','Mean Rf (β-carotene)'].join('\t'), ...rowsPol().map(r=>[r.pct, ...[0,1,2].map(i=>r.chl[i]==null?'':r2(r.chl[i])), r.m===null?'':r2(r.m), r.bc===null?'':r2(r.bc)].join('\t'))].join('\n');
+}
+function aim(){ return S.inv==='id' ? 'To determine whether carrot, sweet potato, spinach and onion contain β-carotene, using thin-layer chromatography and a β-carotene standard.' : 'To investigate the effect of the percentage of acetone in a hexane:acetone mobile phase on the Rf of chlorophyll a from spinach.'; }
+const MODEL = {
+  id:['The β-carotene standard gave one orange spot with a mean Rf of 0.63. Carrot and sweet potato each gave a single orange spot with a mean Rf of 0.63, and spinach gave an orange spot at 0.63 as well as blue-green (0.45), olive-green (0.36) and yellow (0.30) spots. Onion gave no spots. These results support my hypothesis for carrot, sweet potato and spinach. Under the same conditions, a compound always has the same balance of attraction to the polar silica and solubility in the mobile phase, so a spot with the same Rf as the standard is evidence for β-carotene. The lower spots in spinach are more polar pigments that are held more strongly by the silica. A limitation is that two different compounds can have the same Rf in one solvent, so a matching Rf is not proof. Running the plates again in a second mobile phase would give stronger evidence.',
+       'Carrot, sweet potato and spinach contain β-carotene, because each produced a spot with the same Rf (0.63) as the β-carotene standard. Onion does not contain a detectable amount.'],
+  pol:['As the percentage of acetone increased from 0% to 60%, the mean Rf of chlorophyll a increased from 0.04 to 0.82. It rose steeply up to 30% acetone (0.66) and then levelled off. β-carotene stayed near the solvent front (Rf 0.90 to 0.97) in every mixture. This supports my hypothesis. Silica is polar and acetone is more polar than hexane, so a more polar mobile phase competes more strongly with the silica for the polar chlorophyll molecules. They spend more time dissolved in the mobile phase and travel further. Non-polar β-carotene is barely attracted to silica, so it moves with the front in every mixture. A limitation is that large spots make the centre hard to judge; applying smaller spots would make the distances more precise.',
+       'Increasing the polarity of the mobile phase increased the Rf of chlorophyll a, up to about 30% acetone, after which the Rf changed little.']
+};
+function reportText(){
+  return ['TLC Virtual Lab report','',`Aim: ${aim()}`,'',`Hypothesis: ${S.hyp && S.hyp.inv===S.inv ? S.hyp.text : '(not written yet)'}`,'','Method:',...methodSteps().map((m,i)=>`${i+1}. ${m.replace(/<[^>]+>/g,'')}`),'','Results:',tableTSV(),'','Discussion:',(S.concl||'').trim()||'(not written yet)','','Conclusion:',(S.concl2||'').trim()||'(not written yet)'].join('\n');
+}
+const CRIT = [{k:'trend',l:'Describes the results'},{k:'data',l:'Quotes Rf values'},{k:'hyp',l:'Links to hypothesis'},{k:'chem',l:'Explains with polarity'},{k:'eval',l:'Limitation and improvement'},{k:'concl',l:'Conclusion answers the aim'}];
+function quickCheck(s){
+  const cc = s.cc || '', co = s.co || '';
+  return {
+    trend: s.inv==='id' ? /(carrot|sweet potato|spinach|onion)/i.test(cc) : /(increas|decreas|rose|rise|fell|level|plateau|higher|lower)/i.test(cc),
+    data: /(^|[^\d])0?\.\d{1,2}\b/.test(cc),
+    hyp: /support/i.test(cc + ' ' + co),
+    chem: /(polar|stationary|mobile phase|adsor|attract|solub|dissolv)/i.test(cc),
+    eval: /(limitation|error|uncertain|difficult|hard to|faint|streak|inaccura|not proof|cannot be sure|could be)/i.test(cc) && /(improv|next time|instead|repeat|would|better|second)/i.test(cc),
+    concl: co.trim().length >= 30 && /(carotene|rf|polar|acetone|chlorophyll)/i.test(co)
+  };
+}
+function autoFeedback(c, total){
+  const tips = { trend:'describe what you found (which samples matched the standard, or how Rf changed)', data:'quote Rf values from your table', hyp:'say whether your results support or do not support your hypothesis', chem:'explain the results using polarity and the stationary and mobile phases', eval:'name one limitation and one improvement', concl:'finish with a one or two sentence conclusion that answers the aim' };
+  const miss = CRIT.filter(x=>!c[x.k]).map(x=>tips[x.k]);
+  if(total === 6) return 'Strong write-up: you described the results with data, linked them to your hypothesis, explained the chemistry, evaluated the method and answered the aim.';
+  if(total >= 4) return `Solid write-up. To improve, ${miss.join(' and ')}.`;
+  return `A good start. Next time, ${miss.slice(0,3).join(', ')}.`;
+}
+function buildReport(){
+  const st = stats();
+  if(!S.plates.length){ $('report').innerHTML = '<div class="empty">Your lab report builds itself as you work. Run your plates in Step 3 and it will appear here.</div>'; return; }
+  $('report').innerHTML = `${st.full && concDone() ? '<div class="done-banner">Experiment complete. Check your write-up below, then copy it into your logbook.</div>' : ''}
+    <section><h4>Aim</h4><p>${aim()}</p></section>
+    <section><h4>Hypothesis</h4><p>${S.hyp && S.hyp.inv===S.inv ? esc(S.hyp.text) : 'Not written yet: go back to Step 2.'}</p></section>
+    <section><h4>Method</h4><ol>${methodSteps().map(m=>`<li>${m}</li>`).join('')}</ol></section>
+    <section><h4>Results</h4><div class="tablewrap">${$('table').innerHTML}</div></section>
+    <section><h4>Discussion</h4><p class="hint">Describe your results using R<sub>f</sub> values from your table, say whether they support your hypothesis, explain why using polarity and the two phases, and name one limitation and one improvement.</p><textarea id="concl" aria-label="Discussion">${esc(S.concl||'')}</textarea></section>
+    <section><h4>Conclusion</h4><p class="hint">One or two sentences that answer the aim.</p><textarea id="concl2" style="min-height:70px" aria-label="Conclusion">${esc(S.concl2||'')}</textarea></section>
+    <div class="row"><button id="checkWU">Check my write-up</button><button id="showModel">Compare with a model write-up</button><button class="primary" id="copyRep">Copy my lab report</button></div>
+    <div id="wuFb"></div><div id="modelBox"></div>
+    <textarea id="copyBox" hidden aria-label="Report text to copy"></textarea>`;
+  $('concl').oninput = e => { S.concl = e.target.value; save(); renderProgress(); updateNext(); };
+  $('concl2').oninput = e => { S.concl2 = e.target.value; save(); renderProgress(); updateNext(); };
+  $('checkWU').onclick = () => { const c = quickCheck({inv:S.inv, cc:S.concl, co:S.concl2}), total = CRIT.filter(x=>c[x.k]).length;
+    $('wuFb').innerHTML = `<div class="concl"><div class="head"><b>Your write-up</b><span class="score">${total} / 6</span></div><div class="crit">${CRIT.map(x=>`<button class="${c[x.k]?'met':'miss'}" disabled>${c[x.k]?'✓':'✗'} ${x.l}</button>`).join('')}</div><div class="fbk">${autoFeedback(c,total)}</div><span class="hint">This is a quick automatic check. Your teacher marks the final version.</span></div>`; };
+  $('showModel').onclick = () => { $('modelBox').innerHTML = `<div class="model"><b>Model write-up</b> <span class="hint">(numbers from a sample class; yours will differ a little)</span><p style="margin-top:6px"><b>Discussion:</b> ${MODEL[S.inv][0]}</p><p style="margin-top:6px"><b>Conclusion:</b> ${MODEL[S.inv][1]}</p></div>`; };
+  $('copyRep').onclick = () => copyText(reportText(), 'Lab report copied. Paste it into your logbook document.', 'copyBox');
+}
+function copyText(t, msg, boxId){
+  const fallback = () => { const ta = $(boxId); if(!ta) return; ta.hidden = false; ta.value = t; ta.focus(); ta.select(); status('Copying was blocked here, so the text is selected in the box: press Ctrl+C (or Cmd+C) to copy it.'); };
+  try { navigator.clipboard.writeText(t).then(() => { status(msg); const m = $('sendMsg'); if(m && boxId==='codeBox') m.textContent = msg; }, fallback); } catch(e){ fallback(); }
+}
+$('copyTable').onclick = () => copyText(tableTSV(), 'Table copied. Paste it into a spreadsheet or your logbook.', 'copyBox');
+
+// ---------------- step 5: send ----------------
+function resultsCode(name){
+  const st = stats(), v = verdict(), o = { n:name.slice(0,40), iv:S.inv, f:st.fair?1:0, i:st.issues, h: v ? (v.sup?1:0) : -1, hc: S.hand && S.hand.ok ? 1 : 0,
+    hy:(S.hyp && S.hyp.inv===S.inv ? S.hyp.text : '').slice(0,300), cc:(S.concl||'').trim().slice(0,1100), co:(S.concl2||'').trim().slice(0,300) };
+  if(S.inv==='id') o.r = INV.id.lanes.map(k => [k, spotStats(S.plates,k).map(s=>[s.cid, +s.mean.toFixed(2)])]);
+  else o.r = rowsPol().map(r => [r.pct, r.m===null?null:+r.m.toFixed(2), r.n]);
+  o.p = S.plates.length;
+  return 'TLC1:' + btoa(unescape(encodeURIComponent(JSON.stringify(o))));
+}
+$('stuName').value = S.name || '';
+$('stuName').oninput = e => { S.name = e.target.value; save(); };
+$('copyCode').onclick = () => { const n = $('stuName').value.trim(); if(!n){ $('sendMsg').textContent = 'Type your full name first.'; $('stuName').focus(); return; }
+  S.sent = true; save(); copyText(resultsCode(n), 'Results code copied. Paste it as a private comment on the Google Classroom assignment.', 'codeBox'); renderStepper(); updateNext(); };
+$('copyRep2').onclick = () => copyText(reportText(), 'Lab report copied. Paste it into your logbook document.', 'codeBox');
+
+// ---------------- step 6: extras ----------------
+let MY = null;
+const MYS = { orange:{food:'orange', why:'The orange spot matches the standard, so it contains β-carotene. The second yellow-orange spot has a lower Rf, so it is a more polar pigment (β-cryptoxanthin).'},
+  pumpkin:{food:'pumpkin', why:'A strong orange spot matches the standard (lots of β-carotene) and a faint yellow spot near the bottom is a polar xanthophyll. No green spots, so it is not a leafy vegetable.'},
+  beet:{food:'beetroot', why:'The only spot is red-purple and hardly moved (Rf about 0.04). Betanin is very polar, so it sticks to the silica. Nothing matches the standard, so there is no detectable β-carotene.'},
+  lettuce:{food:'lettuce', why:'Green chlorophyll spots and a small orange spot that matches the standard: a leafy green vegetable with a little β-carotene, like a paler version of spinach.'} };
+function newMystery(){ const ks = Object.keys(MYS).filter(k => !MY || k !== MY.k); const k = ks[Math.floor(Math.random()*ks.length)];
+  const p = makePlate({inv:'id', pct:0, spots:5, pen:false, depth:5, lid:true, stop:'near', mark:true}, ['bc', k]); MY = {k, p, a:{}}; renderMystery(); }
+function renderMystery(){
+  if(!MY) newMystery();
+  const p = MY.p, std = p.lanes[0].spots.find(s=>s.cid==='bc'), un = p.lanes[1].spots.slice().sort((a,b)=>b.rf-a.rf);
+  const qs = [
+    { stem:'Does the mystery sample contain β-carotene?', opts:['Yes','No','You cannot tell from this plate'], a: un.some(s=>Math.abs(s.rf-std.rf)<=.03) ? 0 : 1, why:'Compare each mystery spot with the standard. A spot with the same Rf (within about 0.03) under the same conditions is evidence for β-carotene.' },
+    { stem:'Which food was the mystery sample?', opts:['orange','pumpkin','beetroot','lettuce'], a:['orange','pumpkin','beet','lettuce'].indexOf(MY.k), why: MYS[MY.k].why },
+    { stem:'A spot with a lower Rf than β-carotene on this plate is…', opts:['more polar than β-carotene','less polar than β-carotene','a heavier version of β-carotene','an impurity in the solvent'], a:0, why:'Silica is polar. A lower Rf means the compound is held more strongly by the polar stationary phase, so it is more polar.' }
+  ];
+  $('xp-mystery').innerHTML = `<h3>Mystery sample</h3><p class="hint">A student ran a mystery food (lane ?) beside the β-carotene standard (lane BC), using the same conditions as the main investigation. Use the plate and the R<sub>f</sub> values to work out what it was.</p>
+   <div class="plateview"><div>${viewerSVG(p)}</div><div><table><thead><tr><th>Lane</th><th>Spot colour</th><th>R<sub>f</sub></th></tr></thead><tbody><tr><td>BC</td><td style="text-align:left"><span class="swatch" style="background:${CMP.bc.c}"></span>orange</td><td>${r2(std.rf)}</td></tr>${un.length ? un.map(s=>`<tr><td>?</td><td style="text-align:left"><span class="swatch" style="background:${CMP[s.cid].c}"></span>${CMP[s.cid].cn}</td><td>${r2(s.rf)}</td></tr>`).join('') : '<tr><td>?</td><td colspan="2">no spots</td></tr>'}</tbody></table>
+   <div class="qgrid" style="margin-top:14px" id="myQ"></div><div class="row" style="margin-top:12px"><button id="myNew">New mystery</button></div></div></div>`;
+  quizInto('myQ', qs, MY.a);
+  $('myNew').onclick = newMystery;
+}
+function miniPlate(c, lanes){ const p = makePlate(Object.assign({inv:'id', pct:0, spots:5, pen:false, depth:5, lid:true, stop:'near', mark:true}, c), lanes); return `<svg viewBox="0 0 ${plateW(lanes.length)+8} 112">${plateGroup(p, 4, 108, 1, true)}</svg>`; }
+const SPOTQ = [
+  { c:{pen:true}, a:0 }, { c:{depth:15}, a:1 }, { c:{stop:'top'}, a:2 }, { c:{spots:8}, a:3 }
+];
+const SPOTOPTS = ['The origin was drawn in pen','The solvent was above the origin line','The solvent front ran to the top of the plate','Too much sample was spotted'];
+const SPOTWHY = ['Ink is a mixture of dyes that dissolve in the solvent, so violet and blue spots appear in every lane. Always use pencil: graphite does not dissolve.','The samples dissolved into the solvent pool, so nothing travelled up the plate. The origin must be above the solvent.','The front reached the top, so its true distance is unknown and Rf values calculated from it are too high. Remove the plate about 1 cm from the top.','Overloaded spots streak, so the centre of each spot is hard to judge and Rf values are less precise.'];
+let spotAns = {};
+function renderSpot(){
+  $('xp-spot').innerHTML = `<h3>Spot the problem</h3><p class="hint">Each of these students made one mistake. Look at their plates (lanes BC, C, S) and choose what went wrong.</p><div class="minis" id="spotGrid"></div>`;
+  $('spotGrid').innerHTML = SPOTQ.map((q,i)=>`<div class="q"><p class="stem">Student ${'ABCD'[i]}</p>${miniPlate(q.c,['bc','c','s'])}<div class="opts" id="sp${i}"></div><p class="why" id="spw${i}"></p></div>`).join('');
+  SPOTQ.forEach((q,i)=>{ const box = $('sp'+i); box.innerHTML = [0,1,2,3].map(k=>(k+i+1)%4).map(j=>`<button data-j="${j}">${SPOTOPTS[j]}</button>`).join('');
+    box.querySelectorAll('button').forEach(b => b.onclick = () => { const j = +b.dataset.j; box.querySelectorAll('button').forEach(x=>x.classList.remove('right','wrong')); b.classList.add(j===q.a?'right':'wrong'); if(j!==q.a) box.querySelector(`[data-j="${q.a}"]`).classList.add('right'); $('spw'+i).textContent = (j===q.a?'Correct. ':'Not quite. ') + SPOTWHY[q.a]; }); });
+}
+const QUIZ = [
+  { stem:'Why is the origin line drawn in pencil?', opts:['Graphite does not dissolve in the solvent, but ink does and would separate up the plate','Pencil is easier to see under UV light','Pencil lines help the solvent travel faster','Ink is too polar to stay on silica'], a:0, why:'Ink is a mixture of soluble dyes. It would run up the plate and add extra spots.' },
+  { stem:'Why must the origin be above the level of the solvent?', opts:['So the samples do not dissolve into the solvent pool','So the solvent front moves faster','So the spots dry more quickly','So the Rf values are larger'], a:0, why:'If the spots sit in the solvent, they wash off into the pool instead of travelling up the plate.' },
+  { stem:'Why is each sample spotted several times, drying in between?', opts:['To build up enough sample to see while keeping the spot small','To make the spot move further','To remove impurities from the sample','To change the Rf value'], a:0, why:'Small, concentrated spots give clear, separate spots. One big wet spot spreads out.' },
+  { stem:'The solvent front moved 80 mm and a spot moved 52 mm. What is the Rf?', opts:['0.65','1.54','0.52','28'], a:0, why:'Rf = 52 ÷ 80 = 0.65. Rf has no units and is always between 0 and 1.' },
+  { stem:'On silica, spot X has a lower Rf than spot Y. Which statement is correct?', opts:['X is more polar than Y','X is less polar than Y','X has a smaller molar mass than Y','X dissolves better in the mobile phase'], a:0, why:'The polar silica holds the more polar compound more strongly, so it travels a shorter distance.' },
+  { stem:'A sample gives a single spot in three different mobile phases. This suggests the sample…', opts:['is likely to be a pure substance','is a mixture of three compounds','contains β-carotene','has an Rf of 1'], a:0, why:'An impurity would usually show up as a second spot in at least one solvent. Chromatography can be used to test purity.' },
+  { stem:'Why must an Rf value always be reported with the conditions used?', opts:['Rf changes with the stationary phase, mobile phase and temperature','Rf depends on the size of the plate','Rf is different every time, even in the same conditions','Rf is only used for coloured compounds'], a:0, why:'Change the mobile phase and the balance of attractions changes, so the Rf changes. You saw this in the polarity investigation.' }
+];
+let quizAns = {};
+function quizInto(id, qs, store){
+  $(id).innerHTML = qs.map((q,i)=>`<div class="q"><p class="stem">${q.stem}</p><div class="opts">${q.opts.map((o,j)=>`<button data-i="${i}" data-j="${j}">${o}</button>`).join('')}</div><p class="why" id="${id}w${i}"></p></div>`).join('') + (store===quizAns ? `<p class="score" id="${id}score"></p>` : '');
+  $(id).querySelectorAll('.opts button').forEach(b => b.onclick = () => { const i = +b.dataset.i, j = +b.dataset.j, q = qs[i], box = b.parentElement;
+    box.querySelectorAll('button').forEach(x=>x.classList.remove('right','wrong')); b.classList.add(j===q.a?'right':'wrong'); if(j!==q.a) box.querySelector(`[data-j="${q.a}"]`).classList.add('right');
+    $(`${id}w${i}`).textContent = (j===q.a?'Correct. ':'Not quite. ') + q.why;
+    if(store[i] === undefined) store[i] = j===q.a;
+    const sc = $(id+'score'); if(sc) sc.textContent = `Score: ${Object.values(store).filter(Boolean).length} / ${qs.length} (first attempts)`; });
+}
+function renderQuiz(){ $('xp-quiz').innerHTML = '<h3>Check yourself</h3><div class="qgrid" id="quizQ"></div>'; quizInto('quizQ', QUIZ, quizAns); }
+function renderSci(){
+  const cards = [
+    ['Two phases','The <b>stationary phase</b> (silica) stays still; the <b>mobile phase</b> (solvent) moves. Each compound is constantly sticking to the silica (adsorption) and dissolving back into the solvent. The balance between the two decides how far it travels.'],
+    ['Polarity','Silica is covered in polar –OH groups. Polar compounds such as chlorophyll are attracted to it by dipole–dipole forces and hydrogen bonding, so they move slowly. Non-polar β-carotene is only weakly attracted and stays in the mobile phase, so it moves further.'],
+    ['Retention factor','<div class="eq">Rf = distance moved by spot ÷ distance moved by solvent front</div>Both are measured from the origin. Rf has no units and lies between 0 and 1. Under the same conditions a compound always has the same Rf, so comparing with a standard identifies it.'],
+    ['Composition and purity','A pure substance gives one spot. A mixture separates into several spots, one for each component. Food scientists, forensic chemists and drug manufacturers use chromatography to check what a sample contains and whether it is pure.'],
+    ['Changing the mobile phase','A more polar mobile phase competes more strongly with the silica, so polar compounds travel further and their Rf increases. Chemists choose the mobile phase that spreads the spots out the most.'],
+    ['Safety','Hexane and acetone are flammable and their vapours irritate the airways. Work in a fume cupboard, away from flames, with safety glasses, a lab coat and gloves.']
+  ];
+  $('xp-sci').innerHTML = '<h3>The science</h3><div class="sci">' + cards.map(c=>`<div class="q"><p class="stem">${c[0]}</p><p>${c[1]}</p></div>`).join('') + '</div>';
+}
+$('xtabs').querySelectorAll('button').forEach(b => b.onclick = () => { $('xtabs').querySelectorAll('button').forEach(x=>x.setAttribute('aria-selected', x===b)); ['mystery','spot','quiz','sci'].forEach(t => $('xp-'+t).hidden = t !== b.dataset.tab); });
+
+// ---------------- steps and next bar ----------------
+const STEPS = [
+  { n:1, name:'Choose', title:'Step 1: Choose your investigation', text:'Read about how TLC works, then pick an investigation. Your <b>independent variable (IV)</b> is what you change, your <b>dependent variable (DV)</b> is what you measure, and the <b>controlled variables (CVs)</b> stay the same.' },
+  { n:2, name:'Hypothesis', title:'Step 2: Write your hypothesis', text:'Predict what will happen and why. Choose an option in each box, then press <b>Check my hypothesis</b>.' },
+  { n:3, name:'Experiment', title:'Step 3: Do the experiment', text:'Set up your technique, then press <b>Run 3 plates</b>. Watch for problems flagged under Results, then measure one plate yourself and calculate R<sub>f</sub>.' },
+  { n:4, name:'Write up', title:'Step 4: Write up your lab report', text:'Check your lab report, then write your <b>discussion</b> and a short <b>conclusion</b> that answers the aim. Press <b>Check my write-up</b>, compare with the model, then copy the report into your logbook.' },
+  { n:5, name:'Send', title:'Step 5: Send your results', text:'Type your full name, press <b>Copy my results code</b> and paste it as a private comment on the Google Classroom assignment.' },
+  { n:6, name:'Extras', title:'Extra challenges', text:'Finished? Solve the mystery sample, spot other students’ mistakes, quiz yourself and read the science behind TLC.' }
+];
+function stepDone(n){ const st = stats(); return n===1 ? true : n===2 ? !!(S.hyp && S.hyp.inv===S.inv) : n===3 ? st.full && !!(S.hand && S.hand.ok) : n===4 ? concDone() : n===5 ? !!S.sent : false; }
+function renderStepper(){
+  $('stepper').innerHTML = STEPS.map(st => `<button data-go="${st.n}" class="${stepDone(st.n)?'done':''}" ${S.step===st.n?'aria-current="step"':''}><span class="n">${stepDone(st.n)?'✓':st.n}</span>${st.name}</button>`).join('');
+  $('stepper').querySelectorAll('button').forEach(b => b.onclick = () => goStep(+b.dataset.go));
+}
+function goStep(n, noScroll){
+  S.step = clamp(n, 1, 6); save();
+  document.querySelectorAll('#labView [data-step]').forEach(el => el.classList.toggle('on', +el.dataset.step === S.step));
+  const st = STEPS[S.step-1]; $('stepIntro').innerHTML = `<h2>${st.title}</h2><p>${st.text}</p>`;
+  if(S.step === 2) renderHyp();
+  if(S.step === 3){ renderVars(); drawBench(); renderResults(); renderViewer(); }
+  if(S.step === 4) buildReport();
+  if(S.step === 6){ renderMystery(); renderSpot(); renderQuiz(); renderSci(); }
+  renderStepper(); updateNext(); renderProgress();
+  if(!noScroll) window.scrollTo({top:0, behavior:'smooth'});
+}
+function updateNext(){
+  const back = $('back'), next = $('next'); back.disabled = S.step === 1 || running; next.disabled = running;
+  next.innerHTML = S.step === 6 ? 'Back to start' : 'Next →';
+  const st = stats(); let t = '';
+  if(S.step === 1) t = `You chose: ${INV[S.inv].short}. Press Next when you are ready.`;
+  else if(S.step === 2) t = !(S.hyp && S.hyp.inv===S.inv) ? 'Build your hypothesis, then press Check my hypothesis.' : 'Hypothesis done. Press Next to start the experiment.';
+  else if(S.step === 3) t = running ? 'Developing…' : !st.full ? (S.inv==='id' ? `Run three plates (${S.plates.length}/3).` : `Run three plates at five or more mixtures (${st.nVals}/5).`) : !(S.hand && S.hand.ok) ? 'Now measure plate 1 and calculate one Rf by hand.' : 'Experiment finished. Press Next to write up your report.';
+  else if(S.step === 4) t = concDone() ? 'Write-up done. Press Next to send your results.' : 'Write your discussion and conclusion.';
+  else if(S.step === 5) t = S.sent ? 'Sent. Well done! Press Next for extra challenges.' : 'Type your name and copy your results code.';
+  else t = 'Extra challenges. Have fun!';
+  $('nexttxt').innerHTML = t;
+}
+$('back').onclick = () => goStep(S.step - 1);
+$('next').onclick = () => goStep(S.step === 6 ? 1 : S.step + 1);
+
+// ---------------- teacher view ----------------
+function parseCodes(text){
+  const out = [], seen = {};
+  (text.match(/TLC1:[A-Za-z0-9+/=]+/g) || []).forEach(c => { try { const o = JSON.parse(decodeURIComponent(escape(atob(c.slice(5)))));
+    if(o && o.iv && Array.isArray(o.r)){ const key = o.n + '|' + o.iv; if(key in seen) out[seen[key]] = o; else { seen[key] = out.length; out.push(o); } } } catch(e){} });
+  return out;
+}
+function tMarkKey(s){ return 'tlc-mark-' + s.n + '|' + s.iv + '|' + (s.cc||'').length + '|' + (s.co||'').length; }
+function tMark(s){ let saved = null; try { saved = JSON.parse(localStorage.getItem(tMarkKey(s)) || 'null'); } catch(e){} const c = saved || quickCheck(s); return { c, total: CRIT.filter(x=>c[x.k]).length }; }
+function renderClass(){
+  const raw = $('codes').value; try { localStorage.setItem('tlc-codes', raw); } catch(e){}
+  const subs = parseCodes(raw).sort((a,b)=>a.n.localeCompare(b.n, undefined, {numeric:true}));
+  $('codeCount').textContent = subs.length + ' code' + (subs.length===1?'':'s') + ' found';
+  if(!subs.length){ $('classOut').innerHTML = '<div class="empty">No results codes found yet. Codes start with TLC1: and come from Step 5 of the lab.</div>'; return; }
+  const fair = subs.filter(s=>s.f).length, hc = subs.filter(s=>s.hc).length;
+  const idS = subs.filter(s=>s.iv==='id'), stdRf = idS.map(s => { const l = s.r.find(x=>x[0]==='bc'); const sp = l && l[1].find(x=>x[0]==='bc'); return sp ? sp[1] : null; }).filter(v=>v!==null);
+  let h = `<div class="stats" style="margin-top:12px"><div class="stat"><b>${subs.length}</b><span>students</span></div><div class="stat"><b>${fair}</b><span>fair tests</span></div><div class="stat"><b>${hc}</b><span>Rf calculated by hand</span></div>${stdRf.length ? `<div class="stat"><b>${r2(mean(stdRf))}</b><span>class mean Rf of β-carotene standard</span></div>` : ''}</div>`;
+  h += `<div class="tablewrap" style="margin-top:14px"><table><thead><tr><th>Name</th><th>Investigation</th><th>Plates</th><th>Fair test</th><th>Hypothesis</th><th>Write-up (/6)</th><th>Problems flagged</th></tr></thead><tbody>${subs.map(s=>`<tr><td style="text-align:left">${esc(s.n)}</td><td>${s.iv==='id'?'Identify β-carotene':'Polarity'}</td><td>${s.p||'–'}</td><td>${s.f?'<span class="yes">Yes</span>':'<span class="no">No</span>'}</td><td>${s.h===1?'supported':s.h===0?'not supported':'–'}</td><td>${(s.cc||s.co)?'<b>'+tMark(s).total+' / 6</b>':'–'}</td><td class="note">${esc((s.i||[]).join('; '))}</td></tr>`).join('')}</tbody></table></div>`;
+  const pol = subs.filter(s=>s.iv==='pol');
+  if(pol.length){ const by = {}; pol.forEach(s => s.r.forEach(r => { if(r[1]!==null) (by[r[0]] = by[r[0]] || []).push(r[1]); }));
+    h += `<h3 style="margin-top:16px">Class means: polarity investigation</h3><div class="tablewrap"><table><thead><tr><th>Acetone (%)</th><th>Students</th><th>Class mean Rf (chl a)</th></tr></thead><tbody>${Object.keys(by).sort((a,b)=>a-b).map(k=>`<tr><td>${k}</td><td>${by[k].length}</td><td class="mean">${r2(mean(by[k]))}</td></tr>`).join('')}</tbody></table></div>`; }
+  const withC = subs.filter(s=>s.cc||s.co);
+  h += `<h3 style="margin-top:16px">Write-ups (marked out of 6)</h3><p class="hint">Automatic first pass. Click a criterion to change it; your changes are saved in this browser.</p>`;
+  h += withC.length ? withC.map((s,i)=>{ const m = tMark(s); return `<div class="concl" style="margin-top:10px"><div class="head"><b>${esc(s.n)}</b><span class="score">${m.total} / 6</span></div><div class="crit">${CRIT.map(x=>`<button data-s="${i}" data-k="${x.k}" class="${m.c[x.k]?'met':'miss'}">${m.c[x.k]?'✓':'✗'} ${x.l}</button>`).join('')}</div><blockquote>${esc(s.cc)}${s.co?'\n\nConclusion: '+esc(s.co):''}</blockquote><div class="fbk">${autoFeedback(m.c, m.total)}</div></div>`; }).join('') : '<div class="empty">No write-ups yet.</div>';
+  h += `<div class="fbk" style="margin-top:14px"><b>Discussion questions for the class</b><ul><li>Why did students get slightly different R<sub>f</sub> values for the same standard?</li><li>Which plates were not fair tests, and how did that change the results?</li><li>Does a matching R<sub>f</sub> prove a compound is β-carotene? What would make the evidence stronger?</li></ul></div>`;
+  $('classOut').innerHTML = h;
+  $('classOut').querySelectorAll('.crit button').forEach(b => b.onclick = () => { const s = withC[+b.dataset.s], m = tMark(s); m.c[b.dataset.k] = !m.c[b.dataset.k]; try { localStorage.setItem(tMarkKey(s), JSON.stringify(m.c)); } catch(e){} renderClass(); });
+}
+$('codes').oninput = renderClass;
+$('clearCodes').onclick = () => { $('codes').value = ''; renderClass(); };
+$('copySummary').onclick = () => { const subs = parseCodes($('codes').value); const lines = [['Name','Investigation','Plates','Fair test','Hypothesis','Rf by hand','Write-up (/6)','Problems','Discussion','Conclusion'].join('\t')];
+  subs.forEach(s => lines.push([s.n, s.iv, s.p, s.f?'Yes':'No', s.h===1?'supported':s.h===0?'not supported':'', s.hc?'Yes':'No', (s.cc||s.co)?tMark(s).total:'', (s.i||[]).join('; '), (s.cc||'').replace(/\s+/g,' '), (s.co||'').replace(/\s+/g,' ')].join('\t')));
+  try { navigator.clipboard.writeText(lines.join('\n')).then(()=>{ $('codeCount').textContent = 'Class summary copied'; }); } catch(e){} };
+$('exampleClass').onclick = () => {
+  const names = ['Ava M.','Ben T.','Chloe R.','Dev P.','Ella S.','Finn K.'], codes = [];
+  const ex = [['id',1,1,1,'Carrot, sweet potato and spinach all had an orange spot with Rf 0.63, the same as the standard 0.63. Onion had no spots. This supports my hypothesis because the same compound is attracted to the polar silica the same amount. A limitation is that two compounds can have the same Rf; next time I would use a second solvent.','Carrot, sweet potato and spinach contain β-carotene because their Rf matched the standard.'],
+    ['id',0,0,1,'The spinach had green spots. Carrot was orange.','Carrot has beta carotene.'],
+    ['id',1,1,0,'Carrot and sweet potato matched the standard at 0.64 but spinach did not seem to. My hypothesis is supported.','Some vegetables contain β-carotene.'],
+    ['pol',1,1,1,'As the acetone increased from 0% to 60% the Rf of chlorophyll a increased from 0.05 to 0.81 and levelled off after 30%. This supports my hypothesis because the more polar mobile phase competes with the polar stationary phase. A limitation is large spots were hard to measure; I would improve this with smaller spots.','More acetone increased the Rf of chlorophyll a.'],
+    ['pol',1,0,1,'The Rf went up when there was more acetone, from 0.04 to 0.80.','Acetone made chlorophyll move further.'],
+    ['id',0,-1,0,'','']];
+  ex.forEach((e,i) => { const o = { n:names[i], iv:e[0], f:e[1], i:e[1]?[]:['origin drawn in pen'], h:e[2], hc:e[3], hy:'', cc:e[4], co:e[5], p:e[0]==='id'?3:18 };
+    o.r = e[0]==='id' ? [['bc',[['bc',.63]]],['c',[['bc',.63]]],['sp',[['bc',.62]]],['s',[['bc',.63],['chla',.45],['chlb',.36],['lut',.3]]],['o',[]]] : [0,10,20,30,40,50,60].map(p=>[p, +(.04+.8*(1-Math.exp(-p/22))+gauss()*.01).toFixed(2), 3]);
+    codes.push('TLC1:' + btoa(unescape(encodeURIComponent(JSON.stringify(o))))); });
+  $('codes').value = codes.join('\n'); renderClass(); };
+function route(){ const t = location.hash === '#teacher'; $('nextbar').hidden = t; $('teacherView').hidden = !t; $('labView').hidden = t;
+  if(t){ window.scrollTo(0,0); try { const c = localStorage.getItem('tlc-codes'); if(c && !$('codes').value) $('codes').value = c; } catch(e){} renderClass(); } }
+window.addEventListener('hashchange', route);
+
+// ---------------- start ----------------
+function renderAll(){ renderInv(); goStep(S.step, true); }
+// plates saved from an earlier visit: restore the last one for the bench
+if(S.plates.length) last = S.plates[S.plates.length-1];
+figs(); renderAll(); route();
+}
+
+</script>
+</body>
+</html>

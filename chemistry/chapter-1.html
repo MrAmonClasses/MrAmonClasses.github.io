@@ -452,7 +452,7 @@ html,body{background:#03100f}#stage{background:#061a19}.slide[data-mode=lab]{--m
 /* exit tickets: a page in the workbook, not a whiteboard */
 .pwb.wkb{background:#fffdf6 repeating-linear-gradient(transparent 0 47px,#cfe0ec 47px 49px);background-position:0 30px;border:0;border-left:6px solid #e8a3a3;border-radius:6px;box-shadow:0 18px 40px rgba(0,0,0,.45);color:#1f3c3a}
 .pwb.wkb:after{display:none}
-.toc .vlabs{max-width:280px}
+.toc .vlabs{max-width:280px} .toc .plabs .sh2:last-of-type b{color:#4ade80} .toc a.pl .lp{min-width:48px;color:#4ade80} .toc a.pl{display:flex;align-items:baseline;gap:10px;width:100%;font:600 18px/1.3 Inter;color:#d3f1ee;background:#193936;border-radius:10px;padding:8px 12px;text-decoration:none} .toc a.pl:hover{background:#2e645f} .toc a.pl i{font:600 13px Inter;font-style:normal;color:#99c3bf} .toc a.pl .nm{flex:1} .pracopen{align-self:flex-start;margin-top:22px;font:700 22px Inter;color:#06201c;background:#4ade80;border-radius:12px;padding:12px 20px;text-decoration:none} .pracopen:hover{background:#86efac}
 .toc .vlabs .sh b{color:#5eead4}
 .toc .vlabs .lp{min-width:48px;color:#5eead4}
 .toc button.sh2{font:700 22px/1.2 'Space Grotesk';color:#eafdfb;padding:12px}
@@ -899,8 +899,8 @@ html,body{background:#03100f}#stage{background:#061a19}.slide[data-mode=lab]{--m
 <section class="slide" data-mode="watch" data-part="Lesson 5: learning intentions" data-do="Learning intentions. The ticked ones are done.">
  <div class="lis sm" data-copy="1B"></div><div class="lifoot"><span class="licount" data-sec="1B"></span><span>Today we work on the ones not ticked yet.</span></div>
 </section>
-<section class="slide" data-mode="watch" data-do="Coming up: a practical">
- <div class="prac"><small>Practical 1B–1</small>Flame tests and electron configuration<p>Heat a metal salt in a flame and record the colour.<br>Explain each colour with ground and excited states, from page 1 of your notes.</p></div>
+<section class="slide" data-mode="watch" data-pracn="1B–1" data-prac="Flame tests" data-href="https://docs.google.com/document/d/1XCLebpgEwmT7skKyMUCK5hUCUjuEVYqrhmC2Ea14WAI/view" data-do="Coming up: a practical">
+ <div class="prac"><small>Practical 1B–1</small>Flame tests and electron configuration<p>Heat a metal salt in a flame and record the colour.<br>Explain each colour with ground and excited states, from page 1 of your notes.</p><a class="pracopen" href="https://docs.google.com/document/d/1XCLebpgEwmT7skKyMUCK5hUCUjuEVYqrhmC2Ea14WAI/view" target="_blank" rel="noopener">Open the practical sheet ↗</a></div>
 </section>
 <section class="slide" data-mode="watch" data-do="Learning intentions: where are we?">
  <div class="lis sm" data-copy="1B"></div><div class="lifoot"><span class="licount" data-sec="1B"></span><span>Anything not ticked? Ask before you start the coursework.</span></div>
@@ -1172,8 +1172,8 @@ html,body{background:#03100f}#stage{background:#061a19}.slide[data-mode=lab]{--m
  <div class="prac"><small>Break</small>Stand up, stretch, get some water.<p>Back in your seat when the timer runs out.</p></div>
 </section>
 
-<section class="slide" data-mode="watch" data-do="Coming up: a practical">
- <div class="prac"><small>Practical 1C–1</small>Periodic table trends<p>Compare the reactivity of metals down a group and across a period.<br>Explain what you see with core charge and atomic radius, from your notes.</p></div>
+<section class="slide" data-mode="watch" data-pracn="1C–1" data-prac="Periodic table trends" data-href="https://docs.google.com/document/d/1MqxiawliN49KywmVHKtYEWeXOKrV2ziuXycwi4jBD2k/view" data-do="Coming up: a practical">
+ <div class="prac"><small>Practical 1C–1</small>Periodic table trends<p>Compare the reactivity of metals down a group and across a period.<br>Explain what you see with core charge and atomic radius, from your notes.</p><a class="pracopen" href="https://docs.google.com/document/d/1MqxiawliN49KywmVHKtYEWeXOKrV2ziuXycwi4jBD2k/view" target="_blank" rel="noopener">Open the practical sheet ↗</a></div>
 </section>
 <section class="slide" data-mode="watch" data-do="Learning intentions: where are we?">
  <div class="lis sm" data-copy="1C"></div><div class="lifoot"><span class="licount" data-sec="1C"></span><span>Anything not ticked? Ask before you start the coursework.</span></div>
@@ -1704,6 +1704,12 @@ liDraw();
   const col=el('div','tsec vlabs');const h=el('button','sh2',`<b>VL</b><span class="nm">Virtual Labs</span>`);h.onclick=()=>show(S.indexOf(labs[0]));col.append(h);
   labs.forEach(s=>{const n=S.indexOf(s);const b=el('button','',`<span class="lp">Lab ${s.dataset.labn}</span><span class="nm">${s.dataset.lab}</span><i>${n+1}</i>`);b.onclick=()=>show(n);col.append(b)});
   $('.toc',toc).append(col)}}
+
+// ---------- contents page: a Labs column (real practicals); each line opens the student practical sheet
+{const pr=S.filter(s=>s.dataset.pracn);if(pr.length){
+  const vl=$('.toc .vlabs',toc),col=vl||el('div','tsec vlabs');col.classList.add('plabs');const h=el('button','sh2',`<b>L</b><span class="nm">Labs</span>`);h.style.marginTop=vl?'14px':'';h.onclick=()=>show(S.indexOf(pr[0]));col.append(h);
+  pr.forEach(s=>{const n=S.indexOf(s);const a=el('a','pl',`<span class="lp">${s.dataset.pracn}</span><span class="nm">${s.dataset.prac} ↗</span><i>${n+1}</i>`);a.href=s.dataset.href;a.target='_blank';a.rel='noopener';a.title='Open the practical sheet (slide '+(n+1)+')';col.append(a)});
+  if(!vl)$('.toc',toc).append(col)}}
 
 // ---------- links by name: #lab-6, #lesson-2, #sec-1B; a plain number is still a slide number
 function hashSlide(){const t=decodeURIComponent(location.hash.slice(1)).trim();if(!t)return -1;
