@@ -110,8 +110,8 @@ footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
   .phead a{display:none}
   .qq{break-inside:avoid;padding:6px 0}
   .tip{background:#fff;border-left-width:4pt}
-  .sp{display:block;height:calc(var(--l,2) * 7.5mm);background:repeating-linear-gradient(to bottom,transparent 0,transparent calc(7.5mm - .6pt),#c9c4b8 calc(7.5mm - .6pt),#c9c4b8 7.5mm)}
-  .parts .sp{height:calc(var(--l,2) * 7.5mm)}
+  .sp{display:block;height:calc(var(--l,2) * 8mm);background:repeating-linear-gradient(to bottom,transparent 0,transparent calc(8mm - .6pt),#c9c4b8 calc(8mm - .6pt),#c9c4b8 8mm)}
+  .yt{border:0;border-top:3pt solid var(--y);border-radius:0;padding:6px 0 0;background:#fff}
   .parts li{flex-direction:column;gap:0}
   .reflect{break-inside:avoid;border:1pt solid var(--line)}
   footer{display:none}
@@ -150,7 +150,7 @@ def render_q(num, q):
     out = [f'<div class="qq"><span class="qn">{num}</span><div><p>{fmt(q["text"])}</p>']
     if "parts" in q:
         cols = q.get("cols", 3)
-        lines = q.get("plines", 1 if cols >= 3 else 2)
+        lines = q.get("plines", 2)
         out.append(f'<ol class="parts c{cols}">')
         for i, (p, _a) in enumerate(q["parts"]):
             out.append(f'<li><span><b>{"abcdefghij"[i]})</b> {fmt(p)}</span><div class="sp" style="--l:{lines}"></div></li>')
@@ -167,14 +167,14 @@ def render_q(num, q):
     return "".join(out)
 
 
-def header(eye, small, title, li, sc, links):
+def header(eye, small, title, li, sc, links, pdf):
     scl = "".join(f"<li>{s}</li>" for s in sc)
     lk = "".join(links)
     return f"""<header class="top"><div class="wrap">
 <p class="eye">{eye}</p>
 <h1><small>{small}</small>{title}</h1>
 <div class="lisc"><div><h3>Learning intention</h3><p>{li}</p></div><div><h3>Success criteria</h3><ul>{scl}</ul></div></div>
-<nav class="links" aria-label="Page links">{lk}<button data-print>Print this sheet</button></nav>
+<nav class="links" aria-label="Page links">{lk}<a href="print/{pdf}" download>Printable PDF</a><button data-print>Print this sheet</button></nav>
 <div class="printonly nameline"><b>Name</b><span></span><b>Date</b><span style="flex:.5"></span></div>
 </div></header>"""
 
@@ -187,7 +187,7 @@ def build_worksheet(ws):
     if n < len(WORKSHEETS):
         prev_next.append(f'<a href="chapter-1-worksheet-{n+1}.html">Worksheet 1.{n+1} →</a>')
     links = [f'<a href="index.html">← All chapters</a>', f'<a class="hl" href="chapter-1.html#{ws["sec"]}">Slides for this section</a>'] + prev_next
-    body = [header(f"VM Numeracy · Chapter 1 · Doing the Numbers", f"Worksheet 1.{n}", ws["title"], ws["li"], ws["sc"], links)]
+    body = [header(f"VM Numeracy · Chapter 1 · Doing the Numbers", f"Worksheet 1.{n}", ws["title"], ws["li"], ws["sc"], links, f"chapter-1-worksheet-{n}.pdf")]
     body.append('<main class="wrap">')
     body.append("""<section class="how"><b>How to use this worksheet</b><ol>
 <li>Read the worked example and try it yourself first.</li>
@@ -224,7 +224,7 @@ def build_diagnostic(d):
     links = ['<a href="index.html">← All chapters</a>', '<a class="hl" href="chapter-1.html#1">Chapter 1 slides</a>', '<a href="chapter-1-worksheet-1.html">Worksheet 1.1 →</a>']
     body = [header("VM Numeracy · Chapter 1 · Doing the Numbers", "Before we start", d["title"],
                    "We are finding out what you already know about number, so we know where to start.",
-                   ["I can show what I already know", "I can find the topics I need help with"], links)]
+                   ["I can show what I already know", "I can find the topics I need help with"], links, "chapter-1-diagnostic.pdf")]
     body.append(f'<main class="wrap"><section class="how instr"><b>Instructions.</b> {d["intro"]}</section>')
     q = 1
     for s in d["sections"]:
