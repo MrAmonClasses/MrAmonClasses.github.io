@@ -109,7 +109,8 @@ footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
   .phead a{display:none}
   .qq{break-inside:avoid;padding:6px 0}
   .tip{background:#fff;border-left-width:4pt}
-  .sp{display:block;height:calc(var(--l,2) * 8mm);background:repeating-linear-gradient(to bottom,transparent 0,transparent calc(8mm - .6pt),#c9c4b8 calc(8mm - .6pt),#c9c4b8 8mm)}
+  .sp{display:block}
+  .ln{display:block;height:8mm;border-bottom:.6pt solid #888}
   .yt{border:0;border-top:3pt solid var(--y);border-radius:0;padding:6px 0 0;background:#fff}
   .parts li{flex-direction:column;gap:0}
   .reflect{break-inside:avoid;border:1pt solid var(--line)}
@@ -129,7 +130,8 @@ footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
   .reflect th,.reflect td{border-bottom:.5pt solid #999}
   .box{border:1.2pt solid #000}
   .fr span:first-child{border-bottom-color:#000}
-  .sp{background:repeating-linear-gradient(to bottom,transparent 0,transparent calc(8mm - .6pt),#888 calc(8mm - .6pt),#888 8mm)!important}
+  .sp{display:block}
+  .ln{display:block;height:8mm;border-bottom:.6pt solid #888}
   .key th{border-bottom:1pt solid #000}
 }
 """
@@ -162,6 +164,10 @@ PYTH_SVG = ('<svg aria-label="A rectangular frame 1.2 metres wide and 0.9 metres
             '<text x="74" y="56" font-family="Nunito Sans, Arial, sans-serif" font-size="26" font-weight="700" fill="#1f7a6e">c</text></svg>')
 
 
+def spacer(n):
+    return '<div class="sp">' + '<i class="ln"></i>' * n + "</div>"
+
+
 def render_q(num, q):
     out = [f'<div class="qq"><span class="qn">{num}</span><div><p>{fmt(q["text"])}</p>']
     if "parts" in q:
@@ -169,7 +175,7 @@ def render_q(num, q):
         lines = q.get("plines", 2)
         out.append(f'<ol class="parts c{cols}">')
         for i, (p, _a) in enumerate(q["parts"]):
-            out.append(f'<li><span><b>{"abcdefghij"[i]})</b> {fmt(p)}</span><div class="sp" style="--l:{lines}"></div></li>')
+            out.append(f'<li><span><b>{"abcdefghij"[i]})</b> {fmt(p)}</span>{spacer(lines)}</li>')
         out.append("</ol>")
     elif "table" in q:
         t = q["table"]
@@ -178,7 +184,7 @@ def render_q(num, q):
             out.append("<tr>" + "".join(f"<td>{fmt(c)}</td>" for c in r) + "</tr>")
         out.append("</table>")
     else:
-        out.append(f'<div class="sp" style="--l:{q.get("lines", 2)}"></div>')
+        out.append(f'{spacer(q.get("lines", 2))}')
     out.append("</div></div>")
     return "".join(out)
 

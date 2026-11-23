@@ -91,7 +91,8 @@ footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
   .phead a{display:none}
   .qq{break-inside:avoid;padding:6px 0}
   .tip{background:#fff;border-left-width:4pt}
-  .sp{display:block;height:calc(var(--l,2) * 8mm);background:repeating-linear-gradient(to bottom,transparent 0,transparent calc(8mm - .6pt),#c9c4b8 calc(8mm - .6pt),#c9c4b8 8mm)}
+  .sp{display:block}
+  .ln{display:block;height:8mm;border-bottom:.6pt solid #888}
   .yt{border:0;border-top:3pt solid var(--y);border-radius:0;padding:6px 0 0;background:#fff}
   .parts li{flex-direction:column;gap:0}
   .reflect{break-inside:avoid;border:1pt solid var(--line)}
@@ -111,7 +112,8 @@ footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
   .reflect th,.reflect td{border-bottom:.5pt solid #999}
   .box{border:1.2pt solid #000}
   .fr span:first-child{border-bottom-color:#000}
-  .sp{background:repeating-linear-gradient(to bottom,transparent 0,transparent calc(8mm - .6pt),#888 calc(8mm - .6pt),#888 8mm)!important}
+  .sp{display:block}
+  .ln{display:block;height:8mm;border-bottom:.6pt solid #888}
   .key th{border-bottom:1pt solid #000}
 }
 </style></head>
@@ -135,9 +137,9 @@ footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
 <div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
 <p class="tip"><b>Tip:</b> × and ÷ come before + and −. When there are only × and ÷ (or only + and −), work left to right.</p>
 <div class="yt"><p class="tag">Your turn</p>
-<div class="qq"><span class="qn">1</span><div><p>Calculate. Show each step, like the worked example.</p><ol class="parts c3"><li><span><b>a)</b> 25 − 3 × 5 + 12 ÷ 4</span><div class="sp" style="--l:2"></div></li><li><span><b>b)</b> 40 ÷ 8 + 7 × 3</span><div class="sp" style="--l:2"></div></li><li><span><b>c)</b> 50 − 6 × 7</span><div class="sp" style="--l:2"></div></li><li><span><b>d)</b> 9 + 36 ÷ 4 × 2</span><div class="sp" style="--l:2"></div></li><li><span><b>e)</b> 100 − 45 ÷ 5 + 3 × 8</span><div class="sp" style="--l:2"></div></li><li><span><b>f)</b> 7 × 8 − 64 ÷ 8 − 6</span><div class="sp" style="--l:2"></div></li></ol></div></div>
-<div class="qq"><span class="qn">2</span><div><p>Mia says 20 − 4 × 3 = 48. Explain her mistake and give the correct answer.</p><div class="sp" style="--l:3"></div></div></div>
-<div class="qq"><span class="qn">3</span><div><p>You buy 3 drinks at $4 each and 2 pies at $6 each, and pay with a $50 note. a) Write this as one calculation. b) Work out your change.</p><div class="sp" style="--l:3"></div></div></div>
+<div class="qq"><span class="qn">1</span><div><p>Calculate. Show each step, like the worked example.</p><ol class="parts c3"><li><span><b>a)</b> 25 − 3 × 5 + 12 ÷ 4</span><div class="sp"><i class="ln"></i><i class="ln"></i></div></li><li><span><b>b)</b> 40 ÷ 8 + 7 × 3</span><div class="sp"><i class="ln"></i><i class="ln"></i></div></li><li><span><b>c)</b> 50 − 6 × 7</span><div class="sp"><i class="ln"></i><i class="ln"></i></div></li><li><span><b>d)</b> 9 + 36 ÷ 4 × 2</span><div class="sp"><i class="ln"></i><i class="ln"></i></div></li><li><span><b>e)</b> 100 − 45 ÷ 5 + 3 × 8</span><div class="sp"><i class="ln"></i><i class="ln"></i></div></li><li><span><b>f)</b> 7 × 8 − 64 ÷ 8 − 6</span><div class="sp"><i class="ln"></i><i class="ln"></i></div></li></ol></div></div>
+<div class="qq"><span class="qn">2</span><div><p>Mia says 20 − 4 × 3 = 48. Explain her mistake and give the correct answer.</p><div class="sp"><i class="ln"></i><i class="ln"></i><i class="ln"></i></div></div></div>
+<div class="qq"><span class="qn">3</span><div><p>You buy 3 drinks at $4 each and 2 pies at $6 each, and pay with a $50 note. a) Write this as one calculation. b) Work out your change.</p><div class="sp"><i class="ln"></i><i class="ln"></i><i class="ln"></i></div></div></div>
 </div></section>
 <section class="part" id="part-b">
 <div class="phead"><span class="pl">Part B</span><h2>Order of operations: brackets first</h2><a href="chapter-1.html#4">Slide 4</a></div>
@@ -146,9 +148,9 @@ footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
 <div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
 <p class="tip"><b>Tip:</b> Order: Brackets, then × and ÷ (left to right), then + and − (left to right).</p>
 <div class="yt"><p class="tag">Your turn</p>
-<div class="qq"><span class="qn">4</span><div><p>Calculate. Show each step.</p><ol class="parts c3"><li><span><b>a)</b> 5 × (9 + 3) − 20 ÷ 4</span><div class="sp" style="--l:2"></div></li><li><span><b>b)</b> (24 + 16) ÷ (3 + 5)</span><div class="sp" style="--l:2"></div></li><li><span><b>c)</b> 3 × (12 − 4) ÷ 6</span><div class="sp" style="--l:2"></div></li><li><span><b>d)</b> 2 × (18 − 3 × 4)</span><div class="sp" style="--l:2"></div></li><li><span><b>e)</b> 60 ÷ (2 + 4) × 3</span><div class="sp" style="--l:2"></div></li><li><span><b>f)</b> (45 − 9) ÷ (11 − 7) + 1</span><div class="sp" style="--l:2"></div></li></ol></div></div>
-<div class="qq"><span class="qn">5</span><div><p>Put brackets in to make each statement true.</p><ol class="parts c3"><li><span><b>a)</b> 4 + 6 × 3 = 30</span><div class="sp" style="--l:2"></div></li><li><span><b>b)</b> 20 − 8 ÷ 4 = 3</span><div class="sp" style="--l:2"></div></li><li><span><b>c)</b> 2 × 5 + 3 × 4 = 52</span><div class="sp" style="--l:2"></div></li></ol></div></div>
-<div class="qq"><span class="qn">6</span><div><p>Toolkit check: type 24 + 16 ÷ 3 + 5 into your calculator. Why is the answer different from Question 4 b)? What must you type to get 5?</p><div class="sp" style="--l:3"></div></div></div>
+<div class="qq"><span class="qn">4</span><div><p>Calculate. Show each step.</p><ol class="parts c3"><li><span><b>a)</b> 5 × (9 + 3) − 20 ÷ 4</span><div class="sp"><i class="ln"></i><i class="ln"></i></div></li><li><span><b>b)</b> (24 + 16) ÷ (3 + 5)</span><div class="sp"><i class="ln"></i><i class="ln"></i></div></li><li><span><b>c)</b> 3 × (12 − 4) ÷ 6</span><div class="sp"><i class="ln"></i><i class="ln"></i></div></li><li><span><b>d)</b> 2 × (18 − 3 × 4)</span><div class="sp"><i class="ln"></i><i class="ln"></i></div></li><li><span><b>e)</b> 60 ÷ (2 + 4) × 3</span><div class="sp"><i class="ln"></i><i class="ln"></i></div></li><li><span><b>f)</b> (45 − 9) ÷ (11 − 7) + 1</span><div class="sp"><i class="ln"></i><i class="ln"></i></div></li></ol></div></div>
+<div class="qq"><span class="qn">5</span><div><p>Put brackets in to make each statement true.</p><ol class="parts c3"><li><span><b>a)</b> 4 + 6 × 3 = 30</span><div class="sp"><i class="ln"></i><i class="ln"></i></div></li><li><span><b>b)</b> 20 − 8 ÷ 4 = 3</span><div class="sp"><i class="ln"></i><i class="ln"></i></div></li><li><span><b>c)</b> 2 × 5 + 3 × 4 = 52</span><div class="sp"><i class="ln"></i><i class="ln"></i></div></li></ol></div></div>
+<div class="qq"><span class="qn">6</span><div><p>Toolkit check: type 24 + 16 ÷ 3 + 5 into your calculator. Why is the answer different from Question 4 b)? What must you type to get 5?</p><div class="sp"><i class="ln"></i><i class="ln"></i><i class="ln"></i></div></div></div>
 </div></section>
 <section class="part" id="part-c">
 <div class="phead"><span class="pl">Part C</span><h2>Using the problem-solving cycle</h2><a href="chapter-1.html#5">Slide 5</a></div>
@@ -157,9 +159,9 @@ footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
 <div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
 <p class="tip"><b>Tip:</b> Use all four stages: Identify, Act, Evaluate, Communicate. Finish with a sentence.</p>
 <div class="yt"><p class="tag">Your turn</p>
-<div class="qq"><span class="qn">7</span><div><p>A laundry floor is 2.1 m × 1.8 m. Tiles are 30 cm × 30 cm, sold in boxes of 10 for $38. Add 10% extra. What will the tiles cost?</p><div class="sp" style="--l:5"></div></div></div>
-<div class="qq"><span class="qn">8</span><div><p>A bathroom wall 2.4 m wide and 1.6 m high is tiled with 20 cm × 20 cm tiles. Tiles come in boxes of 25 for $55. Add 10% extra. How many boxes are needed, and what is the cost?</p><div class="sp" style="--l:5"></div></div></div>
-<div class="qq"><span class="qn">9</span><div><p>A room has 38 m² of wall to paint, and it needs two coats. 1 litre of paint covers 12 m². Paint is sold in 4 L tins for $62. a) Identify: what do you need to find? b) Act: how many tins, and what is the cost? c) Evaluate: how much paint is left over? d) Communicate: answer in a sentence.</p><div class="sp" style="--l:7"></div></div></div>
+<div class="qq"><span class="qn">7</span><div><p>A laundry floor is 2.1 m × 1.8 m. Tiles are 30 cm × 30 cm, sold in boxes of 10 for $38. Add 10% extra. What will the tiles cost?</p><div class="sp"><i class="ln"></i><i class="ln"></i><i class="ln"></i><i class="ln"></i><i class="ln"></i></div></div></div>
+<div class="qq"><span class="qn">8</span><div><p>A bathroom wall 2.4 m wide and 1.6 m high is tiled with 20 cm × 20 cm tiles. Tiles come in boxes of 25 for $55. Add 10% extra. How many boxes are needed, and what is the cost?</p><div class="sp"><i class="ln"></i><i class="ln"></i><i class="ln"></i><i class="ln"></i><i class="ln"></i></div></div></div>
+<div class="qq"><span class="qn">9</span><div><p>A room has 38 m² of wall to paint, and it needs two coats. 1 litre of paint covers 12 m². Paint is sold in 4 L tins for $62. a) Identify: what do you need to find? b) Act: how many tins, and what is the cost? c) Evaluate: how much paint is left over? d) Communicate: answer in a sentence.</p><div class="sp"><i class="ln"></i><i class="ln"></i><i class="ln"></i><i class="ln"></i><i class="ln"></i><i class="ln"></i><i class="ln"></i></div></div></div>
 </div></section>
 <section class="part" id="part-d">
 <div class="phead"><span class="pl">Part D</span><h2>Pay with overtime</h2><a href="chapter-1.html#6">Slide 6</a></div>
@@ -168,11 +170,11 @@ footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
 <div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
 <p class="tip"><b>Tip:</b> Time and a half = × 1.5. Double time = × 2. Find the overtime rate first.</p>
 <div class="yt"><p class="tag">Your turn</p>
-<div class="qq"><span class="qn">10</span><div><p>Jo works 35 hours at $22.80 an hour, plus 3 hours overtime at time and a half. What is Jo’s pay?</p><div class="sp" style="--l:4"></div></div></div>
-<div class="qq"><span class="qn">11</span><div><p>Ali works 38 hours at $26.00 an hour, plus 5 hours overtime at time and a half. What is Ali’s pay?</p><div class="sp" style="--l:4"></div></div></div>
-<div class="qq"><span class="qn">12</span><div><p>Priya works 30 hours at $25.40 an hour, plus 4 hours on Sunday at double time. What is Priya’s pay?</p><div class="sp" style="--l:4"></div></div></div>
-<div class="qq"><span class="qn">13</span><div><p>Kai earns $23.60 an hour. One week he works 38 normal hours, 2 hours at time and a half and 3 hours at double time. What is Kai’s pay?</p><div class="sp" style="--l:5"></div></div></div>
-<div class="qq"><span class="qn">14</span><div><p>Evaluate: Mel says 4 hours at time and a half earns the same as 6 hours at the normal rate. Is she right? Show why.</p><div class="sp" style="--l:3"></div></div></div>
+<div class="qq"><span class="qn">10</span><div><p>Jo works 35 hours at $22.80 an hour, plus 3 hours overtime at time and a half. What is Jo’s pay?</p><div class="sp"><i class="ln"></i><i class="ln"></i><i class="ln"></i><i class="ln"></i></div></div></div>
+<div class="qq"><span class="qn">11</span><div><p>Ali works 38 hours at $26.00 an hour, plus 5 hours overtime at time and a half. What is Ali’s pay?</p><div class="sp"><i class="ln"></i><i class="ln"></i><i class="ln"></i><i class="ln"></i></div></div></div>
+<div class="qq"><span class="qn">12</span><div><p>Priya works 30 hours at $25.40 an hour, plus 4 hours on Sunday at double time. What is Priya’s pay?</p><div class="sp"><i class="ln"></i><i class="ln"></i><i class="ln"></i><i class="ln"></i></div></div></div>
+<div class="qq"><span class="qn">13</span><div><p>Kai earns $23.60 an hour. One week he works 38 normal hours, 2 hours at time and a half and 3 hours at double time. What is Kai’s pay?</p><div class="sp"><i class="ln"></i><i class="ln"></i><i class="ln"></i><i class="ln"></i><i class="ln"></i></div></div></div>
+<div class="qq"><span class="qn">14</span><div><p>Evaluate: Mel says 4 hours at time and a half earns the same as 6 hours at the normal rate. Is she right? Show why.</p><div class="sp"><i class="ln"></i><i class="ln"></i><i class="ln"></i></div></div></div>
 </div></section>
 <section class="reflect"><h2>Check yourself</h2><p style="margin:0 0 8px;font-size:15px">Tick one box for each success criterion. Show your teacher anything you ticked “Not yet”.</p>
 <table><tr><th>Success criteria</th><th class="bx">Not yet</th><th class="bx">Getting there</th><th class="bx">Got it</th></tr><tr><td>I can find the maths in a real problem and estimate first</td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td></tr><tr><td>I can use the order of operations correctly</td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td></tr><tr><td>I can check my answer makes sense</td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td><td class="bx"><span class="box"></span></td></tr></table></section>
