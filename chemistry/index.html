@@ -94,9 +94,9 @@ h2{font-size:28px;line-height:1.15;margin-bottom:6px}
 
 <script>
 {
-const SECS=[['1A','Introduction to the elements',3],['1B','Electron configurations',53],['1C','The periodic table',110],['1D','Critical elements and recycling processes',169]];
+const SECS=[['1A','Introduction to the elements',3],['1B','Electron configurations',54],['1C','The periodic table',113],['1D','Critical elements and recycling processes',155]];
 document.getElementById('sec1').innerHTML=SECS.map(([c,t])=>`<li><a href="chapter-1.html#sec-${c}"><b>${c}</b><span>${t}</span></a></li>`).join('');
-const LABS=[['Element or compound?',10],['Build an atom',14],['Atom, ion or isotope?',30],['Relative atomic mass',38],['Hydrogen emission spectrum',60],['Configuration builder',82],['Configuration to table position',87],['Core charge',121],['Periodic trends',134],['Which is bigger, and why?',139],['Which critical element is it?',178],['Recovering tin',193],['Linear or circular supply',200]];
+const LABS=[['Element or compound?',10],['Build an atom',14],['Atom, ion or isotope?',31],['Relative atomic mass',39],['Hydrogen emission spectrum',61],['Configuration builder',84],['Configuration to table position',89],['Core charge',123],['Periodic trends',128],['Which is bigger, and why?',130],['Which critical element is it?',165],['Recovering tin',170],['Linear or circular supply',172]];
 document.getElementById('labs').innerHTML=LABS.map(([t],i)=>`<a class="lab" href="chapter-1.html#lab-${i+1}"><span class="n">${i+1}</span><span>${t}<small>Chapter 1</small></span></a>`).join('');
 // periodic table outline: [row, col] of each cell in rows 1 to 7 (main block)
 const cells=[];const row=(r,cols)=>cols.forEach(c=>cells.push([r,c]));
