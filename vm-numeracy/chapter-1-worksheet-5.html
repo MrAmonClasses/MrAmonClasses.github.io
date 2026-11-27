@@ -36,7 +36,7 @@ h1,h2,h3{font-family:Oswald,'Arial Narrow',sans-serif;font-weight:600;margin:0;t
 .tag{font:600 16px Oswald,sans-serif;letter-spacing:.06em;text-transform:uppercase;margin:0 0 6px}
 .we .tag,.yt .tag{color:#1f2326}
 .we .q{font-weight:800;font-size:18px;margin:0 0 10px}
-.steps{margin:0;padding-left:24px;color:var(--soft)}
+.steps{margin:0;padding-left:4px;list-style:none;color:var(--soft)}
 .steps li{margin:4px 0}
 .ans{font-weight:800;color:#1f2326;font-size:18px;border-top:2px solid var(--line);padding-top:8px;margin:10px 0 0}
 .ctrl{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
@@ -57,6 +57,12 @@ h1,h2,h3{font-family:Oswald,'Arial Narrow',sans-serif;font-weight:600;margin:0;t
 table.fill{border-collapse:collapse;margin-top:8px;width:100%;max-width:520px}
 table.fill th,table.fill td{border:1.5px solid #b9b3a6;padding:6px 10px;text-align:center;height:34px}
 table.fill th{background:#efebe2;font-weight:800}
+.col{border-collapse:collapse;font-variant-numeric:tabular-nums;margin:4px 0 6px 1em}
+.col td{text-align:right;padding:0 .25em;line-height:1.25}
+.col td.op{padding-right:.6em;font-weight:700}
+.col tr.res td{border-top:2px solid currentColor;font-weight:700}
+.note{color:#6b7278;font-size:.9em}
+.steps ul{margin:2px 0 4px;padding-left:1.2em}
 .fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.05;font-size:.86em;margin:0 2px}
 .fr span:first-child{border-bottom:1.5px solid currentColor;padding:0 2px}
 .reflect{margin:34px 0 10px;background:#fff;border:2px solid #1f2326;border-radius:14px;padding:18px 22px}
@@ -133,7 +139,7 @@ footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
 <section class="part" id="part-a">
 <div class="phead"><span class="pl">Part A</span><h2>Percentages, fractions and decimals</h2><a href="chapter-1.html#26">Slide 26</a></div>
 <div class="we"><p class="tag">Worked example</p><p class="q">a) Write 35% as a fraction and a decimal &nbsp; b) Write <span class="fr"><span>3</span><span>4</span></span> as a percentage</p>
-<ol class="steps"><li>a) Per cent means out of 100: 35% = <span class="fr"><span>35</span><span>100</span></span> = <span class="fr"><span>7</span><span>20</span></span></li><li>35 ÷ 100 = 0.35</li><li>b) 3 ÷ 4 = 0.75</li><li>0.75 × 100 = 75%</li></ol><p class="ans">a) <span class="fr"><span>7</span><span>20</span></span> and 0.35 &nbsp;&nbsp; b) 75%</p>
+<ol class="steps"><li><b>1 Identify the maths:</b><ul><li>Find: a) 35% as a fraction and a decimal b) <span class="fr"><span>3</span><span>4</span></span> as a percentage</li><li>Per cent means out of 100</li></ul></li><li><b>2 Act on and use maths:</b> Estimate: a) 35% is a bit over a third  b) <span class="fr"><span>3</span><span>4</span></span> is between 50% and 100%</li><li>a) 35% = <span class="fr"><span>35</span><span>100</span></span></li><li><span class="fr"><span>35</span><span>100</span></span> = <span class="fr"><span>7</span><span>20</span></span> <span class="note">(÷ 5 top and bottom)</span></li><li>35 ÷ 100 = 0.35</li><li>b) 3 ÷ 4 = 0.75</li><li>0.75 × 100 = 75%</li><li><b>3 Evaluate and reflect:</b><ul><li>Is the result close to my estimate? Yes, both</li><li>How can I double-check? 75% of 4 = 3</li></ul></li></ol><p class="ans"><b>4 Communicate &amp; report:</b> a) 35% = <span class="fr"><span>7</span><span>20</span></span> = 0.35  b) <span class="fr"><span>3</span><span>4</span></span> = 75%.</p>
 <div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
 <p class="tip"><b>Tip:</b> % → decimal: ÷ 100. Decimal → %: × 100.</p>
 <div class="yt"><p class="tag">Your turn</p>
@@ -144,7 +150,7 @@ footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
 <section class="part" id="part-b">
 <div class="phead"><span class="pl">Part B</span><h2>The 10% method</h2><a href="chapter-1.html#27">Slide 27</a></div>
 <div class="we"><p class="tag">Worked example</p><p class="q">Find 35% of $240 without a calculator</p>
-<ol class="steps"><li>10%: $240 ÷ 10 = $24</li><li>30%: 3 × $24 = $72</li><li>5%: half of 10% = $12</li><li>35% = 30% + 5% = $72 + $12 = $84</li></ol><p class="ans">35% of $240 = $84</p>
+<ol class="steps"><li><b>1 Identify the maths:</b><ul><li>Find: 35% of $240 without a calculator</li><li>Build 35% from 10% and 5%</li></ul></li><li><b>2 Act on and use maths:</b> Estimate: 35% is about a third, and $240 ÷ 3 = $80</li><li>10%: $240 ÷ 10 = $24</li><li>30%: 3 × $24 = $72</li><li>5%: $24 ÷ 2 = $12</li><li>35%: $72 + $12 = $84</li><li><b>3 Evaluate and reflect:</b><ul><li>Is the result close to my estimate? $84 is a bit over $80: 35% is a bit more than a third</li></ul></li></ol><p class="ans"><b>4 Communicate &amp; report:</b> 35% of $240 is $84.</p>
 <div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
 <p class="tip"><b>Tip:</b> Find 10% first (÷ 10), then build up: 5% is half, 20% is double, 1% is ÷ 100.</p>
 <div class="yt"><p class="tag">Your turn</p>
@@ -156,7 +162,7 @@ footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
 <section class="part" id="part-c">
 <div class="phead"><span class="pl">Part C</span><h2>Discounts</h2><a href="chapter-1.html#28">Slide 28</a></div>
 <div class="we"><p class="tag">Worked example</p><p class="q">A jacket costs $120. It is 35% off. What is the sale price?</p>
-<ol class="steps"><li>Method 1: discount = 0.35 × $120 = $42</li><li>Sale price: $120 − $42 = $78</li><li>Method 2: you pay 100% − 35% = 65%</li><li>0.65 × $120 = $78</li></ol><p class="ans">The sale price is $78</p>
+<ol class="steps"><li><b>1 Identify the maths:</b><ul><li>Find: the sale price</li><li>Price $120, discount 35%</li><li>Sale price = price − discount</li></ul></li><li><b>2 Act on and use maths:</b> Estimate: 35% is about a third, so about $40 off and about $80 to pay</li><li>Method 1: 0.35 × $120 = $42</li><li>$120 − $42 = $78</li><li>Method 2: 100% − 35% = 65%</li><li>0.65 × $120 = $78</li><li><b>3 Evaluate and reflect:</b><ul><li>Is the result close to my estimate? $78 is close to $80</li><li>How can I double-check? Both methods give $78</li></ul></li></ol><p class="ans"><b>4 Communicate &amp; report:</b> The jacket’s sale price is $78.</p>
 <div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
 <p class="tip"><b>Tip:</b> Method 2 is faster on a calculator: % off → multiply by what you still pay.</p>
 <div class="yt"><p class="tag">Your turn</p>
@@ -168,7 +174,7 @@ footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
 <section class="part" id="part-d">
 <div class="phead"><span class="pl">Part D</span><h2>Percentage increase and change</h2><a href="chapter-1.html#29">Slide 29</a></div>
 <div class="we"><p class="tag">Worked example</p><p class="q">a) $26.40 an hour rises by 4%. New rate? &nbsp; b) Shifts go from 20 to 25 hours a week. % increase?</p>
-<ol class="steps"><li>a) New rate is 104% of $26.40: 1.04 × 26.40 = 27.456, round to $27.46</li><li>b) % change = change ÷ original × 100</li><li>Change = 25 − 20 = 5 hours</li><li>5 ÷ 20 = 0.25</li><li>0.25 × 100 = 25%</li></ol><p class="ans">a) $27.46 an hour &nbsp;&nbsp; b) 25% increase</p>
+<ol class="steps"><li><b>1 Identify the maths:</b><ul><li>Find: a) the new rate b) the percentage increase</li><li>a) new rate = 104% of the old rate</li><li>b) % change = change ÷ original × 100</li></ul></li><li><b>2 Act on and use maths:</b> Estimate: a) 4% of $25 is $1, so about $27.40  b) 5 is a quarter of 20, so about 25%</li><li>a) 1.04 × 26.40 = 27.456</li><li>27.456 rounds to 27.46</li><li>b) 25 − 20 = 5 hours</li><li>5 ÷ 20 = 0.25</li><li>0.25 × 100 = 25%</li><li><b>3 Evaluate and reflect:</b><ul><li>Is the result close to my estimate? a) $27.46 is close to $27.40  b) 25% matches</li></ul></li></ol><p class="ans"><b>4 Communicate &amp; report:</b> a) The new rate is $27.46 an hour.  b) Shifts rose by 25%.</p>
 <div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
 <p class="tip"><b>Tip:</b> For % change, always divide by the original (old) amount.</p>
 <div class="yt"><p class="tag">Your turn</p>

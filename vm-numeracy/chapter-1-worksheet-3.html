@@ -36,7 +36,7 @@ h1,h2,h3{font-family:Oswald,'Arial Narrow',sans-serif;font-weight:600;margin:0;t
 .tag{font:600 16px Oswald,sans-serif;letter-spacing:.06em;text-transform:uppercase;margin:0 0 6px}
 .we .tag,.yt .tag{color:#1f2326}
 .we .q{font-weight:800;font-size:18px;margin:0 0 10px}
-.steps{margin:0;padding-left:24px;color:var(--soft)}
+.steps{margin:0;padding-left:4px;list-style:none;color:var(--soft)}
 .steps li{margin:4px 0}
 .ans{font-weight:800;color:#1f2326;font-size:18px;border-top:2px solid var(--line);padding-top:8px;margin:10px 0 0}
 .ctrl{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
@@ -57,6 +57,12 @@ h1,h2,h3{font-family:Oswald,'Arial Narrow',sans-serif;font-weight:600;margin:0;t
 table.fill{border-collapse:collapse;margin-top:8px;width:100%;max-width:520px}
 table.fill th,table.fill td{border:1.5px solid #b9b3a6;padding:6px 10px;text-align:center;height:34px}
 table.fill th{background:#efebe2;font-weight:800}
+.col{border-collapse:collapse;font-variant-numeric:tabular-nums;margin:4px 0 6px 1em}
+.col td{text-align:right;padding:0 .25em;line-height:1.25}
+.col td.op{padding-right:.6em;font-weight:700}
+.col tr.res td{border-top:2px solid currentColor;font-weight:700}
+.note{color:#6b7278;font-size:.9em}
+.steps ul{margin:2px 0 4px;padding-left:1.2em}
 .fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.05;font-size:.86em;margin:0 2px}
 .fr span:first-child{border-bottom:1.5px solid currentColor;padding:0 2px}
 .reflect{margin:34px 0 10px;background:#fff;border:2px solid #1f2326;border-radius:14px;padding:18px 22px}
@@ -133,7 +139,7 @@ footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
 <section class="part" id="part-a">
 <div class="phead"><span class="pl">Part A</span><h2>Multiplying larger numbers</h2><a href="chapter-1.html#16">Slide 16</a></div>
 <div class="we"><p class="tag">Worked example</p><p class="q">Calculate 38 × 24</p>
-<ol class="steps"><li>Split 24 into 20 + 4</li><li>38 × 20 = 760</li><li>38 × 4 = 152</li><li>Add the parts: 760 + 152 = 912</li></ol><p class="ans">38 × 24 = 912</p>
+<ol class="steps"><li><b>1 Identify the maths:</b><ul><li>Find: 38 × 24 without a calculator</li><li>Split 24 into 20 + 4</li><li>Multiply each part, then add</li></ul></li><li><b>2 Act on and use maths:</b> Estimate with easy numbers: 40 × 25 = 1000</li><li>38 × 20 = 760</li><li>38 × 4 = 152</li><li><table class="col"><tr><td class="op"></td><td>760</td></tr><tr><td class="op">+</td><td>152</td></tr><tr class="res"><td class="op"></td><td>912</td></tr></table></li><li><b>3 Evaluate and reflect:</b><ul><li>Is the result close to my estimate? 912 is a bit under 1000, which makes sense: I rounded both numbers up</li><li>How can I double-check? Use a calculator</li></ul></li></ol><p class="ans"><b>4 Communicate &amp; report:</b> 38 × 24 = 912.</p>
 <div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
 <p class="tip"><b>Tip:</b> Split the second number into tens and ones, multiply each part, then add.</p>
 <div class="yt"><p class="tag">Your turn</p>
@@ -144,7 +150,7 @@ footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
 <section class="part" id="part-b">
 <div class="phead"><span class="pl">Part B</span><h2>Multiplying money</h2><a href="chapter-1.html#17">Slide 17</a></div>
 <div class="we"><p class="tag">Worked example</p><p class="q">a) 6 coffees at $4.80 each &nbsp;&nbsp; b) 2.5 kg of chicken at $12.40 per kg</p>
-<ol class="steps"><li>a) 6 × $4 = $24</li><li>6 × $0.80 = $4.80</li><li>$24 + $4.80 = $28.80</li><li>b) 2 × $12.40 = $24.80</li><li>0.5 × $12.40 = $6.20</li><li>$24.80 + $6.20 = $31.00</li></ol><p class="ans">a) $28.80 &nbsp;&nbsp; b) $31.00</p>
+<ol class="steps"><li><b>1 Identify the maths:</b><ul><li>Find: each total cost</li><li>a) split $4.80 into $4 + $0.80</li><li>b) split 2.5 into 2 + 0.5</li></ul></li><li><b>2 Act on and use maths:</b> Estimate with easy numbers: a) 6 × $5 = $30  b) 2.5 × $12 = $30</li><li>a) 6 × $4 = $24</li><li>6 × $0.80 = $4.80</li><li>$24 + $4.80 = $28.80</li><li>b) 2 × $12.40 = $24.80</li><li>0.5 × $12.40 = $6.20</li><li>$24.80 + $6.20 = $31.00</li><li><b>3 Evaluate and reflect:</b><ul><li>Is the result close to my estimate? a) $28.80 is a bit under $30: I rounded up  b) $31.00 is close to $30</li></ul></li></ol><p class="ans"><b>4 Communicate &amp; report:</b> a) 6 coffees cost $28.80.  b) The chicken costs $31.00.</p>
 <div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
 <p class="tip"><b>Tip:</b> Split into easy parts: dollars and cents, or whole kilograms and half a kilogram.</p>
 <div class="yt"><p class="tag">Your turn</p>
@@ -155,7 +161,7 @@ footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
 <section class="part" id="part-c">
 <div class="phead"><span class="pl">Part C</span><h2>Division with a remainder</h2><a href="chapter-1.html#18">Slide 18</a></div>
 <div class="we"><p class="tag">Worked example</p><p class="q">a) Rows hold 6 seats. How many rows do 158 people need? &nbsp; b) How many full cartons of 6 can you fill with 158 eggs?</p>
-<ol class="steps"><li>158 ÷ 6 = 26 remainder 2</li><li>a) 26 rows leaves 2 people standing, so round up</li><li>b) 2 eggs can’t fill a carton, so round down</li></ol><p class="ans">a) 27 rows &nbsp;&nbsp; b) 26 cartons</p>
+<ol class="steps"><li><b>1 Identify the maths:</b><ul><li>Find: a) rows needed b) full cartons</li><li>Divide 158 by 6</li><li>Decide: round up or round down?</li></ul></li><li><b>2 Act on and use maths:</b> Estimate with easy numbers: 150 ÷ 6 = 25, so about 26</li><li>158 ÷ 6 = 26 remainder 2</li><li>Check: 26 × 6 = 156, and 156 + 2 = 158</li><li>a) 2 people left over need a row: 26 + 1 = 27</li><li>b) 2 eggs can’t fill a carton: 26</li><li><b>3 Evaluate and reflect:</b><ul><li>Is the result close to my estimate? 26 is close to 25</li><li>Does my answer seem correct? Nobody stands, and every carton is full</li></ul></li></ol><p class="ans"><b>4 Communicate &amp; report:</b> a) 158 people need 27 rows.  b) 158 eggs fill 26 cartons.</p>
 <div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
 <p class="tip"><b>Tip:</b> Ask: does the remainder still need something? Round up. Is it left over? Round down.</p>
 <div class="yt"><p class="tag">Your turn</p>
@@ -169,7 +175,7 @@ footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
 <section class="part" id="part-d">
 <div class="phead"><span class="pl">Part D</span><h2>Multiplying and dividing negatives</h2><a href="chapter-1.html#19">Slide 19</a></div>
 <div class="we"><p class="tag">Worked example</p><p class="q">a) −6 × 4 &nbsp;&nbsp; b) −30 ÷ −5 &nbsp;&nbsp; c) 9 × −3</p>
-<ol class="steps"><li>Same signs give a positive answer. Different signs give a negative answer.</li><li>a) different signs: 6 × 4 = 24, so −24</li><li>b) same signs: 30 ÷ 5 = 6, so +6</li><li>c) different signs: 9 × 3 = 27, so −27</li></ol><p class="ans">a) −24 &nbsp;&nbsp; b) 6 &nbsp;&nbsp; c) −27</p>
+<ol class="steps"><li><b>1 Identify the maths:</b><ul><li>Find: each answer</li><li>Same signs give a positive answer</li><li>Different signs give a negative answer</li></ul></li><li><b>2 Act on and use maths:</b> Estimate the size first, then decide the sign</li><li>a) 6 × 4 = 24, different signs, so −24</li><li>b) 30 ÷ 5 = 6, same signs, so +6</li><li>c) 9 × 3 = 27, different signs, so −27</li><li><b>3 Evaluate and reflect:</b><ul><li>Did I apply the correct tools? Check each sign with the rule</li><li>How can I double-check? Use the (−) key on a calculator</li></ul></li></ol><p class="ans"><b>4 Communicate &amp; report:</b> a) −6 × 4 = −24  b) −30 ÷ −5 = 6  c) 9 × −3 = −27.</p>
 <div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
 <p class="tip"><b>Tip:</b> Work out the number first, then decide the sign.</p>
 <div class="yt"><p class="tag">Your turn</p>

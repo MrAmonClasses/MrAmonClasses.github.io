@@ -36,7 +36,7 @@ h1,h2,h3{font-family:Oswald,'Arial Narrow',sans-serif;font-weight:600;margin:0;t
 .tag{font:600 16px Oswald,sans-serif;letter-spacing:.06em;text-transform:uppercase;margin:0 0 6px}
 .we .tag,.yt .tag{color:#1f2326}
 .we .q{font-weight:800;font-size:18px;margin:0 0 10px}
-.steps{margin:0;padding-left:24px;color:var(--soft)}
+.steps{margin:0;padding-left:4px;list-style:none;color:var(--soft)}
 .steps li{margin:4px 0}
 .ans{font-weight:800;color:#1f2326;font-size:18px;border-top:2px solid var(--line);padding-top:8px;margin:10px 0 0}
 .ctrl{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
@@ -57,6 +57,12 @@ h1,h2,h3{font-family:Oswald,'Arial Narrow',sans-serif;font-weight:600;margin:0;t
 table.fill{border-collapse:collapse;margin-top:8px;width:100%;max-width:520px}
 table.fill th,table.fill td{border:1.5px solid #b9b3a6;padding:6px 10px;text-align:center;height:34px}
 table.fill th{background:#efebe2;font-weight:800}
+.col{border-collapse:collapse;font-variant-numeric:tabular-nums;margin:4px 0 6px 1em}
+.col td{text-align:right;padding:0 .25em;line-height:1.25}
+.col td.op{padding-right:.6em;font-weight:700}
+.col tr.res td{border-top:2px solid currentColor;font-weight:700}
+.note{color:#6b7278;font-size:.9em}
+.steps ul{margin:2px 0 4px;padding-left:1.2em}
 .fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.05;font-size:.86em;margin:0 2px}
 .fr span:first-child{border-bottom:1.5px solid currentColor;padding:0 2px}
 .reflect{margin:34px 0 10px;background:#fff;border:2px solid #1f2326;border-radius:14px;padding:18px 22px}
@@ -133,7 +139,7 @@ footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
 <section class="part" id="part-a">
 <div class="phead"><span class="pl">Part A</span><h2>Order of operations: × and ÷ first</h2><a href="chapter-1.html#3">Slide 3</a></div>
 <div class="we"><p class="tag">Worked example</p><p class="q">Calculate 18 + 6 × 4 − 10 ÷ 2</p>
-<ol class="steps"><li>18 + 24 − 10 ÷ 2  (6 × 4 = 24)</li><li>18 + 24 − 5  (10 ÷ 2 = 5)</li><li>42 − 5  (18 + 24 = 42)</li></ol><p class="ans">18 + 6 × 4 − 10 ÷ 2 = 37</p>
+<ol class="steps"><li><b>1 Identify the maths:</b><ul><li>Find: the value of the expression</li><li>Operations: +, ×, − and ÷</li><li>Order: × and ÷ first, then + and − from left to right</li></ul></li><li><b>2 Act on and use maths:</b> Estimate with easy numbers: 18 is about 20 and 6 × 4 is about 25, so 20 + 25 − 5 = 40</li><li>18 + 6 × 4 − 10 ÷ 2</li><li>= 18 + 24 − 10 ÷ 2 <span class="note">(6 × 4 = 24)</span></li><li>= 18 + 24 − 5 <span class="note">(10 ÷ 2 = 5)</span></li><li>= 42 − 5 <span class="note">(18 + 24 = 42)</span></li><li>= 37</li><li><b>3 Evaluate and reflect:</b><ul><li>Is the result close to my estimate? 37 is close to 40</li><li>Did I perform the appropriate steps? × and ÷ came before + and −</li></ul></li></ol><p class="ans"><b>4 Communicate &amp; report:</b> 18 + 6 × 4 − 10 ÷ 2 = 37.</p>
 <div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
 <p class="tip"><b>Tip:</b> × and ÷ come before + and −. When there are only × and ÷ (or only + and −), work left to right.</p>
 <div class="yt"><p class="tag">Your turn</p>
@@ -144,7 +150,7 @@ footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
 <section class="part" id="part-b">
 <div class="phead"><span class="pl">Part B</span><h2>Order of operations: brackets first</h2><a href="chapter-1.html#4">Slide 4</a></div>
 <div class="we"><p class="tag">Worked example</p><p class="q">Calculate (15 − 7) × 4 + 6</p>
-<ol class="steps"><li>8 × 4 + 6  (15 − 7 = 8)</li><li>32 + 6  (8 × 4 = 32)</li></ol><p class="ans">(15 − 7) × 4 + 6 = 38</p>
+<ol class="steps"><li><b>1 Identify the maths:</b><ul><li>Find: the value of the expression</li><li>Brackets first</li><li>Then ×, then +</li></ul></li><li><b>2 Act on and use maths:</b> Estimate with easy numbers: 15 − 7 is less than 10, and 10 × 4 + 6 = 46, so the answer is under 46</li><li>(15 − 7) × 4 + 6</li><li>= 8 × 4 + 6 <span class="note">(15 − 7 = 8)</span></li><li>= 32 + 6 <span class="note">(8 × 4 = 32)</span></li><li>= 38</li><li><b>3 Evaluate and reflect:</b><ul><li>Is the result close to my estimate? 38 is under 46, as expected: I rounded 8 up to 10</li><li>Did I perform the appropriate steps? Brackets came first</li></ul></li></ol><p class="ans"><b>4 Communicate &amp; report:</b> (15 − 7) × 4 + 6 = 38.</p>
 <div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
 <p class="tip"><b>Tip:</b> Order: Brackets, then × and ÷ (left to right), then + and − (left to right).</p>
 <div class="yt"><p class="tag">Your turn</p>
@@ -155,7 +161,7 @@ footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
 <section class="part" id="part-c">
 <div class="phead"><span class="pl">Part C</span><h2>Using the problem-solving cycle</h2><a href="chapter-1.html#6">Slide 6</a></div>
 <div class="we"><p class="tag">Worked example</p><p class="q">A floor is 3 m × 2.4 m. Tiles are 30 cm × 30 cm, sold in boxes of 10 for $42. Add 10% extra for cuts and breakages. What will the tiles cost?</p>
-<ol class="steps"><li><b>1 Identify the maths:</b><ul><li>Find: boxes needed and the total cost</li><li>Floor 300 cm × 240 cm (change m to cm)</li><li>Tile 30 cm × 30 cm, add 10% extra</li><li>Round up to whole boxes: 10 tiles for $42</li></ul></li><li><b>2 Act on and use maths:</b> Estimate: about 8 boxes × $40 = $320</li><li>300 ÷ 30 = 10 across, 240 ÷ 30 = 8 down</li><li>10 × 8 = 80 tiles</li><li>10% of 80 = 8 extra tiles</li><li>80 + 8 = 88 tiles</li><li>88 tiles needs 9 boxes (90 tiles)</li><li>9 × $42 = $378</li><li><b>3 Evaluate and reflect:</b><ul><li>Is the result close to my estimate? $378 is a little over $320: the extra 10% and rounding up explain it</li><li>Does my answer seem correct? 90 tiles covers the 88 needed</li></ul></li></ol><p class="ans"><b>4 Communicate &amp; report:</b> Buy 9 boxes of tiles for $378.</p>
+<ol class="steps"><li><b>1 Identify the maths:</b><ul><li>Find: boxes needed and the total cost</li><li>Floor 300 cm × 240 cm (change m to cm)</li><li>Tile 30 cm × 30 cm, add 10% extra</li><li>Round up to whole boxes: 10 tiles for $42</li></ul></li><li><b>2 Act on and use maths:</b> Estimate with easy numbers: about 90 tiles is 9 boxes, and 9 × $40 = $360</li><li>300 ÷ 30 = 10 tiles across</li><li>240 ÷ 30 = 8 tiles down</li><li>10 × 8 = 80 tiles</li><li>10% of 80 = 8 extra tiles</li><li>80 + 8 = 88 tiles</li><li>88 tiles needs 9 boxes (90 tiles)</li><li>9 × $42 = $378</li><li><b>3 Evaluate and reflect:</b><ul><li>Is the result close to my estimate? $378 is a little over $360 because $42 is more than $40</li><li>Does my answer seem correct? 90 tiles covers the 88 needed</li></ul></li></ol><p class="ans"><b>4 Communicate &amp; report:</b> Buy 9 boxes of tiles for $378.</p>
 <div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
 <p class="tip"><b>Tip:</b> Use all four stages of the problem-solving cycle: Identify the maths, Act on and use maths (this is where you estimate and calculate), Evaluate and reflect (check against your estimate), Communicate &amp; report. Finish with a sentence.</p>
 <div class="yt"><p class="tag">Your turn</p>
@@ -166,7 +172,7 @@ footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
 <section class="part" id="part-d">
 <div class="phead"><span class="pl">Part D</span><h2>Pay with overtime</h2><a href="chapter-1.html#7">Slide 7</a></div>
 <div class="we"><p class="tag">Worked example</p><p class="q">Sam works 38 hours at $24.50 an hour, plus 4 hours overtime at time and a half. What is Sam’s pay?</p>
-<ol class="steps"><li><b>1 Identify the maths:</b><ul><li>Find: Sam’s total pay</li><li>Normal pay: 38 hours × $24.50</li><li>Overtime: 4 hours at time and a half (× 1.5)</li><li>Total = normal pay + overtime pay</li></ul></li><li><b>2 Act on and use maths:</b> Estimate: 38 × $25 = $950, plus about 4 × $37 = $150, so about $1100</li><li>38 × $24.50 = $931.00</li><li>$24.50 × 1.5 = $36.75 an hour</li><li>4 × $36.75 = $147.00</li><li>$931.00 + $147.00 = $1078.00</li><li><b>3 Evaluate and reflect:</b><ul><li>Is the result close to my estimate? $1078 is close to $1100</li><li>How can I double-check? Redo 38 × $24.50 on the calculator</li></ul></li></ol><p class="ans"><b>4 Communicate &amp; report:</b> Sam’s pay for the week is $1078.00.</p>
+<ol class="steps"><li><b>1 Identify the maths:</b><ul><li>Find: Sam’s total pay</li><li>Normal pay: 38 hours × $24.50</li><li>Overtime: 4 hours at time and a half (× 1.5)</li><li>Total = normal pay + overtime pay</li></ul></li><li><b>2 Act on and use maths:</b> Estimate with easy numbers: 40 × $25 = $1000, overtime about 4 × $40 = $160, so about $1160</li><li>38 × $24.50 = $931.00</li><li>$24.50 × 1.5 = $36.75 an hour</li><li>4 × $36.75 = $147.00</li><li>$931.00 + $147.00 = $1078.00</li><li><b>3 Evaluate and reflect:</b><ul><li>Is the result close to my estimate? $1078 is a bit under $1160, which makes sense: I rounded every number up</li><li>How can I double-check? Redo 38 × $24.50 on the calculator</li></ul></li></ol><p class="ans"><b>4 Communicate &amp; report:</b> Sam’s pay for the week is $1078.00.</p>
 <div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
 <p class="tip"><b>Tip:</b> Time and a half = × 1.5. Double time = × 2. Find the overtime rate first. Use all four stages: Identify the maths, Act on and use maths (estimate, then calculate), Evaluate and reflect (is it close to your estimate?), Communicate &amp; report (a sentence).</p>
 <div class="yt"><p class="tag">Your turn</p>
@@ -179,7 +185,7 @@ footer{padding:26px 0 40px;font-size:14px;color:var(--soft)}
 <section class="part" id="part-e">
 <div class="phead"><span class="pl">Part E</span><h2>Problem-solving cycle practice: Solving Problems 1.06</h2><a href="chapter-1.html#8">Slide 8</a></div>
 <div class="we"><p class="tag">Worked example</p><p class="q">a) How much would a fish and chip dinner cost for your family? (Example prices: fish $9.50, large chips $8, drink $3. Use real prices you research.)</p>
-<ol class="steps"><li><b>1 Identify the maths:</b><ul><li>Find: total cost for a family of 4</li><li>Fish, chips and a drink for each person</li><li>Research real prices</li></ul></li><li><b>2 Act on and use maths:</b> Estimate: 4 × $15 = $60</li><li>Research: fish $9.50, large chips $8, drink $3</li><li>4 × $9.50 = $38</li><li>2 × $8 = $16</li><li>4 × $3 = $12</li><li>$38 + $16 + $12 = $66</li><li><b>3 Evaluate and reflect:</b><ul><li>Is the result close to my estimate? $66 is close to $60</li><li>Does my answer seem correct? Everyone has fish and a drink</li><li>What did I do well? What do I need to improve?</li></ul></li></ol><p class="ans"><b>4 Communicate &amp; report:</b> A fish and chip dinner for our family of 4 costs about $66.</p>
+<ol class="steps"><li><b>1 Identify the maths:</b><ul><li>Find: total cost for a family of 4</li><li>Fish, chips and a drink for each person</li><li>Research real prices</li></ul></li><li><b>2 Act on and use maths:</b> Estimate with easy numbers: 4 × $15 = $60</li><li>Research: fish $9.50, large chips $8, drink $3</li><li>4 × $9.50 = $38</li><li>2 × $8 = $16</li><li>4 × $3 = $12</li><li>$38 + $16 = $54</li><li>$54 + $12 = $66</li><li><b>3 Evaluate and reflect:</b><ul><li>Is the result close to my estimate? $66 is close to $60</li><li>Does my answer seem correct? Everyone has fish and a drink</li><li>What did I do well? What do I need to improve?</li></ul></li></ol><p class="ans"><b>4 Communicate &amp; report:</b> A fish and chip dinner for our family of 4 costs about $66.</p>
 <div class="ctrl"><button class="next main">Show first step</button><button class="all">Show all</button></div></div>
 <p class="tip"><b>Tip:</b> Use the four stages: Identify the maths (dot points: what to find, what you know, the maths to use), Act on and use maths (estimate, research, calculate), Evaluate and reflect (is it close to your estimate? does it seem correct? what did you do well? what can you improve?), Communicate &amp; report (a full sentence).</p>
 <div class="yt"><p class="tag">Your turn</p>
