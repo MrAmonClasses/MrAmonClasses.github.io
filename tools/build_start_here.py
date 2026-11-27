@@ -98,7 +98,7 @@ slides.append(plain("s1-o1", "Outcome 1: Numeracy in context", """
 <div><b>Specialised</b><span>Tasks with their own words and rules, like a trade’s mixing ratios or tolerances.</span></div>
 </div>"""))
 
-CYCLE = """<svg viewBox="0 0 760 700" width="700" height="645" role="img" aria-label="The problem-solving cycle: 1 Identify the mathematics, 2 Act on and use mathematics, 3 Evaluate and reflect, 4 Communicate and report, then back to 1.">
+CYCLE = """<svg viewBox="0 0 760 700" width="700" height="645" role="img" aria-label="The problem-solving cycle: 1 Identify the maths, 2 Act on and use maths, 3 Evaluate and reflect, 4 Communicate and report, then back to 1.">
 <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#a84b16"/></marker></defs>
 <g font-family="Nunito Sans, Arial, sans-serif">
 <rect x="20" y="20" width="320" height="250" rx="22" fill="#1f7a6e"/><rect x="420" y="20" width="320" height="250" rx="22" fill="#f6c21a"/>
@@ -106,11 +106,11 @@ CYCLE = """<svg viewBox="0 0 760 700" width="700" height="645" role="img" aria-l
 <text x="180" y="96" text-anchor="middle" font-family="Oswald, Arial" font-size="56" font-weight="600" fill="#f4f2ec">1</text>
 <text x="180" y="160" text-anchor="middle" font-size="34" font-weight="800" fill="#f4f2ec">Identify</text><text x="180" y="202" text-anchor="middle" font-size="34" font-weight="800" fill="#f4f2ec">the maths</text>
 <text x="580" y="96" text-anchor="middle" font-family="Oswald, Arial" font-size="56" font-weight="600" fill="#1f2326">2</text>
-<text x="580" y="160" text-anchor="middle" font-size="34" font-weight="800" fill="#1f2326">Act on and</text><text x="580" y="202" text-anchor="middle" font-size="34" font-weight="800" fill="#1f2326">use the maths</text>
+<text x="580" y="160" text-anchor="middle" font-size="34" font-weight="800" fill="#1f2326">Act on and</text><text x="580" y="202" text-anchor="middle" font-size="34" font-weight="800" fill="#1f2326">use maths</text>
 <text x="580" y="506" text-anchor="middle" font-family="Oswald, Arial" font-size="56" font-weight="600" fill="#f6c21a">3</text>
 <text x="580" y="570" text-anchor="middle" font-size="34" font-weight="800" fill="#f4f2ec">Evaluate</text><text x="580" y="612" text-anchor="middle" font-size="34" font-weight="800" fill="#f4f2ec">and reflect</text>
 <text x="180" y="506" text-anchor="middle" font-family="Oswald, Arial" font-size="56" font-weight="600" fill="#f4f2ec">4</text>
-<text x="180" y="570" text-anchor="middle" font-size="34" font-weight="800" fill="#f4f2ec">Communicate</text><text x="180" y="612" text-anchor="middle" font-size="34" font-weight="800" fill="#f4f2ec">and report</text>
+<text x="180" y="570" text-anchor="middle" font-size="34" font-weight="800" fill="#f4f2ec">Communicate</text><text x="180" y="612" text-anchor="middle" font-size="34" font-weight="800" fill="#f4f2ec">&amp; report</text>
 <g stroke="#a84b16" stroke-width="8" fill="none" marker-end="url(#ah)">
 <path d="M346 145 H408"/><path d="M580 278 V418"/><path d="M412 555 H352"/><path d="M180 422 V284"/></g>
 <text x="380" y="365" text-anchor="middle" font-size="26" font-weight="700" fill="#3d4448">a real problem</text></g></svg>"""
@@ -121,21 +121,22 @@ slides.append(plain("s1-o2", "Outcome 2: The problem-solving cycle", f"""
 <div class="row" style="gap:56px;align-items:flex-start;">
 <div style="flex:none;">{CYCLE}</div>
 <div style="flex:1;">
-<p class="step" style="font-size:30px;margin-bottom:22px;"><b style="color:var(--teal);">1 Identify:</b> What is the question? What information matters? Make a plan and an estimate.</p>
-<p class="step" style="font-size:30px;margin-bottom:22px;"><b style="color:#9a7300;">2 Act:</b> Do the calculations and measurements, by hand, in your head or with technology.</p>
-<p class="step" style="font-size:30px;margin-bottom:22px;"><b style="color:var(--ink);">3 Evaluate:</b> Compare with your estimate. Does it make sense in real life? Fix it if not.</p>
-<p class="step" style="font-size:30px;margin-bottom:22px;"><b style="color:var(--rust);">4 Communicate:</b> Show your working and give the answer in a sentence, with units.</p>
+<p class="step" style="font-size:27px;margin-bottom:18px;"><b style="color:var(--teal);">1 Identify the maths:</b> Find, identify and interpret the numerical information. Look for numbers, words, images, measures, shapes and questions.</p>
+<p class="step" style="font-size:27px;margin-bottom:18px;"><b style="color:#9a7300;">2 Act on and use maths:</b> Do the estimates, calculations or actions, and use suitable technology.</p>
+<p class="step" style="font-size:27px;margin-bottom:18px;"><b style="color:var(--ink);">3 Evaluate and reflect:</b> Check the right information and the right maths were used. Is the result close to your estimate? What did you do well? What do you need to improve?</p>
+<p class="step" style="font-size:27px;margin-bottom:18px;"><b style="color:var(--rust);">4 Communicate &amp; report:</b> Share your results and findings in a suitable format, using words, numbers, graphs or other media.</p>
 </div></div>"""))
 
-slides.append(plain("s1-o3", "Outcome 3: Mathematical toolkit", """
+slides.append(plain("s1-o3", "Outcome 3: Mathematics toolkit", """
 <p class="eyebrow">Section 1 · The three outcomes</p>
-<h2>Outcome 3: Your mathematical toolkit</h2>
-<p class="lede">Choose the right tool for the job, use it accurately, and check what it tells you.</p>
+<h2>Outcome 3: Your mathematics toolkit</h2>
+<p class="lede">Analogue, digital and technological tools. All year you build skills in using them for your personal, work, health, recreation, money and community life.</p>
 <div class="grid3">
-<div class="card"><p class="k">Hands-on tools</p><ul><li>Tape measures and rulers</li><li>Kitchen scales and jugs</li><li>Clocks and calendars</li><li>Tools of your trade</li></ul></div>
-<div class="card y"><p class="k">Digital tools</p><ul><li>Calculators</li><li>Spreadsheets</li><li>Measuring, level and angle apps</li><li>Online calculators and planners</li></ul></div>
-<div class="card r"><p class="k">What you must do</p><ul><li>Pick the right tool and settings</li><li>Compare results with your estimate</li><li>Spot errors and accuracy limits</li><li>Stay safe online</li></ul></div>
-</div>"""))
+<div class="card"><p class="k">Measure, time and count</p><ul><li>Measuring devices</li><li>Timing devices</li><li>Counters and sensors</li><li>Monitoring and alarms</li></ul></div>
+<div class="card y"><p class="k">Calculate and analyse</p><ul><li>Calculators and computing</li><li>Spreadsheets and software</li><li>Apps and processors</li><li>Data, statistics and information</li></ul></div>
+<div class="card r"><p class="k">Plan, show and record</p><ul><li>Tables, planners, rosters and organisers</li><li>Graphing, mapping and drawing</li><li>Designing and making</li><li>Collecting and recording, inputs and outputs</li></ul></div>
+</div>
+<p class="muted" style="font-size:26px;margin-top:24px;">Coursebook: Mathematics Toolkit, Unit 3 introduction. You will use these tools with the cycle: pick the right tool, use it accurately, check the result.</p>"""))
 
 # Section 2: numeracies
 slides.append(li(2, "The six numeracies", "Section 2 · Units 3 and 4",
