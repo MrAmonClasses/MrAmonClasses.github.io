@@ -60,7 +60,7 @@ dict(n=1, title="Solving problems", sec="sec-1",
  parts=[
   dict(title="Order of operations: × and ÷ first", slide=3,
    we=dict(q="Calculate 18 + 6 × 4 − 10 ÷ 2",
-           steps=["× and ÷ first: 6 × 4 = 24 and 10 ÷ 2 = 5", "Rewrite: 18 + 24 − 5", "Then + and − from left to right: 18 + 24 = 42, 42 − 5 = 37"],
+           steps=["Do 6 × 4 = 24 first, then rewrite: 18 + 24 − 10 ÷ 2", "Next 10 ÷ 2 = 5, then rewrite: 18 + 24 − 5", "Then + and − left to right, 18 + 24 = 42, then rewrite: 42 − 5", "42 − 5 = 37"],
            ans="18 + 6 × 4 − 10 ÷ 2 = 37"),
    tip="× and ÷ come before + and −. When there are only × and ÷ (or only + and −), work left to right.",
    qs=[
@@ -74,7 +74,7 @@ dict(n=1, title="Solving problems", sec="sec-1",
   ]),
   dict(title="Order of operations: brackets first", slide=4,
    we=dict(q="Calculate (15 − 7) × 4 + 6",
-           steps=["Brackets first: 15 − 7 = 8", "Then ×: 8 × 4 = 32", "Then +: 32 + 6 = 38"], ans="(15 − 7) × 4 + 6 = 38"),
+           steps=["Brackets first, 15 − 7 = 8, then rewrite: 8 × 4 + 6", "Then 8 × 4 = 32, then rewrite: 32 + 6", "32 + 6 = 38"], ans="(15 − 7) × 4 + 6 = 38"),
    tip="Order: Brackets, then × and ÷ (left to right), then + and − (left to right).",
    qs=[
     dict(text="Calculate. Show each step.", cols=3, parts=[
