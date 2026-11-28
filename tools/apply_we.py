@@ -87,6 +87,8 @@ def fractions_in_text(s):
 def patch_deck(fit):
     s = DECK.read_text()
     s = re.sub(r"\n/\* worked examples: 4-stage cycle.*?(?:/\* end worked examples \*/|(?=</style>))\n?", "\n", s, count=1, flags=re.S)
+    extra = CSS.split("/* end worked examples */", 1)[1].lstrip("\n")
+    s = s.replace(extra, "")  # keep the helper rules to a single copy on re-runs
     s = s.replace("</style>", CSS + "</style>", 1)
     for sid, w in WE.items():
         m = re.search(r'<section id="%s"[^>]*>.*?</section>' % re.escape(sid), s, re.S)
@@ -118,7 +120,7 @@ def ws_steps(w):
 def patch_content():
     c = CONTENT.read_text()
     for sid, w in WE.items():
-        pat = re.compile(r'(we=dict\(q="%s.*?steps=)\[.*?\](,\s*ans=)(".*?")' % re.escape(w["ws"]), re.S)
+        pat = re.compile(r'(we=dict\(q="%s.*?steps=)\[.*?\](,\s*ans=)("(?:[^"\\]|\\.)*")' % re.escape(w["ws"]), re.S)
         assert pat.search(c), sid
         steps = json.dumps(ws_steps(w), ensure_ascii=False)
         ans = json.dumps(f"<b>4 {C}</b> {inline(w['comm'])}", ensure_ascii=False)

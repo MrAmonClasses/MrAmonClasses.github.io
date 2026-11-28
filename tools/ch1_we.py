@@ -6,8 +6,8 @@ Every worked example follows the coursebook's 4-stage problem-solving cycle:
 numbers first, then one operation per line), 3 Evaluate and reflect (the
 coursebook's questions), 4 Communicate & report (a sentence).
 
-Notation inside strings: {3/8} is a stacked fraction, 1 {1/4} a mixed number,
-[[...]] a grey side note. A tuple ("col", op, [numbers], result) is a stacked
+Notation inside strings: {3/8} is a stacked fraction, 1 {1/4} a mixed number.
+A tuple ("col", op, [numbers], result) is a stacked
 (column) sum, worked top down.
 """
 
@@ -20,25 +20,21 @@ WE = {
 "s1-we1": dict(ws="Calculate 18 + 6",
   identify=["Find: the value of the expression", "Operations: +, ×, − and ÷",
             "Order: × and ÷ first, then + and − from left to right"],
-  act=["Estimate with easy numbers: 18 is about 20 and 6 × 4 is about 25, so 20 + 25 − 5 = 40",
-       "18 + 6 × 4 − 10 ÷ 2",
-       "= 18 + 24 − 10 ÷ 2 [[6 × 4 = 24]]",
-       "= 18 + 24 − 5 [[10 ÷ 2 = 5]]",
-       "= 42 − 5 [[18 + 24 = 42]]",
+  act=["18 + 6 × 4 − 10 ÷ 2",
+       "= 18 + 24 − 10 ÷ 2",
+       "= 18 + 24 − 5",
+       "= 42 − 5",
        "= 37"],
-  evaluate=["Is the result close to my estimate? 37 is close to 40",
-            "Did I perform the appropriate steps? × and ÷ came before + and −"],
+  evaluate=["Did I perform the appropriate steps? × and ÷ came before + and −"],
   comm="18 + 6 × 4 − 10 ÷ 2 = 37.", ans="= 37"),
 
 "s1-we2": dict(ws="Calculate (15",
   identify=["Find: the value of the expression", "Brackets first", "Then ×, then +"],
-  act=["Estimate with easy numbers: 15 − 7 is less than 10, and 10 × 4 + 6 = 46, so the answer is under 46",
-       "(15 − 7) × 4 + 6",
-       "= 8 × 4 + 6 [[15 − 7 = 8]]",
-       "= 32 + 6 [[8 × 4 = 32]]",
+  act=["(15 − 7) × 4 + 6",
+       "= 8 × 4 + 6",
+       "= 32 + 6",
        "= 38"],
-  evaluate=["Is the result close to my estimate? 38 is under 46, as expected: I rounded 8 up to 10",
-            "Did I perform the appropriate steps? Brackets came first"],
+  evaluate=["Did I perform the appropriate steps? Brackets came first"],
   comm="(15 − 7) × 4 + 6 = 38.", ans="= 38"),
 
 "s1-we3": dict(ws="A floor is 3 m",
@@ -162,7 +158,7 @@ WE = {
             "Decimal to fraction: use place value, then simplify"],
   act=["Estimate: a) between 0.5 and 1  b) a bit more than 1  c) a bit over a third",
        "a) 3 ÷ 4 = 0.75", "b) 7 ÷ 5 = 1.4",
-       "c) 0.35 = {35/100}", "{35/100} = {7/20} [[÷ 5 top and bottom]]"],
+       "c) 0.35 = {35/100}", "{35/100} = {7/20}"],
   evaluate=["Is the result close to my estimate? Yes, all three",
             "How can I double-check? 7 ÷ 20 = 0.35"],
   comm="a) {3/4} = 0.75  b) {7/5} = 1.4  c) 0.35 = {7/20}.", ans="a) 0.75 &nbsp;&nbsp; b) 1.4 &nbsp;&nbsp; c) {7/20}"),
@@ -173,7 +169,7 @@ WE = {
             "b) multiply tops, multiply bottoms, then simplify"],
   act=["Estimate: a) {2/3} is more than half, so more than $180  b) under {1/2}",
        "a) $360 ÷ 3 = $120", "$120 × 2 = $240",
-       "b) 3 × 2 = 6 [[tops]]", "4 × 5 = 20 [[bottoms]]", "{6/20} = {3/10} [[÷ 2 top and bottom]]"],
+       "b) 3 × 2 = 6", "4 × 5 = 20", "{6/20} = {3/10}"],
   evaluate=["Is the result close to my estimate? a) $240 is more than $180  b) {3/10} is under {1/2}"],
   comm="a) Rent is $240.  b) {3/4} × {2/5} = {3/10}.", ans="a) $240 &nbsp;&nbsp; b) {3/10}"),
 
@@ -199,7 +195,7 @@ WE = {
   identify=["Find: a) 35% as a fraction and a decimal b) {3/4} as a percentage",
             "Per cent means out of 100"],
   act=["Estimate: a) 35% is a bit over a third  b) {3/4} is between 50% and 100%",
-       "a) 35% = {35/100}", "{35/100} = {7/20} [[÷ 5 top and bottom]]", "35 ÷ 100 = 0.35",
+       "a) 35% = {35/100}", "{35/100} = {7/20}", "35 ÷ 100 = 0.35",
        "b) 3 ÷ 4 = 0.75", "0.75 × 100 = 75%"],
   evaluate=["Is the result close to my estimate? Yes, both",
             "How can I double-check? 75% of 4 = 3"],
@@ -255,7 +251,7 @@ WE = {
   identify=["Find: each value", "A power means repeated multiplication",
             "A square root asks: which number times itself gives this?"],
   act=["Estimate: d) 7 × 7 = 49, so √50 is just over 7",
-       "a) 6² = 6 × 6 = 36", "b) 4³ = 4 × 4 × 4", "= 16 × 4 [[4 × 4 = 16]]", "= 64",
+       "a) 6² = 6 × 6 = 36", "b) 4³ = 4 × 4 × 4", "= 16 × 4", "= 64",
        "c) 9 × 9 = 81, so √81 = 9", "d) calculator: √50 = 7.071…, so 7.07"],
   evaluate=["Is the result close to my estimate? 7.07 is just over 7",
             "How can I double-check? 7.07 × 7.07 = 49.98, close to 50"],
@@ -265,7 +261,7 @@ WE = {
   identify=["Find: the brace, the longest side c", "Right-angled triangle: a = 1.2 m, b = 0.9 m",
             "Pythagoras: c² = a² + b²"],
   act=["Estimate: c is longer than 1.2 m but shorter than 1.2 + 0.9 = 2.1 m",
-       "c² = 1.2² + 0.9²", "c² = 1.44 + 0.81 [[1.2² = 1.44, 0.9² = 0.81]]", "c² = 2.25",
+       "c² = 1.2² + 0.9²", "c² = 1.44 + 0.81", "c² = 2.25",
        "c = √2.25", "c = 1.5"],
   evaluate=["Is the result close to my estimate? 1.5 m is between 1.2 m and 2.1 m",
             "How can I double-check? 1.5² = 2.25"],
