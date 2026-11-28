@@ -462,3 +462,57 @@ dict(n=6, title="Rounding, powers and roots", sec="sec-6",
   ]),
  ]),
 ]
+
+
+# ---------------------------------------------------------------- space for working
+# Sizes the printed ruled answer space from the working each answer needs, so students
+# can write one operation per line and rewrite the whole expression each time.
+import re as _re
+
+
+def _steps(ans):
+    segs = [s for s in _re.split(r";|\s(?=[a-d]\) )", str(ans)) if s.strip()]
+    return sum(max(1, s.count("=")) for s in segs)
+
+
+def _size_worksheets():
+    for w in WORKSHEETS:
+        for p in w["parts"]:
+            for q in p["qs"]:
+                t = q["text"]
+                if "parts" in q:
+                    need = max(max(1, a.count("=")) for _p, a in q["parts"])
+                    cols = q.get("cols", 3)
+                    pl = max(q.get("plines", 2), min(6, need + 2))
+                    if t.startswith("Calculate. Show each step"):       # order of operations by hand
+                        pl, cols = 5, 2
+                    elif t.startswith("Calculate. Estimate first, then set out in columns"):
+                        pl, cols = 5, 3
+                    elif t.startswith("Calculate without a calculator"):
+                        pl, cols = 4, 3
+                    elif (w["n"] in (3, 4) and t == "Calculate.") or t.startswith(("Calculate. Give the remainder", "Increase each", "Find the percentage change")):
+                        pl = max(pl, 4)
+                        cols = min(cols, 3)
+                    elif pl >= 5:
+                        cols = min(cols, 2)
+                    elif pl >= 3:
+                        cols = min(cols, 3)
+                    q["plines"], q["cols"] = pl, cols
+                elif "table" not in q:
+                    n = min(12, _steps(q["ans"]) + 1) if "ans" in q else 2
+                    if _re.match(r"(Explain|Evaluate|Challenge)", t):
+                        n = max(n, 4)
+                    q["lines"] = max(q.get("lines") or 3, 3, n)
+
+
+def _size_diagnostic():
+    sizes = [3, 3, 4, 4,  3, 3, 2, 3,  2, 3, 3, 4,  2, 2, 3, 3,  2, 2, 3, 3,  2, 2, 2, 4]
+    i = 0
+    for s in DIAGNOSTIC["sections"]:
+        for q in s["qs"]:
+            q["lines"] = sizes[i]
+            i += 1
+
+
+_size_worksheets()
+_size_diagnostic()
